@@ -1,0 +1,311 @@
+{
+  "model_kind": "catboost_gpu_v1",
+  "device": "GPU 0 (NVIDIA CUDA)",
+  "features": [
+    "value",
+    "log_value",
+    "x",
+    "y",
+    "big",
+    "small",
+    "has_z",
+    "has_sm",
+    "has_dn",
+    "has_lt",
+    "n_near",
+    "has_larger_near",
+    "nested_ratio",
+    "support_mark",
+    "f_overall_mark",
+    "f_overall_pair",
+    "f_handwheel",
+    "f_insulation",
+    "f_support_repeat",
+    "f_near_plant_coord",
+    "f_near_endpoint",
+    "f_nested_offset"
+  ],
+  "data_source": "Изометрии_без_API",
+  "relabeled_sheets": 92,
+  "excluded_test_pages": {
+    "тест_1": [
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287
+    ],
+    "тест_2": [
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297
+    ],
+    "тест_3": [
+      298,
+      299,
+      300,
+      301,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307
+    ]
+  },
+  "holdout_check": {
+    "ok": true,
+    "train_sheets": 277,
+    "excluded_tests": {
+      "тест_1": [
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287
+      ],
+      "тест_2": [
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297
+      ],
+      "тест_3": [
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307
+      ]
+    },
+    "overlap_tests": {}
+  },
+  "best_iteration": 354,
+  "hyperparams": {
+    "depth": 5,
+    "learning_rate": 0.03,
+    "l2_leaf_reg": 12.0,
+    "min_data_in_leaf": 20,
+    "class_weights": {
+      "include": 1.2,
+      "exclude_nested": 2.2,
+      "not_length": 1.8
+    },
+    "early_stopping_rounds": 100
+  },
+  "overfit_gap_macro_f1": 0.030571957158306184,
+  "overfit_ok": true,
+  "train": {
+    "rows": 7070,
+    "sheets": 227,
+    "accuracy": 0.9586987270155587,
+    "macro_f1": 0.9443822378048963,
+    "weighted_f1": 0.9596719301956168,
+    "classification_report": {
+      "include": {
+        "precision": 0.9744546498277842,
+        "recall": 0.9441045606229144,
+        "f1-score": 0.9590395480225988,
+        "support": 3596.0
+      },
+      "exclude_nested": {
+        "precision": 0.8899858956276445,
+        "recall": 0.9066091954022989,
+        "f1-score": 0.898220640569395,
+        "support": 696.0
+      },
+      "not_length": {
+        "precision": 0.9615653389238294,
+        "recall": 0.9906407487401008,
+        "f1-score": 0.975886524822695,
+        "support": 2778.0
+      },
+      "micro avg": {
+        "precision": 0.9607370659107016,
+        "recall": 0.9586987270155587,
+        "f1-score": 0.959716814159292,
+        "support": 7070.0
+      },
+      "macro avg": {
+        "precision": 0.9420019614597527,
+        "recall": 0.9471181682551046,
+        "f1-score": 0.9443822378048963,
+        "support": 7070.0
+      },
+      "weighted avg": {
+        "precision": 0.9610746273929208,
+        "recall": 0.9586987270155587,
+        "f1-score": 0.9596719301956168,
+        "support": 7070.0
+      }
+    },
+    "confusion_labels": [
+      "include",
+      "exclude_nested",
+      "not_length"
+    ],
+    "confusion_matrix": [
+      [
+        3395,
+        78,
+        110
+      ],
+      [
+        65,
+        631,
+        0
+      ],
+      [
+        24,
+        0,
+        2752
+      ]
+    ],
+    "sheet_sum_mae_mm": 2397.035242290749,
+    "sheet_sum_median_ae_mm": 42.0,
+    "sheet_sum_max_ae_mm": 20038,
+    "class_counts": {
+      "not_length": 2778,
+      "include": 3596,
+      "exclude_nested": 696
+    },
+    "kind": "train"
+  },
+  "validation": {
+    "rows": 1639,
+    "sheets": 50,
+    "accuracy": 0.9334960341671751,
+    "macro_f1": 0.9138102806465901,
+    "weighted_f1": 0.9343130362724119,
+    "classification_report": {
+      "include": {
+        "precision": 0.9572649572649573,
+        "recall": 0.9137529137529138,
+        "f1-score": 0.9350029815146095,
+        "support": 858.0
+      },
+      "exclude_nested": {
+        "precision": 0.8522727272727273,
+        "recall": 0.8426966292134831,
+        "f1-score": 0.847457627118644,
+        "support": 178.0
+      },
+      "not_length": {
+        "precision": 0.93125,
+        "recall": 0.988391376451078,
+        "f1-score": 0.9589702333065165,
+        "support": 603.0
+      },
+      "micro avg": {
+        "precision": 0.9357798165137615,
+        "recall": 0.9334960341671751,
+        "f1-score": 0.9346365302382407,
+        "support": 1639.0
+      },
+      "macro avg": {
+        "precision": 0.9135958948458948,
+        "recall": 0.9149469731391583,
+        "f1-score": 0.9138102806465901,
+        "support": 1639.0
+      },
+      "weighted avg": {
+        "precision": 0.9362914147577052,
+        "recall": 0.9334960341671751,
+        "f1-score": 0.9343130362724119,
+        "support": 1639.0
+      }
+    },
+    "confusion_labels": [
+      "include",
+      "exclude_nested",
+      "not_length"
+    ],
+    "confusion_matrix": [
+      [
+        784,
+        26,
+        44
+      ],
+      [
+        28,
+        150,
+        0
+      ],
+      [
+        7,
+        0,
+        596
+      ]
+    ],
+    "sheet_sum_mae_mm": 3966.32,
+    "sheet_sum_median_ae_mm": 575.0,
+    "sheet_sum_max_ae_mm": 56855,
+    "kind": "validation"
+  },
+  "threshold": 0.5,
+  "threshold_trials": [
+    {
+      "threshold": 0.5,
+      "coverage": 0.9975594874923734,
+      "accuracy_accepted": 0.9357798165137615,
+      "macro_f1_with_abstain": 0.9138102806465901
+    },
+    {
+      "threshold": 0.6,
+      "coverage": 0.9395973154362416,
+      "accuracy_accepted": 0.9435064935064935,
+      "macro_f1_with_abstain": 0.9020331150763766
+    },
+    {
+      "threshold": 0.7,
+      "coverage": 0.9048200122025626,
+      "accuracy_accepted": 0.9501011463250169,
+      "macro_f1_with_abstain": 0.8964742241600837
+    },
+    {
+      "threshold": 0.8,
+      "coverage": 0.8590604026845637,
+      "accuracy_accepted": 0.9595170454545454,
+      "macro_f1_with_abstain": 0.8804555153536978
+    },
+    {
+      "threshold": 0.9,
+      "coverage": 0.7095790115924344,
+      "accuracy_accepted": 0.9733447979363714,
+      "macro_f1_with_abstain": 0.8152972516086736
+    }
+  ],
+  "audit": {
+    "sheets": 308,
+    "candidates": 9619,
+    "problems_count": 0
+  }
+}

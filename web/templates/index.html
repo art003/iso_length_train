@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Длина по изометриям — локальная модель</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="header__nav">
+      <a class="header__logo" href="#calc" data-page="calc">
+        <img src="/static/img/logo.svg" alt="Компания КРУС-Запад">
+      </a>
+      <ul class="header__links">
+        <li><a href="#calc" data-page="calc" class="is-on">Расчёт</a></li>
+        <li><a href="#train" data-page="train">Обучение</a></li>
+        <li><a href="#results" data-page="results">Результаты</a></li>
+      </ul>
+    </nav>
+    <div class="busy-wrap"><div class="busy-bar" id="busy"></div></div>
+  </header>
+
+  <section class="hero">
+    <div class="hero__inner">
+      <h1>Расчёт длины<br>по изометриям</h1>
+      <p>Локальная модель: обучение на GPU и расчёт длин по PDF.</p>
+      <div class="hero__stats">
+        <div><b id="stat-pages">—</b><span>листов в последнем прогоне</span></div>
+        <div><b id="stat-total">—</b><span>сумма, м</span></div>
+        <div><b id="stat-api">Офлайн</b><span>режим</span></div>
+        <div><b id="stat-model">—</b><span>модель на диске</span></div>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <section id="page-calc" class="page is-on">
+      <div class="grid">
+        <div class="card">
+          <h2>Параметры</h2>
+          <form id="form">
+            <label class="lbl">PDF с изометриями</label>
+            <div class="drop" id="drop">
+              <input type="file" id="pdf" accept=".pdf">
+              <span id="pdf-name">файл не выбран — можно перетащить сюда</span>
+            </div>
+            <label class="check"><input type="checkbox" id="use-default" checked> взять файл из data, если свой не выбран</label>
+
+            <div class="local-mode">
+              <b>Локальная GPU-модель</b>
+              <span>CatBoost + инженерные правила · интернет и ключи не нужны</span>
+            </div>
+
+            <label class="lbl">листы</label>
+            <input type="text" id="pages" placeholder="пусто = все, или 7 или 1,7">
+
+            <div class="actions">
+              <button class="btn" type="submit" id="run">Рассчитать</button>
+              <button class="btn btn-stop" type="button" id="stop" disabled>Остановить</button>
+              <button class="btn btn-ghost" type="button" id="open-out">Папка output</button>
+            </div>
+          </form>
+        </div>
+        <div class="card">
+          <h2>Ход расчёта</h2>
+          <div class="log" id="log">Готово. Выбери «Локальная модель» и нажми Рассчитать.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="page-train" class="page">
+      <div class="card">
+        <h2>Обучение локальной модели</h2>
+        <div class="train-stats" id="train-stats">Загрузка...</div>
+        <div class="actions train-actions">
+          <button class="btn btn-ghost" type="button" id="btn-audit">Проверить разметку</button>
+          <button class="btn" type="button" id="btn-train">Обучить на GPU</button>
+          <button class="btn btn-ghost" type="button" data-open="models">models</button>
+          <button class="btn btn-ghost" type="button" data-open="report">Отчёт</button>
+          <button class="btn btn-ghost" type="button" data-open="audit">Аудит</button>
+          <button class="btn btn-ghost" type="button" data-open="guide">Памятка</button>
+        </div>
+        <h3>Лог</h3>
+        <div class="log" id="train-log">Пока ничего не запущено.</div>
+      </div>
+    </section>
+
+    <section id="page-results" class="page">
+      <div class="card">
+        <div class="results-head">
+          <div>
+            <h2 id="results-title">Таблица длин</h2>
+            <p class="hint" id="results-pdf"></p>
+          </div>
+          <div class="results-tools">
+            <select id="jobs" aria-label="посчитанные PDF"></select>
+            <a class="btn btn-ghost" id="dl-xlsx" href="#" download>Excel</a>
+            <a class="btn btn-ghost" id="dl-html" href="#" target="_blank">отчёт</a>
+          </div>
+        </div>
+        <div class="totals" id="totals"></div>
+        <table>
+          <thead>
+            <tr>
+              <th>лист</th><th>линия</th><th>мм</th><th>м</th><th>статус</th><th>формула</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <div class="thumbs" id="thumbs"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Локальная модель · без обязательного API</span>
+    <span>iso_length_train</span>
+  </footer>
+  <div class="editor" id="editor" hidden>
+    <div class="editor__box">
+      <div class="editor__head">
+        <div>
+          <h2 id="ed-title">Лист</h2>
+          <p class="hint" id="ed-sum"></p>
+        </div>
+        <div>
+          <button type="button" class="btn" id="ed-confirm">Подтвердить лист</button>
+          <button type="button" class="btn btn-ghost" id="ed-close">Закрыть</button>
+        </div>
+      </div>
+      <div class="editor__body">
+        <div class="editor__scroll">
+          <div class="editor__canvas" id="ed-canvas">
+            <img id="ed-img" alt="лист">
+          </div>
+        </div>
+        <ul class="editor__list" id="ed-list"></ul>
+      </div>
+      <p class="hint">Клик по цифре меняет класс. Когда проверены все размеры на листе — нажми «Подтвердить лист». Только подтверждённые листы считаются ручным эталоном.</p>
+    </div>
+  </div>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

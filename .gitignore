@@ -1,0 +1,35 @@
+# Python
+.venv/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Cursor / IDE (этот репозиторий не Cursor-hosted)
+.cursor/
+.cursorignore
+*.code-workspace
+
+# OneDrive / Windows junk
+desktop.ini
+Thumbs.db
+~$*
+
+# Uploads from the Flask UI
+web/uploads/
+
+# Huge source drawing set (keep locally to retrain)
+data/Изометрии.pdf
+
+# Training rasters + JSON (~277 sheets). Needed to retrain; keep on disk, not in git.
+output/Изометрии_без_API/
+
+# Generated calc jobs (re-run via Расчёт). Master pack is kept.
+output/02_Изометрии_10_листов_без_API/
+output/jobs.json
+
+# Keep models/iso_clf.pkl and models/training_report.* in git if size allows.
+# If iso_clf.pkl > 50 MB, use Git LFS (see README).

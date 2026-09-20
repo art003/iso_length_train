@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><title>Отчёт обучения</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f3f6f9;color:#24313d;margin:0;padding:28px}
+.wrap{max-width:1050px;margin:auto} h1{color:#004c97;margin:0 0 6px}
+.sub{color:#657485;margin:0 0 22px} .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.card,.panel{background:white;border:1px solid #dfe6ed;border-radius:8px;padding:16px}
+.card b{display:block;font-size:25px;color:#004c97} .card span{display:block;color:#657485;font-size:13px;margin-top:5px}
+.panel{margin-top:14px} .ok{color:#19763b} .wait{color:#b36b00}
+.warn{border-left:5px solid #b36b00;background:#fff8ea} table{border-collapse:collapse} td,th{padding:8px;border:1px solid #dfe6ed}
+code{background:#edf2f6;padding:2px 5px} @media(max-width:800px){.grid{grid-template-columns:1fr 1fr}}
+</style></head><body><div class="wrap">
+<h1>Отчёт обучения локальной модели</h1>
+<p class="sub">CatBoost · GPU · train / validation · без API</p>
+<div class="grid">
+ <div class="card"><b>227</b><span>листов train</span></div>
+ <div class="card"><b>94.4%</b><span>macro-F1 train</span></div>
+ <div class="card"><b>91.4%</b><span>macro-F1 validation</span></div>
+ <div class="card"><b>0.031</b><span>зазор train−val (переобучение)</span></div>
+</div>
+<div class="panel"><h2>Holdout</h2>
+<p>Проверка утечки: <b class="ok">ok</b>.
+Эти листы не были в train/val:</p>
+<ul><li><b>тест_1</b>: листы 278, 279, 280, 281, 282, 283, 284, 285, 286, 287</li><li><b>тест_2</b>: листы 288, 289, 290, 291, 292, 293, 294, 295, 296, 297</li><li><b>тест_3</b>: листы 298, 299, 300, 301, 302, 303, 304, 305, 306, 307</li></ul>
+</div>
+<div class="panel"><h2>Матрица ошибок validation</h2>
+<p>Строки — разметка, столбцы — прогноз: include / exclude_nested / not_length.</p>
+<table><tr><td>784</td><td>26</td><td>44</td></tr><tr><td>28</td><td>150</td><td>0</td></tr><tr><td>7</td><td>0</td><td>596</td></tr></table></div>
+<div class="panel"><h2>Что сохранено</h2>
+<p><code>models/iso_clf.pkl</code> — модель, <code>training_report.html</code> — этот отчёт,
+<code>training_report.json</code> — технические данные.</p></div>
+</div></body></html>
