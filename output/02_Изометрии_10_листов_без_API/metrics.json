@@ -1,0 +1,885 @@
+{
+  "pdf": "02_Изометрии_10_листов.pdf",
+  "job": "02_Изометрии_10_листов_без_API",
+  "folder": "02_Изометрии_10_листов_без_API",
+  "updated": "2026-09-21 01:28",
+  "provider": "без API",
+  "model": "local-cascade",
+  "ocr": "нет, текст из pdf (pymupdf)",
+  "pages": 10,
+  "total_mm": 115023,
+  "total_m": 115.023,
+  "ok": 10,
+  "review": 0,
+  "total_time_s": 3.12,
+  "ai_calls_total": 0,
+  "ai_retries": 0,
+  "ai_calls_avg_per_page": 0,
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "tariff_date": "2026-09-18",
+  "tariff_usd_per_1m_tokens": {
+    "input": 0.3,
+    "output": 2.5
+  },
+  "cost_total_usd": 0.0,
+  "cost_per_page_usd": 0.0,
+  "cost_formula": "(0 / 1e6) * 0.3 + (0 / 1e6) * 2.5",
+  "live_api": null,
+  "note": "Суммы из json, API не вызывал.",
+  "thumbs": [
+    "02_Изометрии_10_листов_без_API/markup/sheet_01_SW_1002.png",
+    "02_Изометрии_10_листов_без_API/markup/sheet_02_P15_1039.png",
+    "02_Изометрии_10_листов_без_API/markup/sheet_03_P15_1037.png",
+    "02_Изометрии_10_листов_без_API/markup/sheet_04_SW_1003.png",
+    "02_Изометрии_10_листов_без_API/markup/sheet_05_LC_1034.png",
+    "02_Изометрии_10_листов_без_API/markup/sheet_06_LC_1042.png",
+    "02_Изометрии_10_листов_без_API/markup/sheet_07_LC_1040.png",
+    "02_Изометрии_10_листов_без_API/markup/sheet_08_SW_1001.png",
+    "02_Изометрии_10_листов_без_API/markup/sheet_09_SW_1009.png",
+    "02_Изометрии_10_листов_без_API/markup/sheet_10_SW_1012.png"
+  ],
+  "sheets": [
+    {
+      "sheet_no": 1,
+      "line_id": "SW_1002",
+      "length_mm": 5563,
+      "length_m": 5.563,
+      "formula": "1383 + 600 + 2160 + 900 + 320 + 200 = 5563 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API",
+      "included": [
+        {
+          "id": "D1",
+          "value_mm": 1383,
+          "role": "main",
+          "reason": "CatBoost 0.94"
+        },
+        {
+          "id": "D2",
+          "value_mm": 600,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D3",
+          "value_mm": 2160,
+          "role": "main",
+          "reason": "CatBoost 0.96"
+        },
+        {
+          "id": "D4",
+          "value_mm": 900,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D5",
+          "value_mm": 320,
+          "role": "main",
+          "reason": "CatBoost 0.93"
+        },
+        {
+          "id": "D6",
+          "value_mm": 200,
+          "role": "main",
+          "reason": "CatBoost 0.81"
+        }
+      ],
+      "excluded": [],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "02_Изометрии_10_листов_без_API/markup/sheet_01_SW_1002.png"
+    },
+    {
+      "sheet_no": 2,
+      "line_id": "P15_1039",
+      "length_mm": 21956,
+      "length_m": 21.956,
+      "formula": "730 + 174 + 1406 + 1900 + 150 + 1788 + 4072 + 599 + 3626 + 5644 + 1350 + 293 + 224 = 21956 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API; авто: D3 внутри D4",
+      "included": [
+        {
+          "id": "D1",
+          "value_mm": 730,
+          "role": "main",
+          "reason": "CatBoost 0.94"
+        },
+        {
+          "id": "D2",
+          "value_mm": 174,
+          "role": "main",
+          "reason": "CatBoost 0.82"
+        },
+        {
+          "id": "D4",
+          "value_mm": 1406,
+          "role": "main",
+          "reason": "CatBoost 0.94"
+        },
+        {
+          "id": "D5",
+          "value_mm": 1900,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D6",
+          "value_mm": 150,
+          "role": "main",
+          "reason": "CatBoost 0.83"
+        },
+        {
+          "id": "D7",
+          "value_mm": 1788,
+          "role": "main",
+          "reason": "CatBoost 0.97"
+        },
+        {
+          "id": "D8",
+          "value_mm": 4072,
+          "role": "main",
+          "reason": "CatBoost 0.91"
+        },
+        {
+          "id": "D10",
+          "value_mm": 599,
+          "role": "main",
+          "reason": "CatBoost 0.94"
+        },
+        {
+          "id": "D11",
+          "value_mm": 3626,
+          "role": "main",
+          "reason": "CatBoost 0.78"
+        },
+        {
+          "id": "D12",
+          "value_mm": 5644,
+          "role": "main",
+          "reason": "CatBoost 0.57"
+        },
+        {
+          "id": "D13",
+          "value_mm": 1350,
+          "role": "main",
+          "reason": "CatBoost 0.94"
+        },
+        {
+          "id": "D14",
+          "value_mm": 293,
+          "role": "main",
+          "reason": "CatBoost 0.93"
+        },
+        {
+          "id": "D15",
+          "value_mm": 224,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        }
+      ],
+      "excluded": [
+        {
+          "id": "D3",
+          "value_mm": 352,
+          "role": "support_offset",
+          "reason": "внутри D4=1406"
+        },
+        {
+          "id": "D9",
+          "value_mm": 10200,
+          "role": "overall_same_run",
+          "reason": "габарит поверх соседнего"
+        }
+      ],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "02_Изометрии_10_листов_без_API/markup/sheet_02_P15_1039.png"
+    },
+    {
+      "sheet_no": 3,
+      "line_id": "P15_1037",
+      "length_mm": 6880,
+      "length_m": 6.88,
+      "formula": "2364 + 950 + 500 + 1250 + 198 + 224 + 228 + 200 + 168 + 146 + 178 + 210 + 264 = 6880 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API",
+      "included": [
+        {
+          "id": "D1",
+          "value_mm": 2364,
+          "role": "main",
+          "reason": "CatBoost 0.94"
+        },
+        {
+          "id": "D2",
+          "value_mm": 950,
+          "role": "main",
+          "reason": "CatBoost 0.94"
+        },
+        {
+          "id": "D3",
+          "value_mm": 500,
+          "role": "main",
+          "reason": "CatBoost 0.94"
+        },
+        {
+          "id": "D4",
+          "value_mm": 1250,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D5",
+          "value_mm": 198,
+          "role": "main",
+          "reason": "CatBoost 0.83"
+        },
+        {
+          "id": "D6",
+          "value_mm": 224,
+          "role": "main",
+          "reason": "CatBoost 0.96"
+        },
+        {
+          "id": "D7",
+          "value_mm": 228,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D8",
+          "value_mm": 200,
+          "role": "main",
+          "reason": "CatBoost 0.81"
+        },
+        {
+          "id": "D9",
+          "value_mm": 168,
+          "role": "main",
+          "reason": "CatBoost 0.79"
+        },
+        {
+          "id": "D10",
+          "value_mm": 146,
+          "role": "main",
+          "reason": "CatBoost 0.84"
+        },
+        {
+          "id": "D11",
+          "value_mm": 178,
+          "role": "main",
+          "reason": "CatBoost 0.82"
+        },
+        {
+          "id": "D12",
+          "value_mm": 210,
+          "role": "main",
+          "reason": "CatBoost 0.96"
+        },
+        {
+          "id": "D13",
+          "value_mm": 264,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        }
+      ],
+      "excluded": [],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "02_Изометрии_10_листов_без_API/markup/sheet_03_P15_1037.png"
+    },
+    {
+      "sheet_no": 4,
+      "line_id": "SW_1003",
+      "length_mm": 2772,
+      "length_m": 2.772,
+      "formula": "250 + 214 + 214 + 504 + 378 + 81 + 171 + 81 + 154 + 190 + 380 + 155 = 2772 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API",
+      "included": [
+        {
+          "id": "D1",
+          "value_mm": 250,
+          "role": "main",
+          "reason": "CatBoost 0.94"
+        },
+        {
+          "id": "D2",
+          "value_mm": 214,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D4",
+          "value_mm": 214,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D5",
+          "value_mm": 504,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D7",
+          "value_mm": 378,
+          "role": "main",
+          "reason": "CatBoost 0.93"
+        },
+        {
+          "id": "D9",
+          "value_mm": 81,
+          "role": "main",
+          "reason": "CatBoost 0.86"
+        },
+        {
+          "id": "D10",
+          "value_mm": 171,
+          "role": "main",
+          "reason": "CatBoost 0.79"
+        },
+        {
+          "id": "D12",
+          "value_mm": 81,
+          "role": "main",
+          "reason": "CatBoost 0.86"
+        },
+        {
+          "id": "D13",
+          "value_mm": 154,
+          "role": "main",
+          "reason": "CatBoost 0.84"
+        },
+        {
+          "id": "D14",
+          "value_mm": 190,
+          "role": "main",
+          "reason": "CatBoost 0.81"
+        },
+        {
+          "id": "D15",
+          "value_mm": 380,
+          "role": "main",
+          "reason": "CatBoost 0.93"
+        },
+        {
+          "id": "D17",
+          "value_mm": 155,
+          "role": "main",
+          "reason": "CatBoost 0.83"
+        }
+      ],
+      "excluded": [
+        {
+          "id": "D3",
+          "value_mm": 159,
+          "role": "other",
+          "reason": "CatBoost 0.99"
+        },
+        {
+          "id": "D6",
+          "value_mm": 188,
+          "role": "support_offset",
+          "reason": "внутри D7=378"
+        },
+        {
+          "id": "D8",
+          "value_mm": 159,
+          "role": "other",
+          "reason": "CatBoost 0.99"
+        },
+        {
+          "id": "D11",
+          "value_mm": 159,
+          "role": "other",
+          "reason": "CatBoost 0.99"
+        },
+        {
+          "id": "D16",
+          "value_mm": 159,
+          "role": "other",
+          "reason": "CatBoost 0.99"
+        }
+      ],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "02_Изометрии_10_листов_без_API/markup/sheet_04_SW_1003.png"
+    },
+    {
+      "sheet_no": 5,
+      "line_id": "LC_1034",
+      "length_mm": 8175,
+      "length_m": 8.175,
+      "formula": "285 + 651 + 850 + 450 + 2400 + 34 + 3505 = 8175 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API; авто: D10 габарит поверх D9; авто: D4 внутри D5, D6 внутри D7, D9 внутри D10, D10 вернул полный участок",
+      "included": [
+        {
+          "id": "D1",
+          "value_mm": 285,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D2",
+          "value_mm": 651,
+          "role": "main",
+          "reason": "CatBoost 0.94"
+        },
+        {
+          "id": "D3",
+          "value_mm": 850,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D5",
+          "value_mm": 450,
+          "role": "main",
+          "reason": "CatBoost 0.54"
+        },
+        {
+          "id": "D7",
+          "value_mm": 2400,
+          "role": "main",
+          "reason": "CatBoost 0.94"
+        },
+        {
+          "id": "D8",
+          "value_mm": 34,
+          "role": "main",
+          "reason": "CatBoost 0.62"
+        },
+        {
+          "id": "D10",
+          "value_mm": 3505,
+          "role": "main",
+          "reason": "полный участок над размером до опоры"
+        }
+      ],
+      "excluded": [
+        {
+          "id": "D4",
+          "value_mm": 238,
+          "role": "support_offset",
+          "reason": "внутри D5=450"
+        },
+        {
+          "id": "D6",
+          "value_mm": 2000,
+          "role": "support_offset",
+          "reason": "внутри D7=2400"
+        },
+        {
+          "id": "D9",
+          "value_mm": 1600,
+          "role": "support_offset",
+          "reason": "внутри D10=3505"
+        }
+      ],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "02_Изометрии_10_листов_без_API/markup/sheet_05_LC_1034.png"
+    },
+    {
+      "sheet_no": 6,
+      "line_id": "LC_1042",
+      "length_mm": 10426,
+      "length_m": 10.426,
+      "formula": "285 + 651 + 850 + 238 + 2463 + 2400 + 34 + 3505 = 10426 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API; авто: D11 габарит поверх D10; авто: D7 внутри D8, D10 внутри D11, D11 вернул полный участок",
+      "included": [
+        {
+          "id": "D1",
+          "value_mm": 285,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D2",
+          "value_mm": 651,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D3",
+          "value_mm": 850,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D4",
+          "value_mm": 238,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D5",
+          "value_mm": 2463,
+          "role": "main",
+          "reason": "CatBoost 0.81"
+        },
+        {
+          "id": "D8",
+          "value_mm": 2400,
+          "role": "main",
+          "reason": "CatBoost 0.84"
+        },
+        {
+          "id": "D9",
+          "value_mm": 34,
+          "role": "main",
+          "reason": "CatBoost 0.61"
+        },
+        {
+          "id": "D11",
+          "value_mm": 3505,
+          "role": "main",
+          "reason": "полный участок над размером до опоры"
+        }
+      ],
+      "excluded": [
+        {
+          "id": "D6",
+          "value_mm": 2950,
+          "role": "overall_same_run",
+          "reason": "габарит поверх соседнего"
+        },
+        {
+          "id": "D7",
+          "value_mm": 2000,
+          "role": "support_offset",
+          "reason": "внутри D8=2400"
+        },
+        {
+          "id": "D10",
+          "value_mm": 1600,
+          "role": "support_offset",
+          "reason": "внутри D11=3505"
+        }
+      ],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "02_Изометрии_10_листов_без_API/markup/sheet_06_LC_1042.png"
+    },
+    {
+      "sheet_no": 7,
+      "line_id": "LC_1040",
+      "length_mm": 4306,
+      "length_m": 4.306,
+      "formula": "60 + 1950 + 34 + 650 + 840 + 522 + 250 = 4306 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API; авто: D2 внутри D3",
+      "included": [
+        {
+          "id": "D1",
+          "value_mm": 60,
+          "role": "main",
+          "reason": "CatBoost 0.74"
+        },
+        {
+          "id": "D3",
+          "value_mm": 1950,
+          "role": "main",
+          "reason": "CatBoost 0.87"
+        },
+        {
+          "id": "D4",
+          "value_mm": 34,
+          "role": "main",
+          "reason": "CatBoost 0.67"
+        },
+        {
+          "id": "D5",
+          "value_mm": 650,
+          "role": "main",
+          "reason": "CatBoost 0.64"
+        },
+        {
+          "id": "D7",
+          "value_mm": 840,
+          "role": "main",
+          "reason": "CatBoost 0.63"
+        },
+        {
+          "id": "D8",
+          "value_mm": 522,
+          "role": "main",
+          "reason": "CatBoost 0.94"
+        },
+        {
+          "id": "D9",
+          "value_mm": 250,
+          "role": "main",
+          "reason": "CatBoost 0.93"
+        }
+      ],
+      "excluded": [
+        {
+          "id": "D2",
+          "value_mm": 916,
+          "role": "support_offset",
+          "reason": "внутри D3=1950"
+        },
+        {
+          "id": "D6",
+          "value_mm": 300,
+          "role": "support_offset",
+          "reason": "внутри D7=840"
+        }
+      ],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "02_Изометрии_10_листов_без_API/markup/sheet_07_LC_1040.png"
+    },
+    {
+      "sheet_no": 8,
+      "line_id": "SW_1001",
+      "length_mm": 48625,
+      "length_m": 48.625,
+      "formula": "23525 + 1000 + 24100 = 48625 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API; авто: D4 вернул участок, D6 полный размер, D1 опора в D6, D2 опора в D6, D3 опора в D6, D4 опора в D6, D5 опора в D6, D12 полный размер, D8 опора в D12, D9 опора в D12, D10 опора в D12, D11 опора в D12; авто: D6 габарит Н.О., D12 габарит Н.О., D1 вернул участок, D2 вернул участок, D3 вернул участок, D4 вернул участок, D5 вернул участок, D8 вернул участок, D9 вернул участок, D10 вернул участок, D11 вернул участок, D6 полный размер, D1 опора в D6, D2 опора в D6, D3 опора в D6, D4 опора в D6, D5 опора в D6, D12 полный размер, D8 опора в D12, D9 опора в D12, D10 опора в D12, D11 опора в D12; авто: D6 габарит Н.О., D12 габарит Н.О., D1 вернул участок, D2 вернул участок, D3 вернул участок, D4 вернул участок, D5 вернул участок, D8 вернул участок, D9 вернул участок, D10 вернул участок, D11 вернул участок, D6 полный размер, D1 опора в D6, D2 опора в D6, D3 опора в D6, D4 опора в D6, D5 опора в D6, D12 полный размер, D8 опора в D12, D9 опора в D12, D10 опора в D12, D11 опора в D12; авто: D6 габарит Н.О., D12 габарит Н.О., D1 вернул участок, D2 вернул полный участок, D3 вернул участок, D5 вернул участок, D8 вернул участок, D9 вернул участок, D10 вернул участок, D11 вернул участок, D6 полный размер, D1 опора в D6, D2 опора в D6, D3 опора в D6, D5 опора в D6, D12 полный размер, D8 опора в D12, D9 опора в D12, D10 опора в D12, D11 опора в D12; авто: D6 габарит Н.О., D12 габарит Н.О., D1 вернул участок, D2 вернул полный участок, D3 вернул участок, D5 вернул участок, D8 вернул участок, D9 вернул участок, D10 вернул участок, D11 вернул участок, D6 полный размер, D1 опора в D6, D2 опора в D6, D3 опора в D6, D5 опора в D6, D12 полный размер, D8 опора в D12, D9 опора в D12, D10 опора в D12, D11 опора в D12; авто: D6 габарит Н.О., D12 габарит Н.О., D1 вернул участок, D2 вернул полный участок, D3 вернул участок, D5 вернул участок, D8 вернул участок, D9 вернул участок, D10 вернул участок, D11 вернул участок, D6 полный размер, D1 опора в D6, D2 опора в D6, D3 опора в D6, D5 опора в D6, D12 полный размер, D8 опора в D12, D9 опора в D12, D10 опора в D12, D11 опора в D12; авто: D6 габарит Н.О., D12 габарит Н.О., D1 вернул участок, D2 вернул полный участок, D3 вернул участок, D5 вернул участок, D8 вернул участок, D9 вернул участок, D10 вернул участок, D11 вернул участок, D6 полный размер, D1 опора в D6, D2 опора в D6, D3 опора в D6, D5 опора в D6, D12 полный размер, D8 опора в D12, D9 опора в D12, D10 опора в D12, D11 опора в D12",
+      "included": [
+        {
+          "id": "D6",
+          "value_mm": 23525,
+          "role": "main",
+          "reason": "полный размер, цепочка не закрывает"
+        },
+        {
+          "id": "D7",
+          "value_mm": 1000,
+          "role": "main",
+          "reason": "CatBoost 0.94"
+        },
+        {
+          "id": "D12",
+          "value_mm": 24100,
+          "role": "main",
+          "reason": "полный размер, цепочка не закрывает"
+        }
+      ],
+      "excluded": [
+        {
+          "id": "D1",
+          "value_mm": 1850,
+          "role": "support_offset",
+          "reason": "опора, D6 не закрыт"
+        },
+        {
+          "id": "D2",
+          "value_mm": 6000,
+          "role": "support_offset",
+          "reason": "опора, D6 не закрыт"
+        },
+        {
+          "id": "D3",
+          "value_mm": 5000,
+          "role": "support_offset",
+          "reason": "опора, D6 не закрыт"
+        },
+        {
+          "id": "D4",
+          "value_mm": 5200,
+          "role": "support_offset",
+          "reason": "внутри D2=6000"
+        },
+        {
+          "id": "D5",
+          "value_mm": 3800,
+          "role": "support_offset",
+          "reason": "опора, D6 не закрыт"
+        },
+        {
+          "id": "D8",
+          "value_mm": 4100,
+          "role": "support_offset",
+          "reason": "опора, D12 не закрыт"
+        },
+        {
+          "id": "D9",
+          "value_mm": 6000,
+          "role": "support_offset",
+          "reason": "опора, D12 не закрыт"
+        },
+        {
+          "id": "D10",
+          "value_mm": 6000,
+          "role": "support_offset",
+          "reason": "опора, D12 не закрыт"
+        },
+        {
+          "id": "D11",
+          "value_mm": 6000,
+          "role": "support_offset",
+          "reason": "опора, D12 не закрыт"
+        }
+      ],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "02_Изометрии_10_листов_без_API/markup/sheet_08_SW_1001.png"
+    },
+    {
+      "sheet_no": 9,
+      "line_id": "SW_1009",
+      "length_mm": 860,
+      "length_m": 0.86,
+      "formula": "195 + 123 + 244 + 123 + 175 = 860 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API; авто: D2 вернул длину, D3 вернул длину, D4 вернул длину",
+      "included": [
+        {
+          "id": "D1",
+          "value_mm": 195,
+          "role": "main",
+          "reason": "CatBoost 0.82"
+        },
+        {
+          "id": "D2",
+          "value_mm": 123,
+          "role": "main",
+          "reason": "размер участка"
+        },
+        {
+          "id": "D3",
+          "value_mm": 244,
+          "role": "main",
+          "reason": "размер участка"
+        },
+        {
+          "id": "D4",
+          "value_mm": 123,
+          "role": "main",
+          "reason": "размер участка"
+        },
+        {
+          "id": "D5",
+          "value_mm": 175,
+          "role": "main",
+          "reason": "CatBoost 0.80"
+        }
+      ],
+      "excluded": [],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "02_Изометрии_10_листов_без_API/markup/sheet_09_SW_1009.png"
+    },
+    {
+      "sheet_no": 10,
+      "line_id": "SW_1012",
+      "length_mm": 5460,
+      "length_m": 5.46,
+      "formula": "154 + 341 + 220 + 188 + 134 + 550 + 2450 + 341 + 244 + 149 + 220 + 135 + 134 + 200 = 5460 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API",
+      "included": [
+        {
+          "id": "D1",
+          "value_mm": 154,
+          "role": "main",
+          "reason": "CatBoost 0.80"
+        },
+        {
+          "id": "D3",
+          "value_mm": 341,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D4",
+          "value_mm": 220,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D6",
+          "value_mm": 188,
+          "role": "main",
+          "reason": "CatBoost 0.84"
+        },
+        {
+          "id": "D7",
+          "value_mm": 134,
+          "role": "main",
+          "reason": "CatBoost 0.71"
+        },
+        {
+          "id": "D8",
+          "value_mm": 550,
+          "role": "main",
+          "reason": "CatBoost 0.94"
+        },
+        {
+          "id": "D9",
+          "value_mm": 2450,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D10",
+          "value_mm": 341,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D11",
+          "value_mm": 244,
+          "role": "main",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D12",
+          "value_mm": 149,
+          "role": "main",
+          "reason": "CatBoost 0.82"
+        },
+        {
+          "id": "D13",
+          "value_mm": 220,
+          "role": "main",
+          "reason": "CatBoost 0.93"
+        },
+        {
+          "id": "D14",
+          "value_mm": 135,
+          "role": "main",
+          "reason": "CatBoost 0.81"
+        },
+        {
+          "id": "D15",
+          "value_mm": 134,
+          "role": "main",
+          "reason": "CatBoost 0.86"
+        },
+        {
+          "id": "D16",
+          "value_mm": 200,
+          "role": "main",
+          "reason": "CatBoost 0.78"
+        }
+      ],
+      "excluded": [
+        {
+          "id": "D2",
+          "value_mm": 244,
+          "role": "other",
+          "reason": "CatBoost 0.95"
+        },
+        {
+          "id": "D5",
+          "value_mm": 4116,
+          "role": "overall_same_run",
+          "reason": "габарит LT"
+        }
+      ],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "02_Изометрии_10_листов_без_API/markup/sheet_10_SW_1012.png"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "line_id": "LC_1032",
+  "items": [
+    {
+      "id": "D1",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.81",
+      "value_mm": 150
+    },
+    {
+      "id": "D2",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.96",
+      "value_mm": 1300
+    },
+    {
+      "id": "D3",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.96",
+      "value_mm": 1350
+    },
+    {
+      "id": "D4",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D6=10400",
+      "value_mm": 993
+    },
+    {
+      "id": "D5",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D6=10400",
+      "value_mm": 4707
+    },
+    {
+      "id": "D6",
+      "decision": "include",
+      "role": "main",
+      "reason": "полный участок, не габарит",
+      "value_mm": 10400
+    },
+    {
+      "id": "D7",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 1300
+    },
+    {
+      "id": "D8",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.82",
+      "value_mm": 150
+    },
+    {
+      "id": "D9",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D10=2262",
+      "value_mm": 1500
+    },
+    {
+      "id": "D10",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.87",
+      "value_mm": 2262
+    },
+    {
+      "id": "D11",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D5=4707",
+      "value_mm": 1450
+    },
+    {
+      "id": "D12",
+      "decision": "include",
+      "role": "main",
+      "reason": "размер участка",
+      "value_mm": 2038
+    }
+  ],
+  "notes": [
+    "локальная модель, без API",
+    "авто: D12 вернул длину",
+    "авто: D7 внутри D12, D9 внутри D10, D11 внутри D5",
+    "авто: D6 полный участок, D4 внутри D6, D5 внутри D6, D7 вернул участок"
+  ],
+  "reviewed_by_human": true,
+  "audit_note": "ручной визуальный аудит",
+  "locked": true
+}

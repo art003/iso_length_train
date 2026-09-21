@@ -57,11 +57,32 @@ def iter_examples(out_root: Path | None = None):
                     hits = json.loads(alt.read_text(encoding="utf-8"))
                     break
             by_hit = {c["id"]: c for c in (hits.get("candidates") or [])}
+            hit_items = hits.get("candidates") or []
+            if hit_items and not any(h.get("parent_id") or h.get("geometry_confidence") for h in hit_items):
+                from relations import _candidate_from_hit, compute_relations
+
+                sx = 1.0
+                sy = 1.0
+                cands = [_candidate_from_hit(h, sx, sy) for h in hit_items]
+                compute_relations(cands)
+                by_c = {c.cid: c for c in cands}
+                for h in hit_items:
+                    c = by_c.get(str(h.get("id")))
+                    if not c:
+                        continue
+                    h["parent_id"] = c.parent_id
+                    h["relation_kind"] = c.relation_kind
+                    h["geometry_confidence"] = c.geometry_confidence
+                    h["parent_value_mm"] = c.parent_value_mm
+                    h["parent_dist"] = getattr(c, "parent_dist", 0.0)
             for it in llm.get("items") or []:
                 cid = it.get("id")
                 if not cid:
                     continue
                 h = by_hit.get(cid) or {}
+                parent_id = h.get("parent_id")
+                conf = float(h.get("geometry_confidence") or 0.0)
+                parent_value = h.get("parent_value_mm")
                 yield {
                     "pdf": pdf,
                     "folder": job.name,
@@ -79,6 +100,13 @@ def iter_examples(out_root: Path | None = None):
                     "reason": it.get("reason") or "",
                     "locked": bool(llm.get("locked")),
                     "reviewed_by_human": bool(llm.get("reviewed_by_human")),
+                    "parent_id": parent_id,
+                    "relation_kind": h.get("relation_kind") or "",
+                    "geometry_confidence": conf,
+                    "parent_value_mm": parent_value,
+                    "parent_dist": float(h.get("parent_dist") or 0.0),
+                    "dist_to_line": float(h.get("dist_to_line") or 0.0),
+                    "parallel_score": float(h.get("parallel_score") or 0.0),
                 }
 
 

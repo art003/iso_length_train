@@ -1,0 +1,104 @@
+{
+  "line_id": "CW_1002",
+  "items": [
+    {
+      "id": "D1",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.94",
+      "value_mm": 417
+    },
+    {
+      "id": "D2",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.93",
+      "value_mm": 750
+    },
+    {
+      "id": "D3",
+      "decision": "include",
+      "role": "main",
+      "reason": "размер участка",
+      "value_mm": 251
+    },
+    {
+      "id": "D4",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.84",
+      "value_mm": 146
+    },
+    {
+      "id": "D5",
+      "decision": "include",
+      "role": "main",
+      "reason": "размер участка",
+      "value_mm": 450
+    },
+    {
+      "id": "D6",
+      "decision": "include",
+      "role": "main",
+      "reason": "размер участка",
+      "value_mm": 450
+    },
+    {
+      "id": "D7",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 251
+    },
+    {
+      "id": "D8",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.83",
+      "value_mm": 146
+    },
+    {
+      "id": "D9",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.69",
+      "value_mm": 50
+    },
+    {
+      "id": "D10",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D6=450",
+      "value_mm": 300
+    },
+    {
+      "id": "D11",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.93",
+      "value_mm": 712
+    },
+    {
+      "id": "D12",
+      "decision": "include",
+      "role": "main",
+      "reason": "размер участка",
+      "value_mm": 30
+    },
+    {
+      "id": "D13",
+      "decision": "include",
+      "role": "main",
+      "reason": "размер участка",
+      "value_mm": 413
+    }
+  ],
+  "notes": [
+    "локальная модель, без API",
+    "авто: D3 вернул длину, D5 вернул длину, D6 вернул длину, D10 вернул длину, D12 вернул длину, D13 вернул длину",
+    "авто: D10 внутри D6",
+    "ручной визуальный аудит"
+  ],
+  "reviewed_by_human": true,
+  "locked": true
+}

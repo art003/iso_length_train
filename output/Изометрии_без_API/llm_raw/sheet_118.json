@@ -1,0 +1,76 @@
+{
+  "line_id": "SW_1001",
+  "items": [
+    {
+      "id": "D1",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D2=6600",
+      "value_mm": 2500
+    },
+    {
+      "id": "D2",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.52",
+      "value_mm": 6600
+    },
+    {
+      "id": "D3",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D4=3400",
+      "value_mm": 1125
+    },
+    {
+      "id": "D4",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.76",
+      "value_mm": 3400
+    },
+    {
+      "id": "D5",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.96",
+      "value_mm": 400
+    },
+    {
+      "id": "D6",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 800
+    },
+    {
+      "id": "D7",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D8=3400",
+      "value_mm": 2275
+    },
+    {
+      "id": "D8",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.81",
+      "value_mm": 3400
+    },
+    {
+      "id": "D9",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.84",
+      "value_mm": 120
+    }
+  ],
+  "notes": [
+    "локальная модель, без API",
+    "авто: D7 внутри D8",
+    "ручной визуальный аудит",
+    "авто: D1 внутри D2, D3 внутри D4"
+  ],
+  "reviewed_by_human": true,
+  "locked": true
+}

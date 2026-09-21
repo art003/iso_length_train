@@ -1,0 +1,50 @@
+{
+  "line_id": "SW_1018",
+  "items": [
+    {
+      "id": "D1",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D6=11000",
+      "value_mm": 736
+    },
+    {
+      "id": "D2",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D6=11000",
+      "value_mm": 2265
+    },
+    {
+      "id": "D3",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D6=11000",
+      "value_mm": 2500
+    },
+    {
+      "id": "D4",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D6=11000",
+      "value_mm": 2500
+    },
+    {
+      "id": "D5",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D6=11000",
+      "value_mm": 2000
+    },
+    {
+      "id": "D6",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost×5 0.98",
+      "value_mm": 11000
+    }
+  ],
+  "notes": [
+    "локальная модель, без API"
+  ]
+}

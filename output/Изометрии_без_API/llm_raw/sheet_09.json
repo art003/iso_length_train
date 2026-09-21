@@ -1,0 +1,94 @@
+{
+  "line_id": "LC_1032",
+  "items": [
+    {
+      "id": "D1",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 2545
+    },
+    {
+      "id": "D2",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.79",
+      "value_mm": 150
+    },
+    {
+      "id": "D3",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D9=12000",
+      "value_mm": 700
+    },
+    {
+      "id": "D4",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.61",
+      "value_mm": 6200
+    },
+    {
+      "id": "D5",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.84",
+      "value_mm": 80
+    },
+    {
+      "id": "D6",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D9=12000",
+      "value_mm": 500
+    },
+    {
+      "id": "D7",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D4=6200",
+      "value_mm": 5000
+    },
+    {
+      "id": "D8",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D9=12000",
+      "value_mm": 5500
+    },
+    {
+      "id": "D9",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 12000
+    },
+    {
+      "id": "D10",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.84",
+      "value_mm": 150
+    }
+  ],
+  "notes": [
+    "локальная модель, без API",
+    "авто: D6 габарит Н.О., D8 вернул участок, D9 вернул участок, D6 полный размер",
+    "авто: D6 габарит Н.О., D6 полный размер",
+    "авто: D6 габарит Н.О., D6 полный размер",
+    "авто: D6 габарит Н.О., D6 полный размер",
+    "авто: D6 габарит Н.О., D6 полный размер",
+    "авто: D6 габарит Н.О., D6 полный размер",
+    "авто: D6 габарит Н.О., D6 полный размер",
+    "авто: D6 габарит Н.О., D6 полный размер",
+    "авто: D6 габарит Н.О., D6 полный размер",
+    "авто: D6 габарит Н.О., D7 внутри D9, D8 внутри D9, D6 полный размер",
+    "авто: D6 габарит Н.О., D6 полный размер",
+    "авто: D6 габарит Н.О., D6 полный размер",
+    "авто: D6 габарит Н.О., D3 внутри D9"
+  ],
+  "reviewed_by_human": true,
+  "audit_note": "ручной визуальный аудит",
+  "locked": true
+}

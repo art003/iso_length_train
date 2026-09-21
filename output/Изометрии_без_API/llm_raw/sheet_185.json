@@ -1,0 +1,119 @@
+{
+  "line_id": "CO_0103",
+  "items": [
+    {
+      "id": "D1",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D2=600",
+      "value_mm": 383
+    },
+    {
+      "id": "D2",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.94",
+      "value_mm": 600
+    },
+    {
+      "id": "D3",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.94",
+      "value_mm": 2895
+    },
+    {
+      "id": "D4",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 2032
+    },
+    {
+      "id": "D5",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.65",
+      "value_mm": 5161
+    },
+    {
+      "id": "D6",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.87",
+      "value_mm": 2865
+    },
+    {
+      "id": "D7",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 3030
+    },
+    {
+      "id": "D8",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.78",
+      "value_mm": 75
+    },
+    {
+      "id": "D9",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 218
+    },
+    {
+      "id": "D10",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.66",
+      "value_mm": 45
+    },
+    {
+      "id": "D11",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 1107
+    },
+    {
+      "id": "D12",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D13=1125",
+      "value_mm": 476
+    },
+    {
+      "id": "D13",
+      "decision": "include",
+      "role": "main",
+      "reason": "размер участка",
+      "value_mm": 1125
+    },
+    {
+      "id": "D14",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 240
+    },
+    {
+      "id": "D15",
+      "decision": "include",
+      "role": "main",
+      "reason": "размер участка",
+      "value_mm": 244
+    }
+  ],
+  "notes": [
+    "локальная модель, без API",
+    "авто: D13 вернул длину, D14 вернул длину, D15 вернул длину",
+    "авто: D1 внутри D2, D4 внутри D6, D7 внутри D5, D14 внутри D11",
+    "ручной визуальный аудит",
+    "авто: D4 вернул участок, D7 вернул участок, D14 вернул участок"
+  ],
+  "reviewed_by_human": true,
+  "locked": true
+}

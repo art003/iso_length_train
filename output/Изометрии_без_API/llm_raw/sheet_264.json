@@ -1,0 +1,175 @@
+{
+  "line_id": "UA_1003",
+  "items": [
+    {
+      "id": "D1",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.69",
+      "value_mm": 50
+    },
+    {
+      "id": "D2",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.69",
+      "value_mm": 35
+    },
+    {
+      "id": "D3",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D22=150",
+      "value_mm": 35
+    },
+    {
+      "id": "D4",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 1484
+    },
+    {
+      "id": "D5",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 750
+    },
+    {
+      "id": "D6",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.66",
+      "value_mm": 5316
+    },
+    {
+      "id": "D7",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 272
+    },
+    {
+      "id": "D8",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.80",
+      "value_mm": 4478
+    },
+    {
+      "id": "D9",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 5600
+    },
+    {
+      "id": "D10",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 800
+    },
+    {
+      "id": "D11",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.81",
+      "value_mm": 1284
+    },
+    {
+      "id": "D12",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.92",
+      "value_mm": 403
+    },
+    {
+      "id": "D13",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.93",
+      "value_mm": 610
+    },
+    {
+      "id": "D14",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.54",
+      "value_mm": 304
+    },
+    {
+      "id": "D15",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.91",
+      "value_mm": 206
+    },
+    {
+      "id": "D16",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 274
+    },
+    {
+      "id": "D17",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.81",
+      "value_mm": 128
+    },
+    {
+      "id": "D18",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.55",
+      "value_mm": 327
+    },
+    {
+      "id": "D19",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 521
+    },
+    {
+      "id": "D20",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 202
+    },
+    {
+      "id": "D21",
+      "decision": "not_length",
+      "role": "valve",
+      "reason": "штурвал",
+      "value_mm": 159
+    },
+    {
+      "id": "D22",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.82",
+      "value_mm": 150
+    },
+    {
+      "id": "D23",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.79",
+      "value_mm": 75
+    }
+  ],
+  "notes": [
+    "локальная модель, без API",
+    "авто: D9 вернул участок",
+    "авто: D3 внутри D22, D7 внутри D14, D19 внутри D5",
+    "ручной визуальный аудит",
+    "авто: D21 штурвал, D3 внутри D22, D7 вернул участок, D19 вернул участок"
+  ],
+  "reviewed_by_human": true,
+  "locked": true
+}

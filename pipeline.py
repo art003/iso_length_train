@@ -70,6 +70,8 @@ def train() -> None:
     validation = report["validation"]
     print()
     print("GPU-обучение закончено")
+    trees = (report.get("hyperparams") or {}).get("tree_count") or report.get("best_iteration")
+    print(f"деревьев: {trees}")
     print(
         f"train macro-F1={train_m['macro_f1']:.3f} · "
         f"val macro-F1={validation['macro_f1']:.3f}, "

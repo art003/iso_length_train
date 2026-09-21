@@ -1,0 +1,185 @@
+{
+  "sheet_no": 7,
+  "line_id": "LC_1040",
+  "width": 2150,
+  "height": 1521,
+  "overlay": "sheet_07_LC_1040_ids.png",
+  "markup": "sheet_07_LC_1040.png",
+  "candidates": [
+    {
+      "id": "D1",
+      "value_mm": 60,
+      "x": 238.4,
+      "y": 912.5,
+      "nearby": "",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        128.64,
+        501.2,
+        135.39,
+        509.61
+      ]
+    },
+    {
+      "id": "D2",
+      "value_mm": 916,
+      "x": 363.4,
+      "y": 723.2,
+      "nearby": "О7",
+      "local_hint": "dimension_candidate|nested_offset",
+      "flags": [
+        "nested_offset"
+      ],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        194.82,
+        394.37,
+        207.74,
+        406.68
+      ]
+    },
+    {
+      "id": "D3",
+      "value_mm": 1950,
+      "x": 537.2,
+      "y": 658.8,
+      "nearby": "О5 | О11",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        289.62,
+        357.91,
+        305.43,
+        371.88
+      ]
+    },
+    {
+      "id": "D4",
+      "value_mm": 34,
+      "x": 743.2,
+      "y": 350.1,
+      "nearby": "<2> | 3",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        408.24,
+        189.68,
+        414.99,
+        198.09
+      ]
+    },
+    {
+      "id": "D5",
+      "value_mm": 650,
+      "x": 862.6,
+      "y": 472.7,
+      "nearby": "<2> | 1 | О8 | О10",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        471.3,
+        255.65,
+        484.22,
+        267.96
+      ]
+    },
+    {
+      "id": "D6",
+      "value_mm": 300,
+      "x": 986.6,
+      "y": 388.6,
+      "nearby": "О8 | 840",
+      "local_hint": "dimension_candidate|nested_offset",
+      "flags": [
+        "nested_offset"
+      ],
+      "direction": [
+        0.867261,
+        0.497854
+      ],
+      "bbox": [
+        539.94,
+        209.06,
+        552.86,
+        221.37
+      ]
+    },
+    {
+      "id": "D7",
+      "value_mm": 840,
+      "x": 1064.6,
+      "y": 396.8,
+      "nearby": "300 | О9",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        0.497854
+      ],
+      "bbox": [
+        583.14,
+        213.62,
+        596.06,
+        225.93
+      ]
+    },
+    {
+      "id": "D8",
+      "value_mm": 522,
+      "x": 1262.7,
+      "y": 646.4,
+      "nearby": "3 | <4> | 1",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.0,
+        -1.0
+      ],
+      "bbox": [
+        695.1,
+        352.95,
+        703.57,
+        363.09
+      ]
+    },
+    {
+      "id": "D9",
+      "value_mm": 250,
+      "x": 1189.8,
+      "y": 852.7,
+      "nearby": "<5> | 1 | СМ. | 4137_14-002-LC-1032 BB7",
+      "local_hint": "dimension_candidate|near_endpoint",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        652.5,
+        466.13,
+        665.42,
+        478.44
+      ]
+    }
+  ]
+}

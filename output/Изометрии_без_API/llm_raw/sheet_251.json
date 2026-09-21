@@ -1,0 +1,150 @@
+{
+  "line_id": "P15_1045",
+  "items": [
+    {
+      "id": "D1",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D2=3100",
+      "value_mm": 2000
+    },
+    {
+      "id": "D2",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.82",
+      "value_mm": 3100
+    },
+    {
+      "id": "D3",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D4=5100",
+      "value_mm": 1100
+    },
+    {
+      "id": "D4",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 5100
+    },
+    {
+      "id": "D5",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 300
+    },
+    {
+      "id": "D6",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 5650
+    },
+    {
+      "id": "D7",
+      "decision": "exclude_nested",
+      "role": "overall_same_run",
+      "reason": "габарит поверх соседнего",
+      "value_mm": 6300
+    },
+    {
+      "id": "D8",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D9=4750",
+      "value_mm": 4000
+    },
+    {
+      "id": "D9",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.85",
+      "value_mm": 4750
+    },
+    {
+      "id": "D10",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D15=21500",
+      "value_mm": 1100
+    },
+    {
+      "id": "D11",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D15=21500",
+      "value_mm": 4000
+    },
+    {
+      "id": "D12",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D15=21500",
+      "value_mm": 6000
+    },
+    {
+      "id": "D13",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D15=21500",
+      "value_mm": 4500
+    },
+    {
+      "id": "D14",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D15=21500",
+      "value_mm": 4500
+    },
+    {
+      "id": "D15",
+      "decision": "include",
+      "role": "main",
+      "reason": "полный размер, цепочка не закрывает",
+      "value_mm": 21500
+    },
+    {
+      "id": "D16",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 998
+    },
+    {
+      "id": "D17",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 750
+    },
+    {
+      "id": "D18",
+      "decision": "exclude_nested",
+      "role": "overall_same_run",
+      "reason": "габарит поверх соседнего",
+      "value_mm": 1750
+    }
+  ],
+  "notes": [
+    "локальная модель, без API",
+    "авто: D4 вернул участок, D6 вернул участок, D12 вернул участок, D15 полный размер, D12 опора в D15, D13 опора в D15",
+    "авто: D15 габарит Н.О., D12 вернул участок, D13 вернул участок, D15 полный размер, D12 опора в D15, D13 опора в D15",
+    "авто: D15 габарит Н.О., D12 вернул участок, D13 вернул участок, D15 полный размер, D12 опора в D15, D13 опора в D15",
+    "авто: D15 габарит Н.О., D12 вернул участок, D13 вернул участок, D15 полный размер, D12 опора в D15, D13 опора в D15",
+    "авто: D15 габарит Н.О., D12 вернул участок, D13 вернул участок, D15 полный размер, D12 опора в D15, D13 опора в D15",
+    "авто: D15 габарит Н.О., D12 вернул участок, D13 вернул участок, D15 полный размер, D12 опора в D15, D13 опора в D15",
+    "авто: D15 габарит Н.О., D12 вернул участок, D13 вернул участок, D15 полный размер, D12 опора в D15, D13 опора в D15",
+    "авто: D15 габарит Н.О., D12 вернул участок, D13 вернул участок, D15 полный размер, D12 опора в D15, D13 опора в D15",
+    "авто: D15 габарит Н.О., D5 внутри D1, D8 внутри D9, D12 вернул участок, D13 вернул участок, D15 полный размер, D12 опора в D15, D13 опора в D15",
+    "авто: D15 габарит Н.О., D12 вернул участок, D13 вернул участок, D15 полный размер, D12 опора в D15, D13 опора в D15",
+    "авто: D15 габарит Н.О., D12 вернул участок, D13 вернул участок, D15 полный размер, D12 опора в D15, D13 опора в D15",
+    "ручной визуальный аудит",
+    "авто: D15 габарит Н.О., D18 габарит пара, D1 внутри D2, D10 внутри D15, D11 внутри D15, D14 внутри D15, D5 вернул участок, D17 вернул участок, D15 полный размер",
+    "авто: D15 габарит Н.О., D15 полный размер"
+  ],
+  "reviewed_by_human": true,
+  "locked": true
+}

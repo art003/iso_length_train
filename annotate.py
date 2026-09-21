@@ -1,5 +1,7 @@
 from __future__ import annotations
 import io
+import os
+import time
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 from extract import Candidate
@@ -93,4 +95,16 @@ def annotate_final(
     draw.text((12, h - 28), formula[:180], fill=(0, 0, 0), font=font_sm)
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    img.save(out_path, format="PNG")
+    tmp = out_path.with_name(out_path.name + ".tmp")
+    last_err: OSError | None = None
+    for _ in range(8):
+        try:
+            img.save(tmp, format="PNG")
+            os.replace(tmp, out_path)
+            last_err = None
+            break
+        except OSError as exc:
+            last_err = exc
+            time.sleep(0.4)
+    if last_err:
+        raise last_err

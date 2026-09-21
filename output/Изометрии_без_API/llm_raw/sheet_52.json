@@ -1,0 +1,108 @@
+{
+  "line_id": "PW2_1015",
+  "items": [
+    {
+      "id": "D1",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 530
+    },
+    {
+      "id": "D2",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.88",
+      "value_mm": 3613
+    },
+    {
+      "id": "D3",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.93",
+      "value_mm": 778
+    },
+    {
+      "id": "D4",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 550
+    },
+    {
+      "id": "D5",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.54",
+      "value_mm": 550
+    },
+    {
+      "id": "D6",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D8=13817",
+      "value_mm": 625
+    },
+    {
+      "id": "D7",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D8=13817",
+      "value_mm": 7430
+    },
+    {
+      "id": "D8",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 13817
+    },
+    {
+      "id": "D9",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 350
+    },
+    {
+      "id": "D10",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 1350
+    },
+    {
+      "id": "D11",
+      "decision": "include",
+      "role": "main",
+      "reason": "полный размер, цепочка не закрывает",
+      "value_mm": 5000
+    },
+    {
+      "id": "D12",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.57",
+      "value_mm": 7330
+    }
+  ],
+  "notes": [
+    "локальная модель, без API",
+    "авто: D11 габарит Н.О., D8 вернул участок, D11 полный размер",
+    "авто: D11 габарит Н.О., D11 полный размер",
+    "авто: D11 габарит Н.О., D11 полный размер",
+    "авто: D11 габарит Н.О., D11 полный размер",
+    "авто: D11 габарит Н.О., D11 полный размер",
+    "авто: D11 габарит Н.О., D11 полный размер",
+    "авто: D11 габарит Н.О., D11 полный размер",
+    "авто: D11 габарит Н.О., D11 полный размер",
+    "авто: D11 габарит Н.О., D6 внутри D2, D10 внутри D12, D11 полный размер",
+    "авто: D11 габарит Н.О., D11 полный размер",
+    "авто: D11 габарит Н.О., D11 полный размер",
+    "ручной визуальный аудит",
+    "авто: D11 габарит Н.О., D7 внутри D8, D10 вернул участок, D11 полный размер",
+    "авто: D11 габарит Н.О., D11 полный размер"
+  ],
+  "reviewed_by_human": true,
+  "locked": true
+}

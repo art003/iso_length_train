@@ -1,0 +1,108 @@
+{
+  "line_id": "PW2_1011",
+  "items": [
+    {
+      "id": "D1",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D3=11525",
+      "value_mm": 3625
+    },
+    {
+      "id": "D2",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D3=11525",
+      "value_mm": 6000
+    },
+    {
+      "id": "D3",
+      "decision": "include",
+      "role": "main",
+      "reason": "полный размер, цепочка не закрывает",
+      "value_mm": 11525
+    },
+    {
+      "id": "D4",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.94",
+      "value_mm": 1514
+    },
+    {
+      "id": "D5",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D10=6200",
+      "value_mm": 2000
+    },
+    {
+      "id": "D6",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 1400
+    },
+    {
+      "id": "D7",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 2963
+    },
+    {
+      "id": "D8",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 300
+    },
+    {
+      "id": "D9",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D10=6200",
+      "value_mm": 4100
+    },
+    {
+      "id": "D10",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.54",
+      "value_mm": 6200
+    },
+    {
+      "id": "D11",
+      "decision": "exclude_nested",
+      "role": "overall_same_run",
+      "reason": "габарит поверх соседнего",
+      "value_mm": 375
+    },
+    {
+      "id": "D12",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.83",
+      "value_mm": 180
+    }
+  ],
+  "notes": [
+    "локальная модель, без API",
+    "авто: D2 вернул участок, D3 полный размер, D2 опора в D3",
+    "авто: D3 габарит Н.О., D2 вернул участок, D3 полный размер, D2 опора в D3",
+    "авто: D3 габарит Н.О., D2 вернул участок, D3 полный размер, D2 опора в D3",
+    "авто: D3 габарит Н.О., D2 вернул участок, D3 полный размер, D2 опора в D3",
+    "авто: D3 габарит Н.О., D2 вернул участок, D3 полный размер, D2 опора в D3",
+    "авто: D3 габарит Н.О., D2 вернул участок, D3 полный размер, D2 опора в D3",
+    "авто: D3 габарит Н.О., D2 вернул участок, D3 полный размер, D2 опора в D3",
+    "авто: D3 габарит Н.О., D2 вернул участок, D3 полный размер, D2 опора в D3",
+    "авто: D3 габарит Н.О., D1 внутри D2, D5 внутри D10, D9 внутри D10, D2 вернул полный участок, D3 полный размер, D2 опора в D3",
+    "авто: D3 габарит Н.О., D2 вернул полный участок, D3 полный размер, D2 опора в D3",
+    "авто: D3 габарит Н.О., D2 вернул полный участок, D3 полный размер, D2 опора в D3",
+    "авто: D3 габарит Н.О., D3 полный размер",
+    "авто: D3 габарит Н.О., D3 полный размер"
+  ],
+  "reviewed_by_human": true,
+  "audit_note": "ручной визуальный аудит",
+  "locked": true
+}

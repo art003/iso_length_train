@@ -1,0 +1,105 @@
+{
+  "line_id": "CO_0167",
+  "items": [
+    {
+      "id": "D1",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.93",
+      "value_mm": 430
+    },
+    {
+      "id": "D2",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.94",
+      "value_mm": 1246
+    },
+    {
+      "id": "D3",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.93",
+      "value_mm": 1450
+    },
+    {
+      "id": "D4",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 994
+    },
+    {
+      "id": "D5",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D8=9500",
+      "value_mm": 2300
+    },
+    {
+      "id": "D6",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D8=9500",
+      "value_mm": 3000
+    },
+    {
+      "id": "D7",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D8=9500",
+      "value_mm": 3000
+    },
+    {
+      "id": "D8",
+      "decision": "include",
+      "role": "main",
+      "reason": "полный участок, не габарит",
+      "value_mm": 9500
+    },
+    {
+      "id": "D9",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 421
+    },
+    {
+      "id": "D10",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 750
+    },
+    {
+      "id": "D11",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.63",
+      "value_mm": 579
+    },
+    {
+      "id": "D12",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D13=5800",
+      "value_mm": 1800
+    },
+    {
+      "id": "D13",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.76",
+      "value_mm": 5800
+    }
+  ],
+  "notes": [
+    "локальная модель, без API",
+    "авто: D12 внутри D13",
+    "авто: D4 внутри D2, D5 внутри D6, D9 внутри D11",
+    "ручной визуальный аудит",
+    "авто: D8 полный участок, D6 внутри D8, D7 внутри D8, D4 вернул участок, D9 вернул участок"
+  ],
+  "reviewed_by_human": true,
+  "locked": true
+}

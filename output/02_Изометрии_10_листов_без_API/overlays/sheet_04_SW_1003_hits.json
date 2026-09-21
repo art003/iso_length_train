@@ -1,0 +1,343 @@
+{
+  "sheet_no": 4,
+  "line_id": "SW_1003",
+  "width": 2150,
+  "height": 1521,
+  "overlay": "sheet_04_SW_1003_ids.png",
+  "markup": "sheet_04_SW_1003.png",
+  "candidates": [
+    {
+      "id": "D1",
+      "value_mm": 250,
+      "x": 711.4,
+      "y": 574.9,
+      "nearby": "<1> | 1 | 4137_14-005-SW-1003 BB33",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        0.497854
+      ],
+      "bbox": [
+        387.54,
+        312.26,
+        400.46,
+        324.57
+      ]
+    },
+    {
+      "id": "D2",
+      "value_mm": 214,
+      "x": 756.9,
+      "y": 375.2,
+      "nearby": "<2> | 1",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        412.74,
+        201.65,
+        425.66,
+        213.96
+      ]
+    },
+    {
+      "id": "D3",
+      "value_mm": 159,
+      "x": 815.6,
+      "y": 250.4,
+      "nearby": "",
+      "local_hint": "dimension_candidate|support_repeat",
+      "flags": [
+        "support_repeat"
+      ],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        446.64,
+        134.48,
+        456.75,
+        142.89
+      ]
+    },
+    {
+      "id": "D4",
+      "value_mm": 214,
+      "x": 989.6,
+      "y": 241.3,
+      "nearby": "<3> | 1",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        541.62,
+        127.49,
+        554.54,
+        139.8
+      ]
+    },
+    {
+      "id": "D5",
+      "value_mm": 504,
+      "x": 1132.3,
+      "y": 513.8,
+      "nearby": "1",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.0,
+        -1.0
+      ],
+      "bbox": [
+        622.86,
+        279.51,
+        631.33,
+        289.65
+      ]
+    },
+    {
+      "id": "D6",
+      "value_mm": 188,
+      "x": 1007.4,
+      "y": 713.2,
+      "nearby": "<5> | 1 | О5 | О6 | 378",
+      "local_hint": "dimension_candidate|nested_offset",
+      "flags": [
+        "nested_offset"
+      ],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        551.46,
+        388.85,
+        564.38,
+        401.16
+      ]
+    },
+    {
+      "id": "D7",
+      "value_mm": 378,
+      "x": 947.1,
+      "y": 712.8,
+      "nearby": "<5> | 1 | 188",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        518.1,
+        388.61,
+        531.02,
+        400.92
+      ]
+    },
+    {
+      "id": "D8",
+      "value_mm": 159,
+      "x": 808.2,
+      "y": 701.5,
+      "nearby": "DN80",
+      "local_hint": "dimension_candidate|support_repeat",
+      "flags": [
+        "support_repeat"
+      ],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        442.56,
+        384.32,
+        452.67,
+        392.73
+      ]
+    },
+    {
+      "id": "D9",
+      "value_mm": 81,
+      "x": 790.7,
+      "y": 801.4,
+      "nearby": "81",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        432.9,
+        438.51,
+        442.93,
+        449.16
+      ]
+    },
+    {
+      "id": "D10",
+      "value_mm": 171,
+      "x": 879.5,
+      "y": 941.5,
+      "nearby": "<6> | 1 | 4",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        0.497854
+      ],
+      "bbox": [
+        480.66,
+        515.3,
+        493.58,
+        527.61
+      ]
+    },
+    {
+      "id": "D11",
+      "value_mm": 159,
+      "x": 907.9,
+      "y": 1071.1,
+      "nearby": "",
+      "local_hint": "dimension_candidate|support_repeat",
+      "flags": [
+        "support_repeat"
+      ],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        497.76,
+        589.04,
+        507.87,
+        597.45
+      ]
+    },
+    {
+      "id": "D12",
+      "value_mm": 81,
+      "x": 730.9,
+      "y": 836.0,
+      "nearby": "81",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        399.78,
+        457.71,
+        409.81,
+        468.36
+      ]
+    },
+    {
+      "id": "D13",
+      "value_mm": 154,
+      "x": 633.1,
+      "y": 801.6,
+      "nearby": "",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        345.6,
+        439.76,
+        355.71,
+        448.17
+      ]
+    },
+    {
+      "id": "D14",
+      "value_mm": 190,
+      "x": 645.1,
+      "y": 920.3,
+      "nearby": "<7> | 1 | 380",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        350.82,
+        503.57,
+        363.74,
+        515.88
+      ]
+    },
+    {
+      "id": "D15",
+      "value_mm": 380,
+      "x": 583.1,
+      "y": 920.3,
+      "nearby": "<7> | 1 | 190",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        316.5,
+        503.57,
+        329.42,
+        515.88
+      ]
+    },
+    {
+      "id": "D16",
+      "value_mm": 159,
+      "x": 452.0,
+      "y": 904.3,
+      "nearby": "",
+      "local_hint": "dimension_candidate|support_repeat",
+      "flags": [
+        "support_repeat"
+      ],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        245.28,
+        496.64,
+        255.39,
+        505.05
+      ]
+    },
+    {
+      "id": "D17",
+      "value_mm": 155,
+      "x": 1126.1,
+      "y": 162.9,
+      "nearby": "<8> | 1",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        617.22,
+        84.05,
+        630.14,
+        96.36
+      ]
+    }
+  ]
+}

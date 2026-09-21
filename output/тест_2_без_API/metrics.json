@@ -1,0 +1,1296 @@
+{
+  "pdf": "тест_2.pdf",
+  "job": "тест_2_без_API",
+  "folder": "тест_2_без_API",
+  "updated": "2026-09-21 13:05",
+  "provider": "без API",
+  "model": "local-cascade",
+  "ocr": "нет, текст из pdf (pymupdf)",
+  "pages": 10,
+  "total_mm": 276583,
+  "total_m": 276.583,
+  "ok": 10,
+  "review": 0,
+  "total_time_s": 3.94,
+  "ai_calls_total": 0,
+  "ai_retries": 0,
+  "ai_calls_avg_per_page": 0,
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "tariff_date": "2026-09-18",
+  "tariff_usd_per_1m_tokens": {
+    "input": 0.3,
+    "output": 2.5
+  },
+  "cost_total_usd": 0.0,
+  "cost_per_page_usd": 0.0,
+  "cost_formula": "(0 / 1e6) * 0.3 + (0 / 1e6) * 2.5",
+  "live_api": null,
+  "note": "Суммы из json, API не вызывал.",
+  "thumbs": [
+    "тест_2_без_API/markup/sheet_01_LI_0001.png",
+    "тест_2_без_API/markup/sheet_02_LI_0001.png",
+    "тест_2_без_API/markup/sheet_03_LI_0001.png",
+    "тест_2_без_API/markup/sheet_04_LI_0001.png",
+    "тест_2_без_API/markup/sheet_05_LI_0001.png",
+    "тест_2_без_API/markup/sheet_06_LI_0001.png",
+    "тест_2_без_API/markup/sheet_07_LI_0001.png",
+    "тест_2_без_API/markup/sheet_08_P15_1045.png",
+    "тест_2_без_API/markup/sheet_09_P15_1045.png",
+    "тест_2_без_API/markup/sheet_10_P21_1017.png"
+  ],
+  "sheets": [
+    {
+      "sheet_no": 1,
+      "line_id": "LI_0001",
+      "length_mm": 16504,
+      "length_m": 16.504,
+      "formula": "225 + 415 + 705 + 248 + 1405 + 280 + 270 + 465 + 285 + 1000 + 243 + 3728 + 6950 + 285 = 16504 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API; авто: D9 штурвал",
+      "included": [
+        {
+          "id": "D1",
+          "value_mm": 225,
+          "role": "main",
+          "reason": "CatBoost×5 0.92"
+        },
+        {
+          "id": "D2",
+          "value_mm": 415,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D3",
+          "value_mm": 705,
+          "role": "main",
+          "reason": "CatBoost×5 0.95"
+        },
+        {
+          "id": "D4",
+          "value_mm": 248,
+          "role": "main",
+          "reason": "CatBoost×5 0.95"
+        },
+        {
+          "id": "D5",
+          "value_mm": 1405,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D6",
+          "value_mm": 280,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D7",
+          "value_mm": 270,
+          "role": "main",
+          "reason": "CatBoost×5 0.95"
+        },
+        {
+          "id": "D8",
+          "value_mm": 465,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D10",
+          "value_mm": 285,
+          "role": "main",
+          "reason": "CatBoost×5 0.96"
+        },
+        {
+          "id": "D11",
+          "value_mm": 1000,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D12",
+          "value_mm": 243,
+          "role": "main",
+          "reason": "CatBoost×5 0.94"
+        },
+        {
+          "id": "D14",
+          "value_mm": 3728,
+          "role": "main",
+          "reason": "CatBoost×5 0.93"
+        },
+        {
+          "id": "D15",
+          "value_mm": 6950,
+          "role": "main",
+          "reason": "CatBoost×5 0.92"
+        },
+        {
+          "id": "D16",
+          "value_mm": 285,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        }
+      ],
+      "excluded": [
+        {
+          "id": "D9",
+          "value_mm": 350,
+          "role": "valve",
+          "reason": "штурвал"
+        },
+        {
+          "id": "D13",
+          "value_mm": 140,
+          "role": "other",
+          "reason": "CatBoost×5 0.99"
+        },
+        {
+          "id": "D17",
+          "value_mm": 350,
+          "role": "other",
+          "reason": "CatBoost×5 0.97"
+        }
+      ],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "тест_2_без_API/markup/sheet_01_LI_0001.png"
+    },
+    {
+      "sheet_no": 2,
+      "line_id": "LI_0001",
+      "length_mm": 20136,
+      "length_m": 20.136,
+      "formula": "300 + 217 + 2493 + 200 + 217 + 50 + 2323 + 185 + 480 + 890 + 350 + 210 + 217 + 1926 + 4670 + 400 + 3401 + 430 + 810 + 350 + 17 = 20136 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API",
+      "included": [
+        {
+          "id": "D2",
+          "value_mm": 300,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D3",
+          "value_mm": 217,
+          "role": "main",
+          "reason": "CatBoost×5 0.95"
+        },
+        {
+          "id": "D6",
+          "value_mm": 2493,
+          "role": "main",
+          "reason": "CatBoost×5 0.95"
+        },
+        {
+          "id": "D7",
+          "value_mm": 200,
+          "role": "main",
+          "reason": "CatBoost×5 0.92"
+        },
+        {
+          "id": "D8",
+          "value_mm": 217,
+          "role": "main",
+          "reason": "CatBoost×5 0.95"
+        },
+        {
+          "id": "D10",
+          "value_mm": 50,
+          "role": "main",
+          "reason": "CatBoost×5 0.91"
+        },
+        {
+          "id": "D11",
+          "value_mm": 2323,
+          "role": "main",
+          "reason": "CatBoost×5 0.95"
+        },
+        {
+          "id": "D12",
+          "value_mm": 185,
+          "role": "main",
+          "reason": "CatBoost×5 0.95"
+        },
+        {
+          "id": "D13",
+          "value_mm": 480,
+          "role": "main",
+          "reason": "CatBoost×5 0.96"
+        },
+        {
+          "id": "D15",
+          "value_mm": 890,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D16",
+          "value_mm": 350,
+          "role": "main",
+          "reason": "CatBoost×5 0.96"
+        },
+        {
+          "id": "D17",
+          "value_mm": 210,
+          "role": "main",
+          "reason": "CatBoost×5 0.95"
+        },
+        {
+          "id": "D18",
+          "value_mm": 217,
+          "role": "main",
+          "reason": "CatBoost×5 0.96"
+        },
+        {
+          "id": "D20",
+          "value_mm": 1926,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D21",
+          "value_mm": 4670,
+          "role": "main",
+          "reason": "CatBoost×5 0.95"
+        },
+        {
+          "id": "D22",
+          "value_mm": 400,
+          "role": "main",
+          "reason": "CatBoost×5 0.93"
+        },
+        {
+          "id": "D23",
+          "value_mm": 3401,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D24",
+          "value_mm": 430,
+          "role": "main",
+          "reason": "CatBoost×5 0.95"
+        },
+        {
+          "id": "D25",
+          "value_mm": 810,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D26",
+          "value_mm": 350,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D29",
+          "value_mm": 17,
+          "role": "main",
+          "reason": "CatBoost×5 0.64"
+        }
+      ],
+      "excluded": [
+        {
+          "id": "D1",
+          "value_mm": 465,
+          "role": "other",
+          "reason": "CatBoost×5 0.90"
+        },
+        {
+          "id": "D4",
+          "value_mm": 140,
+          "role": "other",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D5",
+          "value_mm": 50,
+          "role": "support_offset",
+          "reason": "внутри D4=140"
+        },
+        {
+          "id": "D9",
+          "value_mm": 140,
+          "role": "other",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D14",
+          "value_mm": 376,
+          "role": "support_offset",
+          "reason": "внутри D15=890"
+        },
+        {
+          "id": "D19",
+          "value_mm": 140,
+          "role": "other",
+          "reason": "CatBoost×5 0.99"
+        },
+        {
+          "id": "D27",
+          "value_mm": 19,
+          "role": "other",
+          "reason": "CatBoost×5 0.99"
+        },
+        {
+          "id": "D28",
+          "value_mm": 19,
+          "role": "other",
+          "reason": "CatBoost×5 0.99"
+        },
+        {
+          "id": "D30",
+          "value_mm": 18,
+          "role": "other",
+          "reason": "CatBoost×5 0.99"
+        },
+        {
+          "id": "D31",
+          "value_mm": 20,
+          "role": "other",
+          "reason": "CatBoost×5 0.99"
+        },
+        {
+          "id": "D32",
+          "value_mm": 18,
+          "role": "other",
+          "reason": "CatBoost×5 0.99"
+        }
+      ],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "тест_2_без_API/markup/sheet_02_LI_0001.png"
+    },
+    {
+      "sheet_no": 3,
+      "line_id": "LI_0001",
+      "length_mm": 20249,
+      "length_m": 20.249,
+      "formula": "217 + 201 + 350 + 217 + 250 + 750 + 3600 + 3925 + 218 + 3004 + 3000 + 150 + 350 + 217 + 3800 = 20249 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API; авто: D1 штурвал, D18 габарит Н.О., D18 полный размер, D16 опора в D18",
+      "included": [
+        {
+          "id": "D2",
+          "value_mm": 217,
+          "role": "main",
+          "reason": "CatBoost×5 0.95"
+        },
+        {
+          "id": "D4",
+          "value_mm": 201,
+          "role": "main",
+          "reason": "CatBoost×5 0.94"
+        },
+        {
+          "id": "D5",
+          "value_mm": 350,
+          "role": "main",
+          "reason": "CatBoost×5 0.95"
+        },
+        {
+          "id": "D7",
+          "value_mm": 217,
+          "role": "main",
+          "reason": "CatBoost×5 0.96"
+        },
+        {
+          "id": "D9",
+          "value_mm": 250,
+          "role": "main",
+          "reason": "CatBoost×5 0.93"
+        },
+        {
+          "id": "D10",
+          "value_mm": 750,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D11",
+          "value_mm": 3600,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D13",
+          "value_mm": 3925,
+          "role": "main",
+          "reason": "CatBoost×5 0.96"
+        },
+        {
+          "id": "D14",
+          "value_mm": 218,
+          "role": "main",
+          "reason": "CatBoost×5 0.96"
+        },
+        {
+          "id": "D17",
+          "value_mm": 3004,
+          "role": "main",
+          "reason": "CatBoost×5 0.95"
+        },
+        {
+          "id": "D18",
+          "value_mm": 3000,
+          "role": "main",
+          "reason": "полный размер, цепочка не закрывает"
+        },
+        {
+          "id": "D19",
+          "value_mm": 150,
+          "role": "main",
+          "reason": "CatBoost×5 0.90"
+        },
+        {
+          "id": "D20",
+          "value_mm": 350,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D21",
+          "value_mm": 217,
+          "role": "main",
+          "reason": "CatBoost×5 0.95"
+        },
+        {
+          "id": "D23",
+          "value_mm": 3800,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        }
+      ],
+      "excluded": [
+        {
+          "id": "D1",
+          "value_mm": 185,
+          "role": "valve",
+          "reason": "штурвал"
+        },
+        {
+          "id": "D3",
+          "value_mm": 140,
+          "role": "other",
+          "reason": "CatBoost×5 0.96"
+        },
+        {
+          "id": "D6",
+          "value_mm": 185,
+          "role": "other",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D8",
+          "value_mm": 140,
+          "role": "other",
+          "reason": "CatBoost×5 0.99"
+        },
+        {
+          "id": "D12",
+          "value_mm": 2700,
+          "role": "support_offset",
+          "reason": "внутри D13=3925"
+        },
+        {
+          "id": "D15",
+          "value_mm": 165,
+          "role": "other",
+          "reason": "CatBoost×5 0.99"
+        },
+        {
+          "id": "D16",
+          "value_mm": 375,
+          "role": "support_offset",
+          "reason": "опора, D18 не закрыт"
+        },
+        {
+          "id": "D22",
+          "value_mm": 140,
+          "role": "other",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D24",
+          "value_mm": 17,
+          "role": "other",
+          "reason": "CatBoost×5 0.99"
+        },
+        {
+          "id": "D25",
+          "value_mm": 17,
+          "role": "other",
+          "reason": "CatBoost×5 0.99"
+        },
+        {
+          "id": "D26",
+          "value_mm": 17,
+          "role": "other",
+          "reason": "CatBoost×5 0.99"
+        }
+      ],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "тест_2_без_API/markup/sheet_03_LI_0001.png"
+    },
+    {
+      "sheet_no": 4,
+      "line_id": "LI_0001",
+      "length_mm": 33380,
+      "length_m": 33.38,
+      "formula": "4270 + 1214 + 2200 + 3316 + 890 + 165 + 14550 + 2600 + 4175 = 33380 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API",
+      "included": [
+        {
+          "id": "D1",
+          "value_mm": 4270,
+          "role": "main",
+          "reason": "CatBoost×5 0.96"
+        },
+        {
+          "id": "D2",
+          "value_mm": 1214,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D4",
+          "value_mm": 2200,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D6",
+          "value_mm": 3316,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D8",
+          "value_mm": 890,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D9",
+          "value_mm": 165,
+          "role": "main",
+          "reason": "CatBoost×5 0.91"
+        },
+        {
+          "id": "D13",
+          "value_mm": 14550,
+          "role": "main",
+          "reason": "CatBoost×5 0.86"
+        },
+        {
+          "id": "D14",
+          "value_mm": 2600,
+          "role": "main",
+          "reason": "CatBoost×5 0.93"
+        },
+        {
+          "id": "D15",
+          "value_mm": 4175,
+          "role": "main",
+          "reason": "CatBoost×5 0.95"
+        }
+      ],
+      "excluded": [
+        {
+          "id": "D3",
+          "value_mm": 1600,
+          "role": "support_offset",
+          "reason": "внутри D4=2200"
+        },
+        {
+          "id": "D5",
+          "value_mm": 1349,
+          "role": "support_offset",
+          "reason": "внутри D6=3316"
+        },
+        {
+          "id": "D7",
+          "value_mm": 665,
+          "role": "support_offset",
+          "reason": "внутри D8=890"
+        },
+        {
+          "id": "D10",
+          "value_mm": 350,
+          "role": "support_offset",
+          "reason": "внутри D13=14550"
+        },
+        {
+          "id": "D11",
+          "value_mm": 6000,
+          "role": "support_offset",
+          "reason": "внутри D13=14550"
+        },
+        {
+          "id": "D12",
+          "value_mm": 5500,
+          "role": "support_offset",
+          "reason": "внутри D13=14550"
+        }
+      ],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "тест_2_без_API/markup/sheet_04_LI_0001.png"
+    },
+    {
+      "sheet_no": 5,
+      "line_id": "LI_0001",
+      "length_mm": 26259,
+      "length_m": 26.259,
+      "formula": "225 + 2600 + 4250 + 8750 + 1214 + 1450 + 2050 + 1349 + 3316 + 890 + 165 = 26259 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API",
+      "included": [
+        {
+          "id": "D1",
+          "value_mm": 225,
+          "role": "main",
+          "reason": "CatBoost×5 0.92"
+        },
+        {
+          "id": "D2",
+          "value_mm": 2600,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D4",
+          "value_mm": 4250,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D7",
+          "value_mm": 8750,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D8",
+          "value_mm": 1214,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D9",
+          "value_mm": 1450,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D10",
+          "value_mm": 2050,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D11",
+          "value_mm": 1349,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D12",
+          "value_mm": 3316,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D14",
+          "value_mm": 890,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D15",
+          "value_mm": 165,
+          "role": "main",
+          "reason": "CatBoost×5 0.91"
+        }
+      ],
+      "excluded": [
+        {
+          "id": "D3",
+          "value_mm": 1800,
+          "role": "support_offset",
+          "reason": "внутри D4=4250"
+        },
+        {
+          "id": "D5",
+          "value_mm": 2700,
+          "role": "support_offset",
+          "reason": "внутри D7=8750"
+        },
+        {
+          "id": "D6",
+          "value_mm": 5500,
+          "role": "support_offset",
+          "reason": "внутри D7=8750"
+        },
+        {
+          "id": "D13",
+          "value_mm": 665,
+          "role": "support_offset",
+          "reason": "внутри D14=890"
+        }
+      ],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "тест_2_без_API/markup/sheet_05_LI_0001.png"
+    },
+    {
+      "sheet_no": 6,
+      "line_id": "LI_0001",
+      "length_mm": 39276,
+      "length_m": 39.276,
+      "formula": "3650 + 6200 + 3850 + 2550 + 900 + 300 + 2950 + 1176 + 3350 + 5820 + 8530 = 39276 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API; авто: D4 внутри участка, D4 вернул участок, D3 полный размер, D2 опора в D3, D4 опора в D3",
+      "included": [
+        {
+          "id": "D1",
+          "value_mm": 3650,
+          "role": "main",
+          "reason": "CatBoost×5 0.96"
+        },
+        {
+          "id": "D3",
+          "value_mm": 6200,
+          "role": "main",
+          "reason": "полный размер, цепочка не закрывает"
+        },
+        {
+          "id": "D5",
+          "value_mm": 3850,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D6",
+          "value_mm": 2550,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D7",
+          "value_mm": 900,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D8",
+          "value_mm": 300,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D9",
+          "value_mm": 2950,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D10",
+          "value_mm": 1176,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D11",
+          "value_mm": 3350,
+          "role": "main",
+          "reason": "CatBoost×5 0.96"
+        },
+        {
+          "id": "D12",
+          "value_mm": 5820,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D15",
+          "value_mm": 8530,
+          "role": "main",
+          "reason": "CatBoost×5 0.58"
+        }
+      ],
+      "excluded": [
+        {
+          "id": "D2",
+          "value_mm": 1800,
+          "role": "support_offset",
+          "reason": "опора, D3 не закрыт"
+        },
+        {
+          "id": "D4",
+          "value_mm": 1600,
+          "role": "support_offset",
+          "reason": "опора, D3 не закрыт"
+        },
+        {
+          "id": "D13",
+          "value_mm": 3530,
+          "role": "support_offset",
+          "reason": "внутри D15=8530"
+        },
+        {
+          "id": "D14",
+          "value_mm": 3000,
+          "role": "support_offset",
+          "reason": "внутри D15=8530"
+        }
+      ],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "тест_2_без_API/markup/sheet_06_LI_0001.png"
+    },
+    {
+      "sheet_no": 7,
+      "line_id": "LI_0001",
+      "length_mm": 8275,
+      "length_m": 8.275,
+      "formula": "38 + 1450 + 1650 + 1200 + 400 + 366 + 2116 + 890 + 165 = 8275 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API",
+      "included": [
+        {
+          "id": "D1",
+          "value_mm": 38,
+          "role": "main",
+          "reason": "CatBoost×5 0.95"
+        },
+        {
+          "id": "D2",
+          "value_mm": 1450,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D3",
+          "value_mm": 1650,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D4",
+          "value_mm": 1200,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D5",
+          "value_mm": 400,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D6",
+          "value_mm": 366,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D7",
+          "value_mm": 2116,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D9",
+          "value_mm": 890,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D10",
+          "value_mm": 165,
+          "role": "main",
+          "reason": "CatBoost×5 0.91"
+        }
+      ],
+      "excluded": [
+        {
+          "id": "D8",
+          "value_mm": 665,
+          "role": "support_offset",
+          "reason": "внутри D9=890"
+        }
+      ],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "тест_2_без_API/markup/sheet_07_LI_0001.png"
+    },
+    {
+      "sheet_no": 8,
+      "line_id": "P15_1045",
+      "length_mm": 32016,
+      "length_m": 32.016,
+      "formula": "207 + 224 + 123 + 707 + 700 + 100 + 10500 + 1050 + 75 + 150 + 18180 = 32016 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API; авто: D19 габарит Н.О., D19 полный размер",
+      "included": [
+        {
+          "id": "D1",
+          "value_mm": 207,
+          "role": "main",
+          "reason": "CatBoost×5 0.94"
+        },
+        {
+          "id": "D2",
+          "value_mm": 224,
+          "role": "main",
+          "reason": "CatBoost×5 0.93"
+        },
+        {
+          "id": "D3",
+          "value_mm": 123,
+          "role": "main",
+          "reason": "CatBoost×5 0.94"
+        },
+        {
+          "id": "D4",
+          "value_mm": 707,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D5",
+          "value_mm": 700,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D6",
+          "value_mm": 100,
+          "role": "main",
+          "reason": "CatBoost×5 0.96"
+        },
+        {
+          "id": "D11",
+          "value_mm": 10500,
+          "role": "main",
+          "reason": "CatBoost×5 0.56"
+        },
+        {
+          "id": "D12",
+          "value_mm": 1050,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D14",
+          "value_mm": 75,
+          "role": "main",
+          "reason": "CatBoost×5 0.94"
+        },
+        {
+          "id": "D15",
+          "value_mm": 150,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D19",
+          "value_mm": 18180,
+          "role": "main",
+          "reason": "полный размер, цепочка не закрывает"
+        }
+      ],
+      "excluded": [
+        {
+          "id": "D7",
+          "value_mm": 400,
+          "role": "support_offset",
+          "reason": "внутри D11=10500"
+        },
+        {
+          "id": "D8",
+          "value_mm": 3000,
+          "role": "support_offset",
+          "reason": "внутри D11=10500"
+        },
+        {
+          "id": "D9",
+          "value_mm": 3000,
+          "role": "support_offset",
+          "reason": "внутри D11=10500"
+        },
+        {
+          "id": "D10",
+          "value_mm": 3000,
+          "role": "support_offset",
+          "reason": "внутри D11=10500"
+        },
+        {
+          "id": "D13",
+          "value_mm": 275,
+          "role": "support_offset",
+          "reason": "внутри D19=18180"
+        },
+        {
+          "id": "D16",
+          "value_mm": 6000,
+          "role": "support_offset",
+          "reason": "внутри D19=18180"
+        },
+        {
+          "id": "D17",
+          "value_mm": 6000,
+          "role": "support_offset",
+          "reason": "внутри D19=18180"
+        },
+        {
+          "id": "D18",
+          "value_mm": 5500,
+          "role": "support_offset",
+          "reason": "внутри D19=18180"
+        }
+      ],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "тест_2_без_API/markup/sheet_08_P15_1045.png"
+    },
+    {
+      "sheet_no": 9,
+      "line_id": "P15_1045",
+      "length_mm": 59670,
+      "length_m": 59.67,
+      "formula": "120 + 4000 + 2000 + 6700 + 1700 + 4000 + 41150 = 59670 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API",
+      "included": [
+        {
+          "id": "D1",
+          "value_mm": 120,
+          "role": "main",
+          "reason": "CatBoost×5 0.92"
+        },
+        {
+          "id": "D3",
+          "value_mm": 4000,
+          "role": "main",
+          "reason": "CatBoost×5 0.96"
+        },
+        {
+          "id": "D5",
+          "value_mm": 2000,
+          "role": "main",
+          "reason": "CatBoost×5 0.94"
+        },
+        {
+          "id": "D6",
+          "value_mm": 6700,
+          "role": "main",
+          "reason": "CatBoost×5 0.96"
+        },
+        {
+          "id": "D7",
+          "value_mm": 1700,
+          "role": "main",
+          "reason": "CatBoost×5 0.94"
+        },
+        {
+          "id": "D8",
+          "value_mm": 4000,
+          "role": "main",
+          "reason": "CatBoost×5 0.96"
+        },
+        {
+          "id": "D17",
+          "value_mm": 41150,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        }
+      ],
+      "excluded": [
+        {
+          "id": "D2",
+          "value_mm": 2300,
+          "role": "support_offset",
+          "reason": "внутри D3=4000"
+        },
+        {
+          "id": "D4",
+          "value_mm": 2350,
+          "role": "support_offset",
+          "reason": "внутри D6=6700"
+        },
+        {
+          "id": "D9",
+          "value_mm": 650,
+          "role": "support_offset",
+          "reason": "внутри D17=41150"
+        },
+        {
+          "id": "D10",
+          "value_mm": 5500,
+          "role": "support_offset",
+          "reason": "внутри D17=41150"
+        },
+        {
+          "id": "D11",
+          "value_mm": 6000,
+          "role": "support_offset",
+          "reason": "внутри D17=41150"
+        },
+        {
+          "id": "D12",
+          "value_mm": 6000,
+          "role": "support_offset",
+          "reason": "внутри D17=41150"
+        },
+        {
+          "id": "D13",
+          "value_mm": 6000,
+          "role": "support_offset",
+          "reason": "внутри D17=41150"
+        },
+        {
+          "id": "D14",
+          "value_mm": 3000,
+          "role": "support_offset",
+          "reason": "внутри D17=41150"
+        },
+        {
+          "id": "D15",
+          "value_mm": 6000,
+          "role": "support_offset",
+          "reason": "внутри D17=41150"
+        },
+        {
+          "id": "D16",
+          "value_mm": 6000,
+          "role": "support_offset",
+          "reason": "внутри D17=41150"
+        }
+      ],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "тест_2_без_API/markup/sheet_09_P15_1045.png"
+    },
+    {
+      "sheet_no": 10,
+      "line_id": "P21_1017",
+      "length_mm": 20818,
+      "length_m": 20.818,
+      "formula": "250 + 234 + 2400 + 950 + 2100 + 9000 + 450 + 4050 + 1384 = 20818 мм",
+      "status": "ok",
+      "remarks": "локальная модель, без API",
+      "included": [
+        {
+          "id": "D1",
+          "value_mm": 250,
+          "role": "main",
+          "reason": "CatBoost×5 0.94"
+        },
+        {
+          "id": "D2",
+          "value_mm": 234,
+          "role": "main",
+          "reason": "CatBoost×5 0.96"
+        },
+        {
+          "id": "D3",
+          "value_mm": 2400,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D5",
+          "value_mm": 950,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D9",
+          "value_mm": 2100,
+          "role": "main",
+          "reason": "CatBoost×5 0.96"
+        },
+        {
+          "id": "D10",
+          "value_mm": 9000,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        },
+        {
+          "id": "D11",
+          "value_mm": 450,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D13",
+          "value_mm": 4050,
+          "role": "main",
+          "reason": "CatBoost×5 0.97"
+        },
+        {
+          "id": "D14",
+          "value_mm": 1384,
+          "role": "main",
+          "reason": "CatBoost×5 0.98"
+        }
+      ],
+      "excluded": [
+        {
+          "id": "D4",
+          "value_mm": 325,
+          "role": "support_offset",
+          "reason": "внутри D5=950"
+        },
+        {
+          "id": "D6",
+          "value_mm": 1100,
+          "role": "support_offset",
+          "reason": "внутри D16=1400"
+        },
+        {
+          "id": "D7",
+          "value_mm": 2100,
+          "role": "support_offset",
+          "reason": "внутри D10=9000"
+        },
+        {
+          "id": "D8",
+          "value_mm": 2100,
+          "role": "support_offset",
+          "reason": "внутри D10=9000"
+        },
+        {
+          "id": "D12",
+          "value_mm": 2075,
+          "role": "support_offset",
+          "reason": "внутри D13=4050"
+        },
+        {
+          "id": "D15",
+          "value_mm": 400,
+          "role": "support_offset",
+          "reason": "внутри D16=1400"
+        },
+        {
+          "id": "D16",
+          "value_mm": 1400,
+          "role": "support_offset",
+          "reason": "внутри D10=9000"
+        }
+      ],
+      "ambiguous": [],
+      "ai_calls": 0,
+      "markup": "тест_2_без_API/markup/sheet_10_P21_1017.png"
+    }
+  ]
+}

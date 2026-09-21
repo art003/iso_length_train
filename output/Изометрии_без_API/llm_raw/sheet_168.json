@@ -1,0 +1,189 @@
+{
+  "line_id": "SW_1018",
+  "items": [
+    {
+      "id": "D1",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.74",
+      "value_mm": 50
+    },
+    {
+      "id": "D2",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.96",
+      "value_mm": 1300
+    },
+    {
+      "id": "D3",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D4=498",
+      "value_mm": 275
+    },
+    {
+      "id": "D4",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 498
+    },
+    {
+      "id": "D5",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.96",
+      "value_mm": 244
+    },
+    {
+      "id": "D6",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 206
+    },
+    {
+      "id": "D7",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.96",
+      "value_mm": 224
+    },
+    {
+      "id": "D8",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D9=453",
+      "value_mm": 253
+    },
+    {
+      "id": "D9",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.59",
+      "value_mm": 453
+    },
+    {
+      "id": "D10",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.79",
+      "value_mm": 171
+    },
+    {
+      "id": "D11",
+      "decision": "include",
+      "role": "support_offset",
+      "reason": "два прогона с D10",
+      "value_mm": 146
+    },
+    {
+      "id": "D12",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 178
+    },
+    {
+      "id": "D13",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 224
+    },
+    {
+      "id": "D14",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D15=2425",
+      "value_mm": 1325
+    },
+    {
+      "id": "D15",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.93",
+      "value_mm": 2425
+    },
+    {
+      "id": "D16",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D17=1300",
+      "value_mm": 974
+    },
+    {
+      "id": "D17",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 1300
+    },
+    {
+      "id": "D18",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.87",
+      "value_mm": 1750
+    },
+    {
+      "id": "D19",
+      "decision": "exclude_nested",
+      "role": "overall_same_run",
+      "reason": "габарит поверх соседнего",
+      "value_mm": 326
+    },
+    {
+      "id": "D20",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.81",
+      "value_mm": 1300
+    },
+    {
+      "id": "D21",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D22=2275",
+      "value_mm": 1075
+    },
+    {
+      "id": "D22",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.85",
+      "value_mm": 2275
+    },
+    {
+      "id": "D23",
+      "decision": "include",
+      "role": "main",
+      "reason": "размер участка",
+      "value_mm": 17
+    },
+    {
+      "id": "D24",
+      "decision": "not_length",
+      "role": "other",
+      "reason": "CatBoost 1.00",
+      "value_mm": 19
+    },
+    {
+      "id": "D25",
+      "decision": "not_length",
+      "role": "other",
+      "reason": "CatBoost 1.00",
+      "value_mm": 18
+    }
+  ],
+  "notes": [
+    "локальная модель, без API",
+    "авто: D11 внутри D19, D23 вернул длину, D11 два прогона с D10",
+    "авто: D3 внутри D4, D8 внутри D9, D12 внутри D9, D14 внутри D15, D16 внутри D17",
+    "ручной визуальный аудит",
+    "авто: D19 габарит пара, D12 вернул участок"
+  ],
+  "reviewed_by_human": true,
+  "locked": true
+}

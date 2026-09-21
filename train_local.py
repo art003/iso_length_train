@@ -80,6 +80,41 @@ def audit_labels(out_root: Path = OUT) -> dict:
                 problems.append(f"{job.name}/{n}: нет решений {missing}")
             if extra:
                 problems.append(f"{job.name}/{n}: лишние решения {extra}")
+            by_hit = {str(h.get("id") or ""): h for h in hit_items}
+            hit_ids_set = set(hit_ids)
+            for hit in hit_items:
+                parent_id = hit.get("parent_id")
+                if parent_id and parent_id not in hit_ids_set:
+                    problems.append(f"{job.name}/{n}/{hit.get('id')}: parent_id {parent_id} нет на листе")
+                conf = hit.get("geometry_confidence")
+                if conf is not None:
+                    try:
+                        cval = float(conf)
+                    except (TypeError, ValueError):
+                        cval = -1.0
+                    if cval < 0.0 or cval > 1.0:
+                        problems.append(f"{job.name}/{n}/{hit.get('id')}: geometry_confidence {conf}")
+                parent_value = hit.get("parent_value_mm")
+                if parent_id and parent_value is not None:
+                    parent_hit = by_hit.get(str(parent_id))
+                    if parent_hit is not None and int(parent_hit.get("value_mm") or -1) != int(parent_value):
+                        problems.append(
+                            f"{job.name}/{n}/{hit.get('id')}: parent_value_mm {parent_value} ≠ {parent_hit.get('value_mm')}"
+                        )
+            for item in items:
+                hid = str(item.get("id") or "")
+                hit = by_hit.get(hid)
+                if not hit:
+                    continue
+                try:
+                    rv = int(item.get("value_mm") or -2)
+                    hv = int(hit.get("value_mm") or -3)
+                except (TypeError, ValueError):
+                    continue
+                if rv not in (-2,) and hv not in (-3,) and rv != hv:
+                    problems.append(
+                        f"{job.name}/{n}/{hid}: json {rv} мм ≠ hits {hv} мм"
+                    )
             for item in items:
                 decision = str(item.get("decision") or "ambiguous")
                 classes[decision] += 1

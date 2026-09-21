@@ -1,0 +1,128 @@
+{
+  "line_id": "P21_1017",
+  "items": [
+    {
+      "id": "D1",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.67",
+      "value_mm": 38
+    },
+    {
+      "id": "D2",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.94",
+      "value_mm": 1475
+    },
+    {
+      "id": "D3",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 463
+    },
+    {
+      "id": "D4",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D8=7650",
+      "value_mm": 1600
+    },
+    {
+      "id": "D5",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D8=7650",
+      "value_mm": 1588
+    },
+    {
+      "id": "D6",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D8=7650",
+      "value_mm": 1725
+    },
+    {
+      "id": "D7",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D15=12825",
+      "value_mm": 1738
+    },
+    {
+      "id": "D8",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 7650
+    },
+    {
+      "id": "D9",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.96",
+      "value_mm": 1550
+    },
+    {
+      "id": "D10",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D15=12825",
+      "value_mm": 2245
+    },
+    {
+      "id": "D11",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D15=12825",
+      "value_mm": 4800
+    },
+    {
+      "id": "D12",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D15=12825",
+      "value_mm": 1760
+    },
+    {
+      "id": "D13",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.87",
+      "value_mm": 90
+    },
+    {
+      "id": "D14",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D15=12825",
+      "value_mm": 3650
+    },
+    {
+      "id": "D15",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 12825
+    },
+    {
+      "id": "D16",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.70",
+      "value_mm": 38
+    }
+  ],
+  "notes": [
+    "локальная модель, без API",
+    "авто: D8 вернул участок",
+    "авто: D15 вернул участок",
+    "авто: D4 внутри D8",
+    "авто: D3 внутри D4, D5 внутри D8, D6 внутри D8, D10 внутри D11, D12 внутри D11, D4 вернул полный участок",
+    "ручной визуальный аудит",
+    "авто: D4 внутри D8, D7 внутри D15, D11 внутри D15, D14 внутри D15, D3 вернул участок"
+  ],
+  "reviewed_by_human": true,
+  "locked": true
+}

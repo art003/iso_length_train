@@ -1,0 +1,239 @@
+{
+  "line_id": "PW5_1004",
+  "items": [
+    {
+      "id": "D1",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.93",
+      "value_mm": 1365
+    },
+    {
+      "id": "D2",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.93",
+      "value_mm": 225
+    },
+    {
+      "id": "D3",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.93",
+      "value_mm": 250
+    },
+    {
+      "id": "D4",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.93",
+      "value_mm": 2772
+    },
+    {
+      "id": "D5",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.77",
+      "value_mm": 200
+    },
+    {
+      "id": "D6",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.81",
+      "value_mm": 130
+    },
+    {
+      "id": "D7",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.87",
+      "value_mm": 100
+    },
+    {
+      "id": "D8",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.54",
+      "value_mm": 700
+    },
+    {
+      "id": "D9",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.52",
+      "value_mm": 350
+    },
+    {
+      "id": "D10",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.53",
+      "value_mm": 614
+    },
+    {
+      "id": "D11",
+      "decision": "include",
+      "role": "main",
+      "reason": "полный участок над размером до опоры",
+      "value_mm": 350
+    },
+    {
+      "id": "D12",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.79",
+      "value_mm": 4800
+    },
+    {
+      "id": "D13",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.56",
+      "value_mm": 5500
+    },
+    {
+      "id": "D14",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 700
+    },
+    {
+      "id": "D15",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D16=614",
+      "value_mm": 350
+    },
+    {
+      "id": "D16",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.62",
+      "value_mm": 614
+    },
+    {
+      "id": "D17",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.56",
+      "value_mm": 300
+    },
+    {
+      "id": "D18",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 364
+    },
+    {
+      "id": "D19",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D17=300",
+      "value_mm": 80
+    },
+    {
+      "id": "D20",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D17=300",
+      "value_mm": 130
+    },
+    {
+      "id": "D21",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.96",
+      "value_mm": 1765
+    },
+    {
+      "id": "D22",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D23=4748",
+      "value_mm": 1778
+    },
+    {
+      "id": "D23",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.93",
+      "value_mm": 4748
+    },
+    {
+      "id": "D24",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.93",
+      "value_mm": 364
+    },
+    {
+      "id": "D25",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.92",
+      "value_mm": 300
+    },
+    {
+      "id": "D26",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D11=350",
+      "value_mm": 314
+    },
+    {
+      "id": "D27",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D12=4800",
+      "value_mm": 2644
+    },
+    {
+      "id": "D28",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.96",
+      "value_mm": 300
+    },
+    {
+      "id": "D29",
+      "decision": "not_length",
+      "role": "other",
+      "reason": "CatBoost 0.99",
+      "value_mm": 19
+    },
+    {
+      "id": "D30",
+      "decision": "not_length",
+      "role": "other",
+      "reason": "CatBoost 1.00",
+      "value_mm": 18
+    },
+    {
+      "id": "D31",
+      "decision": "not_length",
+      "role": "other",
+      "reason": "CatBoost 0.99",
+      "value_mm": 18
+    },
+    {
+      "id": "D32",
+      "decision": "not_length",
+      "role": "other",
+      "reason": "CatBoost 0.99",
+      "value_mm": 18
+    }
+  ],
+  "notes": [
+    "локальная модель, без API",
+    "авто: D11 внутри D8",
+    "авто: D15 внутри D16, D19 внутри D17, D20 внутри D17, D26 внутри D24",
+    "ручной визуальный аудит",
+    "авто: D22 внутри D23, D27 внутри D12, D11 вернул полный участок",
+    "авто: D11 внутри участка, D11 вернул полный участок"
+  ],
+  "reviewed_by_human": true,
+  "locked": true
+}

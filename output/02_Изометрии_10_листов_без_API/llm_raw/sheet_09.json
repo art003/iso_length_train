@@ -1,0 +1,39 @@
+{
+  "line_id": "SW_1009",
+  "items": [
+    {
+      "id": "D1",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.82"
+    },
+    {
+      "id": "D2",
+      "decision": "include",
+      "role": "main",
+      "reason": "размер участка"
+    },
+    {
+      "id": "D3",
+      "decision": "include",
+      "role": "main",
+      "reason": "размер участка"
+    },
+    {
+      "id": "D4",
+      "decision": "include",
+      "role": "main",
+      "reason": "размер участка"
+    },
+    {
+      "id": "D5",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.80"
+    }
+  ],
+  "notes": [
+    "локальная модель, без API",
+    "авто: D2 вернул длину, D3 вернул длину, D4 вернул длину"
+  ]
+}

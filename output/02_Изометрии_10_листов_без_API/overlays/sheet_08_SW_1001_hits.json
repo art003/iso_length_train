@@ -1,0 +1,242 @@
+{
+  "sheet_no": 8,
+  "line_id": "SW_1001",
+  "width": 2150,
+  "height": 1521,
+  "overlay": "sheet_08_SW_1001_ids.png",
+  "markup": "sheet_08_SW_1001.png",
+  "candidates": [
+    {
+      "id": "D1",
+      "value_mm": 1850,
+      "x": 1171.2,
+      "y": 988.9,
+      "nearby": "DN80",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        0.497854
+      ],
+      "bbox": [
+        640.74,
+        540.74,
+        656.55,
+        554.71
+      ]
+    },
+    {
+      "id": "D2",
+      "value_mm": 6000,
+      "x": 1071.9,
+      "y": 931.7,
+      "nearby": "",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        0.497854
+      ],
+      "bbox": [
+        585.78,
+        509.06,
+        601.59,
+        523.03
+      ]
+    },
+    {
+      "id": "D3",
+      "value_mm": 5000,
+      "x": 961.4,
+      "y": 868.0,
+      "nearby": "23525",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        0.497854
+      ],
+      "bbox": [
+        524.58,
+        473.78,
+        540.39,
+        487.75
+      ]
+    },
+    {
+      "id": "D4",
+      "value_mm": 5200,
+      "x": 854.0,
+      "y": 805.6,
+      "nearby": "О6 | 23525 | Н.О.",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        0.497854
+      ],
+      "bbox": [
+        465.06,
+        439.22,
+        480.87,
+        453.19
+      ]
+    },
+    {
+      "id": "D5",
+      "value_mm": 3800,
+      "x": 749.1,
+      "y": 746.3,
+      "nearby": "",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        0.497854
+      ],
+      "bbox": [
+        406.98,
+        406.34,
+        422.79,
+        420.31
+      ]
+    },
+    {
+      "id": "D6",
+      "value_mm": 23525,
+      "x": 932.0,
+      "y": 814.9,
+      "nearby": "5000 | 5200 | Н.О.",
+      "local_hint": "dimension_candidate|overall_mark",
+      "flags": [
+        "overall_mark"
+      ],
+      "direction": [
+        0.867261,
+        0.497854
+      ],
+      "bbox": [
+        506.82,
+        443.54,
+        525.52,
+        459.17
+      ]
+    },
+    {
+      "id": "D7",
+      "value_mm": 1000,
+      "x": 237.0,
+      "y": 696.5,
+      "nearby": "<2> | 1",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.0,
+        -1.0
+      ],
+      "bbox": [
+        127.02,
+        379.11,
+        135.49,
+        392.37
+      ]
+    },
+    {
+      "id": "D8",
+      "value_mm": 4100,
+      "x": 441.0,
+      "y": 723.8,
+      "nearby": "",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        236.34,
+        393.91,
+        252.15,
+        407.88
+      ]
+    },
+    {
+      "id": "D9",
+      "value_mm": 6000,
+      "x": 740.4,
+      "y": 552.2,
+      "nearby": "",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        402.18,
+        298.87,
+        417.99,
+        312.84
+      ]
+    },
+    {
+      "id": "D10",
+      "value_mm": 6000,
+      "x": 900.3,
+      "y": 459.1,
+      "nearby": "24100 | Н.О.",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        490.74,
+        247.27,
+        506.55,
+        261.24
+      ]
+    },
+    {
+      "id": "D11",
+      "value_mm": 6000,
+      "x": 1062.4,
+      "y": 365.9,
+      "nearby": "О3",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        580.5,
+        195.67,
+        596.31,
+        209.64
+      ]
+    },
+    {
+      "id": "D12",
+      "value_mm": 24100,
+      "x": 917.2,
+      "y": 485.3,
+      "nearby": "6000",
+      "local_hint": "dimension_candidate|overall_mark",
+      "flags": [
+        "overall_mark"
+      ],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        498.66,
+        260.97,
+        517.36,
+        276.6
+      ]
+    }
+  ]
+}

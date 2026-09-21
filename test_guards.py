@@ -42,12 +42,12 @@ class GuardRegression(unittest.TestCase):
         self.assertEqual(by[d1.cid], "include")
         self.assertEqual(_sum_include(s, out), 5563)
 
-    def test_sheet6_two_runs_and_overlap_overall(self):
+    def test_sheet6_full_runs_replace_support_offsets(self):
         s = self.by_no[6]
         d6 = next(c for c in s.candidates if c.value_mm == 2950)
         d8 = next(c for c in s.candidates if c.value_mm == 2400)
         d11 = next(c for c in s.candidates if c.value_mm == 3505)
-        self.assertIn("overall_pair", d6.flags)
+        self.assertNotIn("overall_pair", d6.flags)
         self.assertNotIn("overall_pair", d8.flags)
         mapping = {c.cid: "include" for c in s.candidates}
         mapping[d6.cid] = "include"
@@ -57,23 +57,114 @@ class GuardRegression(unittest.TestCase):
         mapping[d11.cid + "_r"] = "габарит поверх D10"
         out, notes = apply_guards(s.candidates, _decisions(s, mapping))
         by = {it["id"]: it["decision"] for it in out["items"]}
-        self.assertEqual(by[d6.cid], "exclude_nested")
+        self.assertEqual(by[d6.cid], "include")
         self.assertEqual(by[d8.cid], "include")
-        self.assertEqual(by[d11.cid], "exclude_nested")
-        self.assertTrue(any("два прогона" in n for n in notes))
+        self.assertEqual(by[d11.cid], "include")
         gold, _ = apply_guards(s.candidates, _decisions(s, {c.cid: "include" for c in s.candidates}))
-        self.assertEqual(_sum_include(s, gold), 10521)
+        for value in (2463, 2000, 1600):
+            cid = next(c.cid for c in s.candidates if c.value_mm == value)
+            self.assertEqual({it["id"]: it["decision"] for it in gold["items"]}[cid], "exclude_nested")
+        self.assertEqual(_sum_include(s, gold), 10913)
 
-    def test_sheet5_unmarked_overall(self):
+    def test_sheet5_full_runs_replace_support_offsets(self):
         s = self.by_no[5]
         out = self._guarded_all_include(s)
         by = {it["id"]: it["decision"] for it in out["items"]}
         for c in s.candidates:
-            if c.value_mm == 3505:
+            if c.value_mm in (238, 2000, 1600):
                 self.assertEqual(by[c.cid], "exclude_nested")
-            if c.value_mm == 1600:
+            if c.value_mm in (450, 2400, 3505):
                 self.assertEqual(by[c.cid], "include")
-        self.assertEqual(_sum_include(s, out), 8508)
+        self.assertEqual(_sum_include(s, out), 8175)
+
+    def test_test1_sheet8_support_offsets_are_nested(self):
+        """Все четыре размера до опор не добавляются поверх полного участка."""
+        pdf = ROOT / "data" / "контрольные_тесты" / "тест_1.pdf"
+        if not pdf.exists():
+            self.skipTest("нет тест_1.pdf")
+        s = extract_pdf(pdf, {8})[0]
+        out = self._guarded_all_include(s)
+        by = {it["id"]: it["decision"] for it in out["items"]}
+        for val in (2600, 1750, 2750, 1600, 1349, 665):
+            cid = next(c.cid for c in s.candidates if c.value_mm == val)
+            self.assertEqual(by[cid], "exclude_nested", val)
+        for val in (7400, 2200, 3316, 890):
+            cid = next(c.cid for c in s.candidates if c.value_mm == val)
+            self.assertEqual(by[cid], "include", val)
+        self.assertEqual(_sum_include(s, out), 26960)
+
+    def test_close_pair_nests_smaller_keeps_run(self):
+        """665 внутри 890: полный участок в сумме, размер до опоры нет."""
+        pdf = ROOT / "data" / "контрольные_тесты" / "тест_1.pdf"
+        if not pdf.exists():
+            self.skipTest("нет тест_1.pdf")
+        s = extract_pdf(pdf, {7})[0]
+        out = self._guarded_all_include(s)
+        by = {it["id"]: it["decision"] for it in out["items"]}
+        d665 = next(c for c in s.candidates if c.value_mm == 665)
+        d890 = next(c for c in s.candidates if c.value_mm == 890)
+        self.assertNotIn("overall_pair", d890.flags)
+        self.assertEqual(by[d890.cid], "include")
+        self.assertEqual(by[d665.cid], "exclude_nested")
+
+    def test_run_parent_not_dropped_as_overall(self):
+        pdf = ROOT / "data" / "контрольные_тесты" / "тест_2.pdf"
+        if not pdf.exists():
+            self.skipTest("нет тест_2.pdf")
+        s = extract_pdf(pdf, {10})[0]
+        out = self._guarded_all_include(s)
+        by = {it["id"]: it["decision"] for it in out["items"]}
+        d9000 = next(c for c in s.candidates if c.value_mm == 9000)
+        self.assertEqual(by[d9000.cid], "include")
+        nested_2100 = [c for c in s.candidates if c.value_mm == 2100]
+        self.assertTrue(any(by[c.cid] == "exclude_nested" for c in nested_2100))
+
+    def test_test1_sheet6_main_run_not_overall(self):
+        """22250 — основная линия диагонали, не габарит; 3000 внутри неё."""
+        pdf = ROOT / "data" / "контрольные_тесты" / "тест_1.pdf"
+        if not pdf.exists():
+            self.skipTest("нет тест_1.pdf")
+        s = extract_pdf(pdf, {6})[0]
+        out = self._guarded_all_include(s)
+        by = {it["id"]: it["decision"] for it in out["items"]}
+        d22250 = next(c for c in s.candidates if c.value_mm == 22250)
+        d3000 = next(c for c in s.candidates if c.value_mm == 3000)
+        self.assertEqual(by[d22250.cid], "include")
+        self.assertEqual(by[d3000.cid], "exclude_nested")
+
+    def _holdout_sheet(self, test_name: str, page: int):
+        pdf = ROOT / "data" / "контрольные_тесты" / f"{test_name}.pdf"
+        if not pdf.exists():
+            self.skipTest(f"нет {test_name}.pdf")
+        return extract_pdf(pdf, {page})[0]
+
+    def test_long_dim_line_is_main_run_across_holdout(self):
+        """Длинная размерная линия — основной участок; куски до опор внутри неё."""
+        cases = [
+            ("тест_1", 7, 21411, (6150, 6350, 5000)),
+            ("тест_2", 4, 14550, (5500, 6000)),
+            ("тест_2", 5, 8750, (2700, 5500)),
+            ("тест_2", 6, 8530, (3530, 3000)),
+            ("тест_2", 8, 10500, (3000,)),
+            ("тест_2", 9, 41150, (6000, 5500, 3000)),
+            ("тест_3", 1, 11000, (2000, 2500, 2265)),
+            ("тест_3", 2, 26000, (6350, 5650, 6000)),
+            ("тест_3", 4, 15050, (6000, 550)),
+        ]
+        for name, page, main, inners in cases:
+            with self.subTest(name=name, page=page, main=main):
+                s = self._holdout_sheet(name, page)
+                out = self._guarded_all_include(s)
+                by = {it["id"]: it["decision"] for it in out["items"]}
+                mains = [c for c in s.candidates if c.value_mm == main]
+                self.assertTrue(mains, f"нет {main}")
+                self.assertTrue(any(by[c.cid] == "include" for c in mains), f"{main} должен быть в сумме")
+                for val in inners:
+                    kids = [c for c in s.candidates if c.value_mm == val]
+                    self.assertTrue(
+                        any(by[c.cid] == "exclude_nested" for c in kids),
+                        f"{val} должен быть вложен в {main}",
+                    )
 
     def test_sheet7_nested_stays_out(self):
         s = self.by_no[7]
@@ -213,8 +304,8 @@ class GuardRegression(unittest.TestCase):
             2: 21956,
             3: 6880,
             4: 2772,
-            5: 8508,
-            6: 10521,
+            5: 8175,
+            6: 10913,
             7: 4306,
             8: 48625,
             9: 860,
@@ -261,6 +352,52 @@ class GuardRegression(unittest.TestCase):
         out, notes = apply_guards([c], llm)
         self.assertEqual(out["items"][0]["decision"], "not_length")
         self.assertTrue(any("штамп" in n for n in notes))
+
+    def test_overall_mark_accepts_trailing_comma(self):
+        from extract import Candidate, Span, _tag_specials
+
+        c = Candidate("D12", 13950, 10, 10, (0, 0, 0, 0), "Н.О, | 3000 | 6000", "dim")
+        _tag_specials([c], [Span("Н.О,", 12, 12, (0, 0, 0, 0), 8)])
+        self.assertIn("overall_mark", c.flags)
+
+    def test_large_nearby_ignores_tiny_and_slope(self):
+        from extract import Candidate
+        from guards import _large_nearby_is_overall
+
+        big = Candidate("D20", 14054, 0, 0, (0, 0, 0, 0), "305 | УКЛОН | 1000 | 8502", "dim")
+        self.assertFalse(_large_nearby_is_overall(big, Candidate("D16", 305, 50, 0, (0, 0, 0, 0), "", "dim")))
+        self.assertFalse(_large_nearby_is_overall(big, Candidate("D18", 1000, 40, 20, (0, 0, 0, 0), "", "dim")))
+        self.assertFalse(_large_nearby_is_overall(big, Candidate("D19", 8502, 30, 10, (0, 0, 0, 0), "", "dim")))
+        env = Candidate("D1", 22250, 0, 0, (0, 0, 0, 0), "3000", "dim")
+        self.assertTrue(_large_nearby_is_overall(env, Candidate("D2", 3000, 15, 0, (0, 0, 0, 0), "", "dim")))
+        self.assertTrue(_large_nearby_is_overall(env, Candidate("D2", 3000, 45, 0, (0, 0, 0, 0), "", "dim")))
+        self.assertFalse(
+            _large_nearby_is_overall(
+                Candidate("D6", 17228, 0, 0, (0, 0, 0, 0), "90", "dim"),
+                Candidate("D4", 90, 20, 0, (0, 0, 0, 0), "", "dim"),
+            )
+        )
+
+    def test_sequential_neighbor_restored_to_include(self):
+        from extract import Candidate
+
+        a = Candidate("D7", 9256, 0, 0, (0, 0, 0, 0), "2006 | 5300", "dim")
+        b = Candidate("D6", 5300, 18, 0, (0, 0, 0, 0), "9256 | 2006", "dim")
+        c = Candidate("D5", 2006, 45, 0, (0, 0, 0, 0), "9256 | 5300", "dim")
+        llm = {
+            "line_id": "X",
+            "items": [
+                {"id": "D7", "decision": "exclude_nested", "role": "other", "reason": "CatBoost 0.90"},
+                {"id": "D6", "decision": "include", "role": "main", "reason": ""},
+                {"id": "D5", "decision": "include", "role": "main", "reason": ""},
+            ],
+            "notes": [],
+        }
+        out, _ = apply_guards([a, b, c], llm)
+        by = {it["id"]: it["decision"] for it in out["items"]}
+        self.assertEqual(by["D7"], "include")
+        self.assertEqual(by["D6"], "include")
+        self.assertEqual(by["D5"], "include")
 
     def test_locked_untouched(self):
         s = self.by_no[1]

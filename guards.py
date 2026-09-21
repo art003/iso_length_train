@@ -3,6 +3,8 @@ from __future__ import annotations
 import copy
 import re
 
+from relations import compute_relations, find_nested_parent, _projects_onto_parent
+
 _NUM = re.compile(r"\d+")
 _COORD_WORD = re.compile(r"z\+|координата z|вертикальная координата", re.I)
 _SUPPORT_NEAR = re.compile(r"\b[ОOФF]\d+", re.I)
@@ -29,6 +31,7 @@ def apply_guards(candidates, llm: dict) -> tuple[dict, list[str]]:
     items = out.get("items") or []
     by_id = {c.cid: c for c in candidates}
     extra: list[str] = []
+    compute_relations(candidates)
     hw_vals = {c.value_mm for c in candidates if "handwheel" in c.flags}
 
     for it in items:
@@ -37,21 +40,31 @@ def apply_guards(candidates, llm: dict) -> tuple[dict, list[str]]:
         if not c:
             continue
         flags = c.flags
-        if "overall_mark" in flags and it.get("decision") == "include":
+        if "overall_mark" in flags and it.get("decision") in ("include", "exclude_nested"):
+            if it.get("decision") == "include":
+                extra.append(f"{cid} габарит Н.О.")
             it["decision"] = "exclude_nested"
             it["role"] = "overall_same_run"
             it["reason"] = "метка Н.О."
-            extra.append(f"{cid} габарит Н.О.")
-        if "overall_pair" in flags and it.get("decision") == "include":
+        if "overall_pair" in flags and it.get("decision") in ("include", "exclude_nested"):
+            if _is_run_parent(c, candidates):
+                if it.get("decision") != "include":
+                    it["decision"] = "include"
+                    it["role"] = "main"
+                    it["reason"] = "полный участок, не габарит"
+                    extra.append(f"{cid} полный участок")
+                continue
+            if it.get("decision") == "include":
+                extra.append(f"{cid} габарит пара")
             it["decision"] = "exclude_nested"
             it["role"] = "overall_same_run"
             it["reason"] = "габарит поверх соседнего"
-            extra.append(f"{cid} габарит пара")
-        if it.get("decision") == "include" and _iso_lt_overall(c):
+        if _iso_lt_overall(c) and it.get("decision") in ("include", "exclude_nested"):
+            if it.get("decision") == "include":
+                extra.append(f"{cid} габарит LT")
             it["decision"] = "exclude_nested"
             it["role"] = "overall_same_run"
             it["reason"] = "габарит LT"
-            extra.append(f"{cid} габарит LT")
         if it.get("decision") in ("include", "ambiguous") and (
             "handwheel" in flags
             or (c.value_mm in hw_vals and not _is_pipe_opening(c))
@@ -103,17 +116,33 @@ def apply_guards(candidates, llm: dict) -> tuple[dict, list[str]]:
         c = by_id.get(cid)
         if not c or it.get("decision") != "include":
             continue
+        if _has_sequential_length_neighbor(c, candidates):
+            continue
         for other in candidates:
             if other.cid == cid:
                 continue
             if str(other.value_mm) not in _NUM.findall(c.nearby or ""):
                 continue
-            if c.value_mm >= 8000 and c.value_mm >= other.value_mm * 2.2:
-                it["decision"] = "exclude_nested"
-                it["role"] = "overall_same_run"
-                it["reason"] = f"габарит рядом с {other.cid}"
-                extra.append(f"{cid} габарит рядом с {other.cid}")
+            if not _large_nearby_is_overall(c, other):
+                continue
+            if _is_run_parent(c, candidates):
+                oit = next((x for x in items if x.get("id") == other.cid), None)
+                if (
+                    oit
+                    and oit.get("decision") == "include"
+                    and other.value_mm < c.value_mm
+                    and "overall_mark" not in other.flags
+                ):
+                    oit["decision"] = "exclude_nested"
+                    oit["role"] = "support_offset"
+                    oit["reason"] = f"внутри {cid}={c.value_mm}"
+                    extra.append(f"{other.cid} внутри {cid}")
                 break
+            it["decision"] = "exclude_nested"
+            it["role"] = "overall_same_run"
+            it["reason"] = f"габарит рядом с {other.cid}"
+            extra.append(f"{cid} габарит рядом с {other.cid}")
+            break
 
     for it in items:
         cid = it.get("id")
@@ -139,6 +168,8 @@ def apply_guards(candidates, llm: dict) -> tuple[dict, list[str]]:
         if not c or it.get("decision") != "exclude_nested":
             continue
         if "overall_mark" in c.flags or "overall_pair" in c.flags:
+            continue
+        if "nested_offset" in c.flags or find_nested_parent(c, candidates):
             continue
         twin = _twin_run(c, candidates)
         if twin:
@@ -179,7 +210,8 @@ def apply_guards(candidates, llm: dict) -> tuple[dict, list[str]]:
             it["reason"] = "родитель не в сумме"
             extra.append(f"{cid} вернул в сумму")
 
-    _apply_unmarked_overalls(candidates, items, extra)
+    # Без явной Н.О. больший размер — полный участок, а размер до опоры вложен.
+    # Старое правило 3505/1600 делало наоборот и системно завышало/занижало суммы.
     _apply_overall_cover(candidates, items, extra)
     _take_ambiguous(candidates, items, extra)
 
@@ -194,46 +226,28 @@ def _dist(a, b) -> float:
     return ((a.x - b.x) ** 2 + (a.y - b.y) ** 2) ** 0.5
 
 
-def find_nested_parent(c, candidates):
-    """Только опора внутри ближайшего большего участка (916 в 1950, 300 в 840).
-
-    Длинный самостоятельный прогон (1600) не считаем вложенным в габарит 3505.
-    """
-    if "overall_mark" in c.flags or "overall_pair" in c.flags:
-        return None
-    if c.value_mm >= 1200:
-        return None
-    support_near = bool(_SUPPORT_NEAR.search(c.nearby or ""))
-    largers = [
-        other
-        for other in candidates
-        if other.cid != c.cid
-        and other.value_mm > c.value_mm
-        and "handwheel" not in other.flags
-        and "insulation_thickness" not in other.flags
-        and not _is_overall_parent(other)
-    ]
-    if not largers:
-        return None
-    other = min(largers, key=lambda o: _dist(c, o))
-    ratio = c.value_mm / other.value_mm
-    if ratio < 0.15 or ratio > 0.52:
-        return None
-    dist = _dist(c, other)
-    mentioned = (
-        str(other.value_mm) in _NUM.findall(c.nearby or "")
-        or str(c.value_mm) in _NUM.findall(other.nearby or "")
-    )
-    if mentioned and support_near and dist <= 180:
-        return other
-    if support_near and 80 <= dist <= 190 and 0.38 <= ratio <= 0.52:
-        return other
-    return None
-
-
 def _is_overall_parent(c) -> bool:
     if "overall_mark" in c.flags or "overall_pair" in c.flags or _iso_lt_overall(c):
         return True
+    return False
+
+
+def _is_run_parent(c, candidates) -> bool:
+    """Полный участок, внутри которого уже есть размер до опоры — не габарит."""
+    if find_nested_parent(c, candidates):
+        return False
+    for other in candidates:
+        if other.cid == c.cid or other.value_mm >= c.value_mm:
+            continue
+        parent = find_nested_parent(other, candidates)
+        if parent is not None and parent.cid == c.cid:
+            return True
+        if "nested_offset" not in (other.flags or set()):
+            continue
+        nums_c = _NUM.findall(c.nearby or "")
+        nums_o = _NUM.findall(other.nearby or "")
+        if str(c.value_mm) in nums_o or str(other.value_mm) in nums_c:
+            return True
     return False
 
 
@@ -241,17 +255,24 @@ def _apply_nested_offsets(candidates, items: list[dict], extra: list[str]) -> No
     for it in items:
         cid = it.get("id")
         c = next((x for x in candidates if x.cid == cid), None)
-        if not c or it.get("decision") not in ("include", "ambiguous"):
+        if not c or it.get("decision") not in ("include", "ambiguous", "exclude_nested"):
             continue
         if "overall_mark" in c.flags or "overall_pair" in c.flags:
-            continue
+            if find_nested_parent(c, candidates) or _is_run_parent(c, candidates):
+                pass
+            else:
+                continue
         parent = find_nested_parent(c, candidates)
-        if not parent:
+        if not parent and "nested_offset" not in c.flags:
             continue
+        if it.get("decision") in ("include", "ambiguous"):
+            extra.append(f"{cid} внутри {parent.cid if parent else 'участка'}")
         it["decision"] = "exclude_nested"
         it["role"] = "support_offset"
-        it["reason"] = f"внутри {parent.cid}={parent.value_mm}"
-        extra.append(f"{cid} внутри {parent.cid}")
+        if parent:
+            it["reason"] = f"внутри {parent.cid}={parent.value_mm}"
+        else:
+            it["reason"] = "размер до опоры"
 
 
 def _restore_false_nested(candidates, items: list[dict], extra: list[str]) -> None:
@@ -261,16 +282,42 @@ def _restore_false_nested(candidates, items: list[dict], extra: list[str]) -> No
         c = next((x for x in candidates if x.cid == cid), None)
         if not c or it.get("decision") != "exclude_nested":
             continue
+        if "overall_pair" in c.flags and _is_run_parent(c, candidates):
+            it["decision"] = "include"
+            it["role"] = "main"
+            it["reason"] = "полный участок, не габарит"
+            extra.append(f"{cid} вернул полный участок")
+            continue
         if "overall_mark" in c.flags or "overall_pair" in c.flags or _iso_lt_overall(c):
             continue
         if _is_stamp(c):
             continue
         if find_nested_parent(c, candidates):
             continue
-        if _unmarked_overall_child(c, candidates):
+        if any(
+            (parent := find_nested_parent(other, candidates)) is not None
+            and parent.cid == c.cid
+            for other in candidates
+            if other.cid != c.cid
+        ):
+            it["decision"] = "include"
+            it["role"] = "main"
+            it["reason"] = "полный участок над размером до опоры"
+            extra.append(f"{cid} вернул полный участок")
             continue
+        if any(_large_nearby_is_overall(c, o) for o in candidates if o.cid != cid):
+            if _is_run_parent(c, candidates):
+                it["decision"] = "include"
+                it["role"] = "main"
+                it["reason"] = "полный участок, не габарит"
+                extra.append(f"{cid} вернул полный участок")
+                continue
+            if not _has_sequential_length_neighbor(c, candidates):
+                it["role"] = "overall_same_run"
+                it["reason"] = "габарит рядом"
+                continue
         reason = str(it.get("reason") or "").lower()
-        if any(k in reason for k in ("габарит", "н.о", "цепочка", "полный размер", "lt")):
+        if any(k in reason for k in ("н.о", "цепочка", "полный размер", "lt")):
             continue
         it["decision"] = "include"
         it["role"] = "main"
@@ -348,26 +395,102 @@ def _keep_pipe_openings(candidates, items: list[dict], extra: list[str]) -> None
         extra.append(f"{cid} отверстие в сумму")
 
 
+def _length_nums(text: str) -> set[int]:
+    return {int(n) for n in _NUM.findall(text or "") if int(n) >= 300}
+
+
+def _isometric_offset(a, b) -> bool:
+    """Габарит на изометрии сдвинут по диагонали, не вдоль одной оси (это другой участок)."""
+    dx, dy = abs(a.x - b.x), abs(a.y - b.y)
+    long = max(dx, dy)
+    short = min(dx, dy)
+    return long >= 1 and short / long >= 0.55
+
+
+def _large_nearby_is_overall(big, small) -> bool:
+    """22250 рядом с 3000 — оболочка. 16450|6000 на одной линии — два участка.
+
+    Мелкие 90/305/1000 рядом (уклон, DN, коротыш) не делают большой размер габаритом.
+    """
+    if big.value_mm < 8000 or small.value_mm < 800:
+        return False
+    ratio = big.value_mm / small.value_mm
+    if ratio < 2.2:
+        return False
+    d = _dist(big, small)
+    if d <= 28:
+        return True
+    if ratio < 4.0 or d > 55 or small.value_mm < 2000:
+        return False
+    return str(small.value_mm) in (big.nearby or "")
+
+
+def _has_sequential_length_neighbor(c, candidates) -> bool:
+    """Соседние участки на размерной линии, не опора внутри большего (300 в 840)."""
+    if find_nested_parent(c, candidates):
+        return False
+    for near in candidates:
+        if near.cid == c.cid:
+            continue
+        if _dist(c, near) > 45:
+            continue
+        lo, hi = min(c.value_mm, near.value_mm), max(c.value_mm, near.value_mm)
+        if lo >= 500 and 1.5 <= (hi / lo) <= 2.8:
+            return True
+    return False
+
+
 def _unmarked_overall_child(c, candidates):
-    """Дочерний прогон, из-за которого c — немая оболочка (3505 поверх 1600)."""
+    """Немая оболочка 3505 поверх 1600 на том же прогоне.
+
+    Соседние длины на размерной линии (2750|7400, 3316 и 1349) — оба в сумму.
+    """
     if c.value_mm < 3000:
         return None
     if "overall_mark" in c.flags or "overall_pair" in c.flags:
         return None
+    for near in candidates:
+        if near.cid == c.cid:
+            continue
+        if _dist(c, near) > 45:
+            continue
+        lo, hi = min(c.value_mm, near.value_mm), max(c.value_mm, near.value_mm)
+        if lo >= 500 and 1.5 <= (hi / lo) <= 4.0:
+            return None
+    parent_near = c.nearby or ""
+    if _SUPPORT_NEAR.search(parent_near):
+        return None
+    parent_extra = _length_nums(parent_near) - {c.value_mm}
+    best = None
+    best_d = 1e18
     for other in candidates:
         if other.cid == c.cid or other.value_mm < 800 or other.value_mm >= c.value_mm:
             continue
         if "handwheel" in other.flags or "insulation_thickness" in other.flags:
             continue
+        up = (other.nearby or "").upper()
+        if "ШТУРВАЛ" in up or "Н.О" in up or "СМ." in up:
+            continue
         ratio = other.value_mm / c.value_mm
-        if ratio < 0.35 or ratio > 0.55:
+        if ratio < 0.40 or ratio > 0.52:
             continue
-        if _dist(c, other) > 220:
+        d = _dist(c, other)
+        if d < 40 or d > 90:
             continue
-        if not _SUPPORT_NEAR.search(other.nearby or ""):
+        if not _isometric_offset(c, other):
             continue
-        return other
-    return None
+        supports = _SUPPORT_NEAR.findall(other.nearby or "")
+        if len(supports) != 1:
+            continue
+        child_extra = _length_nums(other.nearby or "") - {c.value_mm, other.value_mm}
+        if child_extra:
+            continue
+        if parent_extra - {other.value_mm}:
+            continue
+        if d < best_d:
+            best_d = d
+            best = other
+    return best
 
 
 def _apply_unmarked_overalls(candidates, items: list[dict], extra: list[str]) -> None:
@@ -469,6 +592,8 @@ def _chain_along_overall(overall, candidates) -> list:
             continue
         if c.value_mm < 300 or c.value_mm >= ov:
             continue
+        if getattr(overall, "dim_line_id", "") and not _projects_onto_parent(c, overall):
+            continue
         if _perp(c.x, c.y, overall.x, overall.y, ux, uy) > _CHAIN_BAND:
             continue
         parts.append(c)
@@ -488,6 +613,8 @@ def _apply_overall_cover(candidates, items: list[dict], extra: list[str]) -> Non
     for ov in overalls:
         it = _item(items, ov.cid)
         if not it:
+            continue
+        if find_nested_parent(ov, candidates):
             continue
         parts = _chain_along_overall(ov, candidates)
         sum_p = sum(p.value_mm for p in parts)
@@ -540,14 +667,17 @@ def _value_included(value: int, by_id, decisions: dict) -> bool:
     )
 
 
-def relabel_outputs_with_guards(out_root, refresh_markup: bool = False) -> int:
-    """Переприменить гарды к уже посчитанным JSON (locked не трогает)."""
+def relabel_outputs_with_guards(
+    out_root, refresh_markup: bool = False, ignore_locked: bool = False
+) -> int:
+    """Переприменить гарды к уже посчитанным JSON (locked не трогает, если ignore_locked=False)."""
     import json
     from pathlib import Path
 
     import pymupdf
 
     from extract import Candidate, extract_spans, is_drawing_opening
+    from relations import _write_relation_fields
 
     out_root = Path(out_root)
     updated = 0
@@ -583,7 +713,9 @@ def relabel_outputs_with_guards(out_root, refresh_markup: bool = False) -> int:
         changed_sheets: list[int] = []
         for raw_path in raw_dir.glob("sheet_*.json"):
             llm = json.loads(raw_path.read_text(encoding="utf-8"))
-            if llm.get("locked"):
+            was_locked = bool(llm.get("locked"))
+            was_human = bool(llm.get("reviewed_by_human"))
+            if was_locked and not ignore_locked:
                 continue
             try:
                 sheet_no = int(raw_path.stem.split("_")[1])
@@ -603,9 +735,11 @@ def relabel_outputs_with_guards(out_root, refresh_markup: bool = False) -> int:
             pix_h = float(hits.get("height") or 1521)
             sx = pix_w / pw if pw else 1.0
             sy = pix_h / ph if ph else 1.0
+            page_spans = []
             labels = []
             if page is not None:
-                labels = [sp for sp in extract_spans(page) if is_drawing_opening(sp.text)]
+                page_spans = extract_spans(page)
+                labels = [sp for sp in page_spans if is_drawing_opening(sp.text)]
             candidates = []
             for h in hits.get("candidates") or []:
                 flags = set(h.get("flags") or [])
@@ -626,6 +760,13 @@ def relabel_outputs_with_guards(out_root, refresh_markup: bool = False) -> int:
                     flags.add("pipe_opening")
                 tw = max(10.0, len(str(h.get("value_mm") or 0)) * 5.5)
                 bbox = (pdf_x - tw / 2, pdf_y - 5.0, pdf_x + tw / 2, pdf_y + 5.0)
+                value_text = str(int(h.get("value_mm") or 0))
+                numeric = [sp for sp in page_spans if sp.text.strip() == value_text]
+                source_span = (
+                    min(numeric, key=lambda sp: (sp.x - pdf_x) ** 2 + (sp.y - pdf_y) ** 2)
+                    if numeric
+                    else None
+                )
                 hint = h.get("local_hint") or ""
                 if opening and "pipe_opening" not in hint:
                     hint = hint + "|pipe_opening"
@@ -635,27 +776,52 @@ def relabel_outputs_with_guards(out_root, refresh_markup: bool = False) -> int:
                         value_mm=int(h.get("value_mm") or 0),
                         x=pdf_x,
                         y=pdf_y,
-                        bbox=tuple(h.get("bbox") or bbox),
+                        bbox=tuple(
+                            h.get("bbox")
+                            or (source_span.bbox if source_span is not None else bbox)
+                        ),
                         nearby=nearby,
                         local_hint=hint,
                         flags=flags,
+                        direction=tuple(
+                            h.get("direction")
+                            or (
+                                source_span.direction
+                                if source_span is not None
+                                else (1.0, 0.0)
+                            )
+                        ),
                     )
                 )
-            out, extra = apply_guards(candidates, llm)
+            if page is not None:
+                from vector_geometry import attach_geometry
+
+                attach_geometry(page, candidates)
+            work = copy.deepcopy(llm)
+            work.pop("locked", None)
+            out, extra = apply_guards(candidates, work)
+            if was_locked:
+                out["locked"] = True
+            if was_human:
+                out["reviewed_by_human"] = True
             flags_changed = False
             by_c = {c.cid: c for c in candidates}
             for h in hits.get("candidates") or []:
                 c = by_c.get(str(h.get("id")))
                 if not c:
                     continue
-                new_flags = sorted(c.flags)
-                if new_flags != list(h.get("flags") or []):
-                    h["flags"] = new_flags
-                    flags_changed = True
-                if c.local_hint != (h.get("local_hint") or ""):
-                    h["local_hint"] = c.local_hint
+                before = json.dumps(h, ensure_ascii=False, sort_keys=True)
+                _write_relation_fields(h, c)
+                bbox = [round(float(v), 2) for v in c.bbox]
+                if bbox != list(h.get("bbox") or []):
+                    h["bbox"] = bbox
+                direction = [round(float(v), 6) for v in c.direction]
+                if direction != list(h.get("direction") or []):
+                    h["direction"] = direction
+                if json.dumps(h, ensure_ascii=False, sort_keys=True) != before:
                     flags_changed = True
             if flags_changed:
+                hits["relations_version"] = 1
                 hits_path.write_text(
                     json.dumps(hits, ensure_ascii=False, indent=2), encoding="utf-8"
                 )

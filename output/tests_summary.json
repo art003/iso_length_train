@@ -1,0 +1,29 @@
+{
+  "тест_1": {
+    "job": "тест_1_без_API",
+    "total_mm": 219678,
+    "total_m": 219.678,
+    "pages": 10,
+    "ok": 10,
+    "review": 0,
+    "error": null
+  },
+  "тест_2": {
+    "job": "тест_2_без_API",
+    "total_mm": 276583,
+    "total_m": 276.583,
+    "pages": 10,
+    "ok": 10,
+    "review": 0,
+    "error": null
+  },
+  "тест_3": {
+    "job": "тест_3_без_API",
+    "total_mm": 307114,
+    "total_m": 307.114,
+    "pages": 10,
+    "ok": 10,
+    "review": 0,
+    "error": null
+  }
+}

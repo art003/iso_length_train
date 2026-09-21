@@ -8,7 +8,7 @@ __pycache__/
 *.egg-info/
 .pytest_cache/
 
-# Cursor / IDE (этот репозиторий не Cursor-hosted)
+# Cursor / IDE
 .cursor/
 .cursorignore
 *.code-workspace
@@ -24,12 +24,25 @@ web/uploads/
 # Huge source drawing set (keep locally to retrain)
 data/Изометрии.pdf
 
-# Training rasters + JSON (~277 sheets). Needed to retrain; keep on disk, not in git.
-output/Изометрии_без_API/
+# PDF copies inside output jobs (sources live in data/)
+output/**/*.pdf
 
-# Generated calc jobs (re-run via Расчёт). Master pack is kept.
-output/02_Изометрии_10_листов_без_API/
-output/jobs.json
+# Keep marked isometries in git:
+#   output/Изометрии_без_API/     — разметка 1–277
+#   output/тест_1_без_API/ …      — контрольные тесты
+#   output/02_Изометрии_10_листов_без_API/
+#   output/проверка_мастеру/
+#   output/tests_summary.json
 
-# Keep models/iso_clf.pkl and models/training_report.* in git if size allows.
-# If iso_clf.pkl > 50 MB, use Git LFS (see README).
+# Keep models/iso_clf.pkl in git (≈0.5 MB, LFS not needed).
+# ��������� �������, �� � ����
+_audit_train.py
+models/iso_clf.pkl.before_*
+models/label_audit.*
+models/dataset.csv
+models/dataset.jsonl
+output/_audit_crops/
+output/_clip_*
+output/_gold_*
+output/_sheet*_hires.png
+output/_top_left_hires.png

@@ -1,0 +1,113 @@
+{
+  "sheet_no": 9,
+  "line_id": "SW_1009",
+  "width": 2150,
+  "height": 1521,
+  "overlay": "sheet_09_SW_1009_ids.png",
+  "markup": "sheet_09_SW_1009.png",
+  "candidates": [
+    {
+      "id": "D1",
+      "value_mm": 195,
+      "x": 911.2,
+      "y": 461.4,
+      "nearby": "<1> | 1 | DN50",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        498.18,
+        249.41,
+        511.1,
+        261.72
+      ]
+    },
+    {
+      "id": "D2",
+      "value_mm": 123,
+      "x": 636.9,
+      "y": 452.7,
+      "nearby": "244 | 123",
+      "local_hint": "dimension_candidate|near_insulation",
+      "flags": [
+        "insulation"
+      ],
+      "direction": [
+        0.867261,
+        0.497854
+      ],
+      "bbox": [
+        346.26,
+        244.58,
+        359.18,
+        256.89
+      ]
+    },
+    {
+      "id": "D3",
+      "value_mm": 244,
+      "x": 631.4,
+      "y": 359.2,
+      "nearby": "123 | ИЗОЛЯЦИЯ: H | ОБОГРЕВ: -",
+      "local_hint": "dimension_candidate|near_insulation",
+      "flags": [
+        "insulation"
+      ],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        344.64,
+        194.72,
+        354.75,
+        203.13
+      ]
+    },
+    {
+      "id": "D4",
+      "value_mm": 123,
+      "x": 575.9,
+      "y": 389.5,
+      "nearby": "123 | 244 | ИЗОЛЯЦИЯ: H | ОБОГРЕВ: -",
+      "local_hint": "dimension_candidate|near_insulation",
+      "flags": [
+        "insulation"
+      ],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        313.92,
+        211.52,
+        324.03,
+        219.93
+      ]
+    },
+    {
+      "id": "D5",
+      "value_mm": 175,
+      "x": 427.7,
+      "y": 677.6,
+      "nearby": "<2> | 1",
+      "local_hint": "dimension_candidate|pipe_opening",
+      "flags": [
+        "pipe_opening"
+      ],
+      "direction": [
+        0.0,
+        -1.0
+      ],
+      "bbox": [
+        232.62,
+        370.23,
+        241.09,
+        380.37
+      ]
+    }
+  ]
+}

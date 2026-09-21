@@ -37,6 +37,7 @@ class Span:
     y: float
     bbox: tuple[float, float, float, float]
     size: float
+    direction: tuple[float, float] = (1.0, 0.0)
 
 
 @dataclass
@@ -49,6 +50,21 @@ class Candidate:
     nearby: str
     local_hint: str
     flags: set[str] = field(default_factory=set)
+    direction: tuple[float, float] = (1.0, 0.0)
+    dim_line_id: str = ""
+    dist_to_line: float = 0.0
+    parallel_score: float = 0.0
+    dim_endpoints: tuple[tuple[float, float], tuple[float, float]] = (
+        (0.0, 0.0),
+        (0.0, 0.0),
+    )
+    dim_axis: tuple[float, float] = (1.0, 0.0)
+    dim_offset: float = 0.0
+    parent_id: str | None = None
+    relation_kind: str = ""
+    geometry_confidence: float = 0.0
+    parent_value_mm: int | None = None
+    parent_dist: float = 0.0
 
 
 @dataclass
@@ -105,8 +121,39 @@ def _in_rect(x: float, y: float, rect: tuple[float, float, float, float]) -> boo
     return x0 <= x <= x1 and y0 <= y <= y1
 
 
-def spec_or_title_reason(x: float, y: float, nearby: str, width: float, height: float) -> str | None:
+def _segment_lengths_table_cut(
+    spans: list[Span], width: float, height: float
+) -> tuple[float, float, float, float] | None:
+    """Прямоугольник таблицы «Длины отрезков» справа снизу — не ось трубы."""
+    header = None
+    for sp in spans:
+        t = sp.text.replace("\xa0", " ").upper()
+        if "ДЛИНЫ" in t and "ОТРЕЗК" in t:
+            header = sp
+            break
+        if t.strip() == "ДЛИНЫ ОТРЕЗКОВ":
+            header = sp
+            break
+    if header is None:
+        return None
+    # от заголовка вниз до штампа, от левого края таблицы до правого края листа
+    x0 = max(0.0, min(header.bbox[0], header.x) - width * 0.02)
+    x0 = min(x0, width * 0.62)
+    y0 = max(0.0, header.bbox[1] - height * 0.01)
+    return (x0, y0, width, height * 0.92)
+
+
+def spec_or_title_reason(
+    x: float,
+    y: float,
+    nearby: str,
+    width: float,
+    height: float,
+    table_cut: tuple[float, float, float, float] | None = None,
+) -> str | None:
     """Число из штампа / спецификации / таблицы длин — не размер на оси трубы."""
+    if table_cut and _in_rect(x, y, table_cut):
+        return "cut_lengths_table"
     if _in_rect(x, y, _right_spec_cut(width, height)):
         return "materials_spec"
     if _in_rect(x, y, _bottom_title_cut(width, height)):
@@ -133,6 +180,7 @@ def extract_spans(page: pymupdf.Page) -> list[Span]:
         if block.get("type") != 0:
             continue
         for line in block.get("lines", []):
+            direction = tuple(float(v) for v in (line.get("dir") or (1.0, 0.0)))
             for s in line.get("spans", []):
                 text = (s.get("text") or "").strip()
                 if not text:
@@ -145,6 +193,7 @@ def extract_spans(page: pymupdf.Page) -> list[Span]:
                         y=(y0 + y1) / 2,
                         bbox=(x0, y0, x1, y1),
                         size=float(s.get("size") or 0),
+                        direction=direction,
                     )
                 )
     return spans
@@ -178,6 +227,7 @@ def detect_meta(spans: list[Span]) -> tuple[str, int | None, int | None, str]:
 def build_candidates(spans: list[Span], width: float, height: float) -> tuple[list[Candidate], list[dict]]:
     pre_excluded: list[dict] = []
     raw: list[tuple[Span, int, str]] = []
+    table_cut = _segment_lengths_table_cut(spans, width, height)
 
     for sp in spans:
         text = sp.text.replace("\xa0", " ").strip()
@@ -197,7 +247,7 @@ def build_candidates(spans: list[Span], width: float, height: float) -> tuple[li
             continue
         value = int(text)
         nearby = _nearby_text(sp, spans)
-        frame = spec_or_title_reason(sp.x, sp.y, nearby, width, height)
+        frame = spec_or_title_reason(sp.x, sp.y, nearby, width, height, table_cut)
         if frame:
             pre_excluded.append({"text": text, "reason": frame, "bbox": sp.bbox})
             continue
@@ -224,6 +274,7 @@ def build_candidates(spans: list[Span], width: float, height: float) -> tuple[li
                 bbox=sp.bbox,
                 nearby=_nearby_text(sp, spans),
                 local_hint=hint,
+                direction=sp.direction,
             )
         )
     _tag_specials(candidates, spans)
@@ -235,7 +286,7 @@ def _tag_specials(candidates: list[Candidate], spans: list[Span]) -> None:
     for sp in spans:
         raw = sp.text.strip()
         up = raw.upper()
-        compact = up.replace(" ", "")
+        compact = up.replace(" ", "").strip(".,;:")
         kind = ""
         radius = 0.0
         if overall_re.fullmatch(compact):
@@ -278,7 +329,6 @@ def _tag_specials(candidates: list[Candidate], spans: list[Span]) -> None:
     _tag_plant_coords(candidates)
     _tag_repeated_supports(candidates)
     _tag_iso_lt(candidates)
-    _tag_nested_offsets(candidates)
 
 
 def is_drawing_opening(text: str) -> bool:
@@ -329,7 +379,7 @@ def _tag_plant_coords(candidates: list[Candidate]) -> None:
 
 
 def _tag_overlap_overalls(candidates: list[Candidate]) -> None:
-    """Два числа почти в одной точке (2463 и 2950) — большее габарит этого куска."""
+    """Меньший рядом — размер до опоры; габарит только у настоящей оболочки (>=8000)."""
     for i, a in enumerate(candidates):
         for b in candidates[i + 1 :]:
             lo, hi = (a, b) if a.value_mm <= b.value_mm else (b, a)
@@ -341,13 +391,24 @@ def _tag_overlap_overalls(candidates: list[Candidate]) -> None:
             if not (near_a or near_b):
                 continue
             d = _dist(a, b)
-            close_same = 1.08 <= ratio <= 1.35 and d <= 28
-            stacked_overall = 2.0 <= ratio <= 3.5 and d <= 25
+            close_same = 1.08 <= ratio <= 1.55 and d <= 28
+            stacked_overall = 2.0 <= ratio <= 3.5 and d <= 28
             if not (close_same or stacked_overall):
                 continue
-            hi.flags.add("overall_pair")
-            if "overall_pair" not in hi.local_hint:
-                hi.local_hint = hi.local_hint + "|overall_pair"
+            support_on_small = any(
+                SUPPORT_RE.match(bit.strip())
+                for bit in (lo.nearby or "").split("|")
+            )
+            envelope = hi.value_mm >= 8000 or "overall_mark" in hi.flags
+            if close_same or (stacked_overall and support_on_small and not envelope):
+                lo.flags.add("nested_offset")
+                if "nested_offset" not in lo.local_hint:
+                    lo.local_hint = lo.local_hint + "|nested_offset"
+                continue
+            if stacked_overall and envelope:
+                hi.flags.add("overall_pair")
+                if "overall_pair" not in hi.local_hint:
+                    hi.local_hint = hi.local_hint + "|overall_pair"
 
 
 def _tag_repeated_supports(candidates: list[Candidate]) -> None:
@@ -372,16 +433,12 @@ def _tag_iso_lt(candidates: list[Candidate]) -> None:
                 c.local_hint = c.local_hint + "|iso_lt"
 
 
-def _tag_nested_offsets(candidates: list[Candidate]) -> None:
-    from guards import find_nested_parent
+def _attach_sheet_geometry(page: pymupdf.Page, candidates: list[Candidate]) -> None:
+    from relations import compute_relations
+    from vector_geometry import attach_geometry
 
-    for c in candidates:
-        parent = find_nested_parent(c, candidates)
-        if not parent:
-            continue
-        c.flags.add("nested_offset")
-        if "nested_offset" not in c.local_hint:
-            c.local_hint = c.local_hint + "|nested_offset"
+    attach_geometry(page, candidates)
+    compute_relations(candidates)
 
 
 def render_page_png(page: pymupdf.Page, dpi: int = 130) -> tuple[bytes, float]:
@@ -400,6 +457,7 @@ def extract_pdf(path: str | Path, page_filter: set[int] | None = None) -> list[S
         if page_filter and resolved_no not in page_filter:
             continue
         cands, excluded = build_candidates(spans, page.rect.width, page.rect.height)
+        _attach_sheet_geometry(page, cands)
         png, scale = render_page_png(page)
         sheets.append(
             SheetExtract(

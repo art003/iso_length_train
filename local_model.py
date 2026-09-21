@@ -5,6 +5,8 @@ import pickle
 import re
 from pathlib import Path
 
+import numpy as np
+
 from dataset import export_dataset, iter_examples
 
 ROOT = Path(__file__).resolve().parent
@@ -36,6 +38,12 @@ FEATURE_NAMES = (
     "nested_ratio",
     "support_mark",
     *("f_" + n for n in FLAG_NAMES),
+    "has_parent",
+    "geo_confidence",
+    "parent_ratio",
+    "parent_dist_norm",
+    "dist_to_line",
+    "parallel_score",
 )
 
 _Z = re.compile(r"\bz\+?\b", re.I)
@@ -74,6 +82,15 @@ def row_features(row: dict) -> dict[str, float]:
     feats["has_larger_near"] = float(bool(larger))
     feats["nested_ratio"] = float(value / max(larger)) if larger else 0.0
     feats["support_mark"] = float(bool(_SUPPORT_MARK.search(nearby)))
+    parent_id = row.get("parent_id")
+    conf = float(row.get("geometry_confidence") or 0.0)
+    parent_value = int(row.get("parent_value_mm") or 0)
+    feats["has_parent"] = float(bool(parent_id) and conf >= 0.75)
+    feats["geo_confidence"] = conf
+    feats["parent_ratio"] = float(value / parent_value) if parent_value > 0 else 0.0
+    feats["parent_dist_norm"] = float(min(1.0, float(row.get("parent_dist") or 0.0) / 190.0))
+    feats["dist_to_line"] = float(row.get("dist_to_line") or 0.0)
+    feats["parallel_score"] = float(row.get("parallel_score") or 0.0)
     for name in FLAG_NAMES:
         feats["f_" + name] = float(name in flags)
     return feats
@@ -112,10 +129,56 @@ def classify(sheet_no: int, line_id: str, candidates: list[dict]) -> dict:
     if not bundle:
         return seed_include(sheet_no, line_id, candidates)
     names = tuple(bundle.get("features") or FEATURE_NAMES)
+    filled = list(candidates)
+    if filled and not any(c.get("parent_id") or c.get("geometry_confidence") for c in filled):
+        from relations import compute_relations
+
+        class _Row:
+            def __init__(self, raw: dict):
+                self.cid = raw.get("id")
+                self.value_mm = int(raw.get("value_mm") or 0)
+                self.x = float(raw.get("x") or 0)
+                self.y = float(raw.get("y") or 0)
+                self.nearby = raw.get("nearby") or ""
+                self.local_hint = raw.get("local_hint") or ""
+                self.flags = set(raw.get("flags") or [])
+                self.direction = tuple(raw.get("direction") or (1.0, 0.0))
+                self.dim_line_id = raw.get("dim_line_id") or ""
+                self.dist_to_line = float(raw.get("dist_to_line") or 0.0)
+                self.parallel_score = float(raw.get("parallel_score") or 0.0)
+                ends = raw.get("dim_endpoints") or [[0.0, 0.0], [0.0, 0.0]]
+                self.dim_endpoints = ((float(ends[0][0]), float(ends[0][1])), (float(ends[1][0]), float(ends[1][1])))
+                self.dim_axis = tuple(raw.get("dim_axis") or self.direction)
+                self.dim_offset = float(raw.get("dim_offset") or 0.0)
+                self.parent_id = None
+                self.relation_kind = ""
+                self.geometry_confidence = 0.0
+                self.parent_value_mm = None
+                self.parent_dist = 0.0
+
+        rows = [_Row(c) for c in filled]
+        compute_relations(rows)
+        by = {r.cid: r for r in rows}
+        for c in filled:
+            r = by.get(c.get("id"))
+            if not r:
+                continue
+            c["parent_id"] = r.parent_id
+            c["relation_kind"] = r.relation_kind
+            c["geometry_confidence"] = r.geometry_confidence
+            c["parent_value_mm"] = r.parent_value_mm
+            c["parent_dist"] = r.parent_dist
     items = []
     for c in candidates:
         x = [vector(c, names)]
-        if bundle.get("kind") == "catboost_gpu_v1":
+        if bundle.get("kind") == "catboost_gpu_ensemble_v1":
+            models = bundle["models"]
+            proba = np.mean([model.predict_proba(x)[0] for model in models], axis=0)
+            i = int(proba.argmax())
+            p = float(proba[i])
+            lab = str(models[0].classes_[i])
+            reason = f"CatBoost×{len(models)} {p:.2f}"
+        elif bundle.get("kind") == "catboost_gpu_v1":
             model = bundle["model"]
             proba = model.predict_proba(x)[0]
             i = int(proba.argmax())

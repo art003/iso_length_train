@@ -1,0 +1,147 @@
+{
+  "line_id": "LC_1025",
+  "items": [
+    {
+      "id": "D1",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 1053
+    },
+    {
+      "id": "D2",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 335
+    },
+    {
+      "id": "D3",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.93",
+      "value_mm": 300
+    },
+    {
+      "id": "D4",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.84",
+      "value_mm": 150
+    },
+    {
+      "id": "D5",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.80",
+      "value_mm": 178
+    },
+    {
+      "id": "D6",
+      "decision": "not_length",
+      "role": "support_offset",
+      "reason": "повтор опоры",
+      "value_mm": 165
+    },
+    {
+      "id": "D7",
+      "decision": "not_length",
+      "role": "valve",
+      "reason": "штурвал",
+      "value_mm": 168
+    },
+    {
+      "id": "D8",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.81",
+      "value_mm": 172
+    },
+    {
+      "id": "D9",
+      "decision": "not_length",
+      "role": "support_offset",
+      "reason": "повтор опоры",
+      "value_mm": 165
+    },
+    {
+      "id": "D10",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.82",
+      "value_mm": 170
+    },
+    {
+      "id": "D11",
+      "decision": "not_length",
+      "role": "support_offset",
+      "reason": "повтор опоры",
+      "value_mm": 160
+    },
+    {
+      "id": "D12",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.85",
+      "value_mm": 169
+    },
+    {
+      "id": "D13",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.61",
+      "value_mm": 336
+    },
+    {
+      "id": "D14",
+      "decision": "not_length",
+      "role": "support_offset",
+      "reason": "повтор опоры",
+      "value_mm": 160
+    },
+    {
+      "id": "D15",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.86",
+      "value_mm": 180
+    },
+    {
+      "id": "D16",
+      "decision": "not_length",
+      "role": "support_offset",
+      "reason": "повтор опоры",
+      "value_mm": 165
+    },
+    {
+      "id": "D17",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 298
+    },
+    {
+      "id": "D18",
+      "decision": "include",
+      "role": "main",
+      "reason": "участок, не вложенный",
+      "value_mm": 482
+    },
+    {
+      "id": "D19",
+      "decision": "not_length",
+      "role": "support_offset",
+      "reason": "повтор опоры",
+      "value_mm": 160
+    }
+  ],
+  "notes": [
+    "локальная модель, без API",
+    "авто: D18 внутри D1",
+    "ручной визуальный аудит",
+    "авто: D6 опора, D7 штурвал, D9 опора, D11 опора, D14 опора, D16 опора, D19 опора, D18 вернул участок",
+    "авто: D18 внутри участка, D18 вернул участок"
+  ],
+  "reviewed_by_human": true,
+  "locked": true
+}

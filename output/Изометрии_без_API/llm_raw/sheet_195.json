@@ -1,0 +1,69 @@
+{
+  "line_id": "CO_0049",
+  "items": [
+    {
+      "id": "D1",
+      "decision": "exclude_nested",
+      "role": "support_offset",
+      "reason": "внутри D2=2365",
+      "value_mm": 1045
+    },
+    {
+      "id": "D2",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.96",
+      "value_mm": 2365
+    },
+    {
+      "id": "D3",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 2700
+    },
+    {
+      "id": "D4",
+      "decision": "include",
+      "role": "main",
+      "reason": "размер участка",
+      "value_mm": 1220
+    },
+    {
+      "id": "D5",
+      "decision": "include",
+      "role": "main",
+      "reason": "размер участка",
+      "value_mm": 2100
+    },
+    {
+      "id": "D6",
+      "decision": "include",
+      "role": "main",
+      "reason": "размер участка",
+      "value_mm": 223
+    },
+    {
+      "id": "D7",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 578
+    },
+    {
+      "id": "D8",
+      "decision": "include",
+      "role": "main",
+      "reason": "CatBoost 0.95",
+      "value_mm": 1756
+    }
+  ],
+  "notes": [
+    "локальная модель, без API",
+    "авто: D4 вернул длину, D5 вернул длину, D6 вернул длину",
+    "ручной визуальный аудит",
+    "авто: D1 внутри D2"
+  ],
+  "reviewed_by_human": true,
+  "locked": true
+}

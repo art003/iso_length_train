@@ -47,6 +47,7 @@ def write_hits(sheet, overlay_dir: Path) -> dict:
         "height": h,
         "overlay": f"sheet_{int(sheet.sheet_no):02d}_{sheet.line_id}_ids.png",
         "markup": f"sheet_{int(sheet.sheet_no):02d}_{sheet.line_id}.png",
+        "relations_version": 1,
         "candidates": [
             {
                 "id": c.cid,
@@ -56,6 +57,22 @@ def write_hits(sheet, overlay_dir: Path) -> dict:
                 "nearby": c.nearby,
                 "local_hint": c.local_hint,
                 "flags": sorted(c.flags),
+                "bbox": [round(v, 2) for v in c.bbox],
+                "direction": [round(v, 6) for v in c.direction],
+                "dim_line_id": getattr(c, "dim_line_id", "") or "",
+                "dist_to_line": round(float(getattr(c, "dist_to_line", 0.0) or 0.0), 3),
+                "parallel_score": round(float(getattr(c, "parallel_score", 0.0) or 0.0), 4),
+                "dim_endpoints": [
+                    [round(float(p[0]), 2), round(float(p[1]), 2)]
+                    for p in (getattr(c, "dim_endpoints", ((0.0, 0.0), (0.0, 0.0))) or ((0.0, 0.0), (0.0, 0.0)))
+                ],
+                "dim_axis": [round(float(v), 6) for v in (getattr(c, "dim_axis", (1.0, 0.0)) or (1.0, 0.0))],
+                "dim_offset": round(float(getattr(c, "dim_offset", 0.0) or 0.0), 3),
+                "parent_id": getattr(c, "parent_id", None),
+                "relation_kind": getattr(c, "relation_kind", "") or "",
+                "geometry_confidence": round(float(getattr(c, "geometry_confidence", 0.0) or 0.0), 3),
+                "parent_value_mm": getattr(c, "parent_value_mm", None),
+                "parent_dist": round(float(getattr(c, "parent_dist", 0.0) or 0.0), 2),
             }
             for c in sheet.candidates
         ],

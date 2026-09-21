@@ -1,0 +1,568 @@
+{
+  "sheet_no": 206,
+  "line_id": "CWRI_0001",
+  "width": 2150,
+  "height": 1521,
+  "overlay": "sheet_206_CWRI_0001_ids.png",
+  "markup": "sheet_206_CWRI_0001.png",
+  "candidates": [
+    {
+      "id": "D1",
+      "value_mm": 300,
+      "x": 926.1,
+      "y": 1123.1,
+      "nearby": "Z+ 11918 | 3",
+      "local_hint": "dimension_candidate|near_plant_coord",
+      "flags": [
+        "near_plant_coord"
+      ],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        507.84,
+        617.84,
+        517.95,
+        626.25
+      ],
+      "dim_line_id": "L25",
+      "dist_to_line": 6.914,
+      "parallel_score": 1.0,
+      "dim_endpoints": [
+        [
+          458.16,
+          622.05
+        ],
+        [
+          505.92,
+          622.05
+        ]
+      ],
+      "dim_axis": [
+        1.0,
+        0.0
+      ],
+      "dim_offset": 622.046,
+      "parent_id": null,
+      "relation_kind": "",
+      "geometry_confidence": 0.0,
+      "parent_value_mm": null,
+      "parent_dist": 0.0
+    },
+    {
+      "id": "D2",
+      "value_mm": 866,
+      "x": 753.4,
+      "y": 935.2,
+      "nearby": "PP",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.671485,
+        0.741018
+      ],
+      "bbox": [
+        410.68,
+        511.35,
+        423.81,
+        524.61
+      ],
+      "dim_line_id": "L29",
+      "dist_to_line": 6.674,
+      "parallel_score": 1.0,
+      "dim_endpoints": [
+        [
+          242.27,
+          333.46
+        ],
+        [
+          458.16,
+          573.09
+        ]
+      ],
+      "dim_axis": [
+        0.669352,
+        0.742946
+      ],
+      "dim_offset": 43.208,
+      "parent_id": null,
+      "relation_kind": "",
+      "geometry_confidence": 0.0,
+      "parent_value_mm": null,
+      "parent_dist": 0.0
+    },
+    {
+      "id": "D3",
+      "value_mm": 247,
+      "x": 651.3,
+      "y": 762.6,
+      "nearby": "<1> | 2 | 11",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.0,
+        -1.0
+      ],
+      "bbox": [
+        356.46,
+        417.27,
+        364.93,
+        427.41
+      ],
+      "dim_line_id": "L33",
+      "dist_to_line": 5.826,
+      "parallel_score": 1.0,
+      "dim_endpoints": [
+        [
+          366.48,
+          366.69
+        ],
+        [
+          366.48,
+          471.33
+        ]
+      ],
+      "dim_axis": [
+        -0.0,
+        1.0
+      ],
+      "dim_offset": -366.48,
+      "parent_id": null,
+      "relation_kind": "",
+      "geometry_confidence": 0.0,
+      "parent_value_mm": null,
+      "parent_dist": 0.0
+    },
+    {
+      "id": "D4",
+      "value_mm": 140,
+      "x": 760.1,
+      "y": 634.3,
+      "nearby": "ШТУРВАЛ N  45 W | 14 | X  155718 | Y  55600",
+      "local_hint": "near_valve_handwheel|near_plant_coord",
+      "flags": [
+        "handwheel",
+        "near_plant_coord"
+      ],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        415.92,
+        347.12,
+        426.03,
+        355.53
+      ],
+      "dim_line_id": "L34",
+      "dist_to_line": 6.905,
+      "parallel_score": 1.0,
+      "dim_endpoints": [
+        [
+          366.48,
+          351.33
+        ],
+        [
+          414.0,
+          351.33
+        ]
+      ],
+      "dim_axis": [
+        1.0,
+        0.0
+      ],
+      "dim_offset": 351.326,
+      "parent_id": null,
+      "relation_kind": "",
+      "geometry_confidence": 0.0,
+      "parent_value_mm": null,
+      "parent_dist": 0.0
+    },
+    {
+      "id": "D5",
+      "value_mm": 690,
+      "x": 525.0,
+      "y": 683.5,
+      "nearby": "X  151307 | Y  55112 | Z+ 12307 | 10 | <2> | 1",
+      "local_hint": "dimension_candidate|near_plant_coord",
+      "flags": [
+        "near_plant_coord"
+      ],
+      "direction": [
+        0.671485,
+        0.741018
+      ],
+      "bbox": [
+        284.2,
+        371.91,
+        297.33,
+        385.17
+      ],
+      "dim_line_id": "L29",
+      "dist_to_line": 5.963,
+      "parallel_score": 1.0,
+      "dim_endpoints": [
+        [
+          242.27,
+          333.46
+        ],
+        [
+          458.16,
+          573.09
+        ]
+      ],
+      "dim_axis": [
+        0.669352,
+        0.742946
+      ],
+      "dim_offset": 43.208,
+      "parent_id": null,
+      "relation_kind": "",
+      "geometry_confidence": 0.0,
+      "parent_value_mm": null,
+      "parent_dist": 0.0
+    },
+    {
+      "id": "D6",
+      "value_mm": 1100,
+      "x": 221.7,
+      "y": 648.4,
+      "nearby": "",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        114.9,
+        352.15,
+        130.71,
+        366.12
+      ],
+      "dim_line_id": "L40",
+      "dist_to_line": 5.905,
+      "parallel_score": 1.0,
+      "dim_endpoints": [
+        [
+          79.2,
+          390.69
+        ],
+        [
+          603.82,
+          89.82
+        ]
+      ],
+      "dim_axis": [
+        0.86747,
+        -0.497489
+      ],
+      "dim_offset": 378.31,
+      "parent_id": null,
+      "relation_kind": "",
+      "geometry_confidence": 0.0,
+      "parent_value_mm": null,
+      "parent_dist": 0.0
+    },
+    {
+      "id": "D7",
+      "value_mm": 1100,
+      "x": 328.3,
+      "y": 867.2,
+      "nearby": "",
+      "local_hint": "dimension_candidate|near_insulation",
+      "flags": [
+        "insulation"
+      ],
+      "direction": [
+        0.867261,
+        0.497854
+      ],
+      "bbox": [
+        173.94,
+        473.3,
+        189.75,
+        487.27
+      ],
+      "dim_line_id": "L22",
+      "dist_to_line": 0.252,
+      "parallel_score": 1.0,
+      "dim_endpoints": [
+        [
+          81.01,
+          423.71
+        ],
+        [
+          398.84,
+          602.14
+        ]
+      ],
+      "dim_axis": [
+        0.871984,
+        0.489535
+      ],
+      "dim_offset": 329.812,
+      "parent_id": null,
+      "relation_kind": "",
+      "geometry_confidence": 0.0,
+      "parent_value_mm": null,
+      "parent_dist": 0.0
+    },
+    {
+      "id": "D8",
+      "value_mm": 4405,
+      "x": 695.4,
+      "y": 376.3,
+      "nearby": "",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        377.22,
+        201.43,
+        393.03,
+        215.4
+      ],
+      "dim_line_id": "L40",
+      "dist_to_line": 6.059,
+      "parallel_score": 1.0,
+      "dim_endpoints": [
+        [
+          79.2,
+          390.69
+        ],
+        [
+          603.82,
+          89.82
+        ]
+      ],
+      "dim_axis": [
+        0.86747,
+        -0.497489
+      ],
+      "dim_offset": 378.31,
+      "parent_id": null,
+      "relation_kind": "",
+      "geometry_confidence": 0.0,
+      "parent_value_mm": null,
+      "parent_dist": 0.0
+    },
+    {
+      "id": "D9",
+      "value_mm": 364,
+      "x": 1193.4,
+      "y": 199.7,
+      "nearby": "3",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.0,
+        -1.0
+      ],
+      "bbox": [
+        656.7,
+        105.51,
+        665.17,
+        115.65
+      ],
+      "dim_line_id": "L43",
+      "dist_to_line": 5.882,
+      "parallel_score": 1.0,
+      "dim_endpoints": [
+        [
+          666.72,
+          89.01
+        ],
+        [
+          666.72,
+          461.01
+        ]
+      ],
+      "dim_axis": [
+        -0.0,
+        1.0
+      ],
+      "dim_offset": -666.72,
+      "parent_id": null,
+      "relation_kind": "",
+      "geometry_confidence": 0.0,
+      "parent_value_mm": null,
+      "parent_dist": 0.0
+    },
+    {
+      "id": "D10",
+      "value_mm": 2852,
+      "x": 1193.4,
+      "y": 423.9,
+      "nearby": "",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.0,
+        -1.0
+      ],
+      "bbox": [
+        656.7,
+        228.15,
+        665.17,
+        241.41
+      ],
+      "dim_line_id": "L43",
+      "dist_to_line": 5.882,
+      "parallel_score": 1.0,
+      "dim_endpoints": [
+        [
+          666.72,
+          89.01
+        ],
+        [
+          666.72,
+          461.01
+        ]
+      ],
+      "dim_axis": [
+        -0.0,
+        1.0
+      ],
+      "dim_offset": -666.72,
+      "parent_id": null,
+      "relation_kind": "",
+      "geometry_confidence": 0.0,
+      "parent_value_mm": null,
+      "parent_dist": 0.0
+    },
+    {
+      "id": "D11",
+      "value_mm": 247,
+      "x": 1040.7,
+      "y": 747.4,
+      "nearby": "ШТУРВАЛ NORTH | <4> | 2 | 15 | DN200",
+      "local_hint": "near_valve_handwheel",
+      "flags": [
+        "handwheel"
+      ],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        569.94,
+        407.81,
+        582.86,
+        420.12
+      ],
+      "dim_line_id": "L46",
+      "dist_to_line": 6.165,
+      "parallel_score": 1.0,
+      "dim_endpoints": [
+        [
+          517.92,
+          454.29
+        ],
+        [
+          635.04,
+          387.09
+        ]
+      ],
+      "dim_axis": [
+        0.867367,
+        -0.497669
+      ],
+      "dim_offset": 651.785,
+      "parent_id": null,
+      "relation_kind": "",
+      "geometry_confidence": 0.0,
+      "parent_value_mm": null,
+      "parent_dist": 0.0
+    },
+    {
+      "id": "D12",
+      "value_mm": 140,
+      "x": 838.5,
+      "y": 833.7,
+      "nearby": "PP | 5 | 6",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        459.36,
+        457.52,
+        469.47,
+        465.93
+      ],
+      "dim_line_id": "L53",
+      "dist_to_line": 7.064,
+      "parallel_score": 0.9995,
+      "dim_endpoints": [
+        [
+          471.36,
+          461.97
+        ],
+        [
+          502.32,
+          462.93
+        ]
+      ],
+      "dim_axis": [
+        0.99952,
+        0.030994
+      ],
+      "dim_offset": 447.135,
+      "parent_id": null,
+      "relation_kind": "",
+      "geometry_confidence": 0.0,
+      "parent_value_mm": null,
+      "parent_dist": 0.0
+    },
+    {
+      "id": "D13",
+      "value_mm": 50,
+      "x": 909.6,
+      "y": 935.5,
+      "nearby": "6",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        500.4,
+        513.92,
+        507.15,
+        522.33
+      ],
+      "dim_line_id": "",
+      "dist_to_line": 0.0,
+      "parallel_score": 0.0,
+      "dim_endpoints": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "dim_axis": [
+        1.0,
+        0.0
+      ],
+      "dim_offset": 0.0,
+      "parent_id": null,
+      "relation_kind": "",
+      "geometry_confidence": 0.0,
+      "parent_value_mm": null,
+      "parent_dist": 0.0
+    }
+  ],
+  "relations_version": 1
+}

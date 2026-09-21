@@ -1,0 +1,140 @@
+{
+  "sheet_no": 73,
+  "line_id": "PW1_1022",
+  "width": 2150,
+  "height": 1521,
+  "overlay": "sheet_73_PW1_1022_ids.png",
+  "markup": "sheet_73_PW1_1022.png",
+  "candidates": [
+    {
+      "id": "D1",
+      "value_mm": 75,
+      "x": 575.9,
+      "y": 617.0,
+      "nearby": "",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        315.6,
+        337.52,
+        322.35,
+        345.93
+      ],
+      "dim_line_id": "L32",
+      "dist_to_line": 4.863,
+      "parallel_score": 1.0,
+      "dim_endpoints": [
+        [
+          323.76,
+          341.73
+        ],
+        [
+          371.52,
+          341.73
+        ]
+      ],
+      "dim_axis": [
+        1.0,
+        -0.0
+      ],
+      "dim_offset": 341.726,
+      "parent_id": null,
+      "relation_kind": "",
+      "geometry_confidence": 0.0,
+      "parent_value_mm": null,
+      "parent_dist": 0.0
+    },
+    {
+      "id": "D2",
+      "value_mm": 123,
+      "x": 804.6,
+      "y": 682.4,
+      "nearby": "DN50 | 3 | 250",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        439.14,
+        371.81,
+        452.06,
+        384.12
+      ],
+      "dim_line_id": "L33",
+      "dist_to_line": 5.939,
+      "parallel_score": 1.0,
+      "dim_endpoints": [
+        [
+          434.64,
+          390.69
+        ],
+        [
+          468.24,
+          371.73
+        ]
+      ],
+      "dim_axis": [
+        0.87091,
+        -0.491442
+      ],
+      "dim_offset": 553.853,
+      "parent_id": null,
+      "relation_kind": "",
+      "geometry_confidence": 0.0,
+      "parent_value_mm": null,
+      "parent_dist": 0.0
+    },
+    {
+      "id": "D3",
+      "value_mm": 250,
+      "x": 897.0,
+      "y": 682.0,
+      "nearby": "DN50 | 3 | Y  49000 | Z+ 3662 | 2 | 123 | ШТУРВАЛ NORTH",
+      "local_hint": "near_valve_handwheel|near_plant_coord",
+      "flags": [
+        "handwheel",
+        "near_plant_coord"
+      ],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        491.76,
+        373.52,
+        501.87,
+        381.93
+      ],
+      "dim_line_id": "",
+      "dist_to_line": 0.0,
+      "parallel_score": 0.0,
+      "dim_endpoints": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "dim_axis": [
+        1.0,
+        0.0
+      ],
+      "dim_offset": 0.0,
+      "parent_id": null,
+      "relation_kind": "",
+      "geometry_confidence": 0.0,
+      "parent_value_mm": null,
+      "parent_dist": 0.0
+    }
+  ],
+  "relations_version": 1
+}

@@ -1,0 +1,97 @@
+{
+  "sheet_no": 70,
+  "line_id": "PW1_1019",
+  "width": 2150,
+  "height": 1521,
+  "overlay": "sheet_70_PW1_1019_ids.png",
+  "markup": "sheet_70_PW1_1019.png",
+  "candidates": [
+    {
+      "id": "D1",
+      "value_mm": 148,
+      "x": 779.1,
+      "y": 738.3,
+      "nearby": "<1> | 1 | DN50",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.0,
+        -1.0
+      ],
+      "bbox": [
+        427.26,
+        403.83,
+        435.73,
+        413.97
+      ],
+      "dim_line_id": "L27",
+      "dist_to_line": 5.858,
+      "parallel_score": 1.0,
+      "dim_endpoints": [
+        [
+          437.28,
+          253.41
+        ],
+        [
+          437.28,
+          558.21
+        ]
+      ],
+      "dim_axis": [
+        -0.0,
+        1.0
+      ],
+      "dim_offset": -437.28,
+      "parent_id": null,
+      "relation_kind": "",
+      "geometry_confidence": 0.0,
+      "parent_value_mm": null,
+      "parent_dist": 0.0
+    },
+    {
+      "id": "D2",
+      "value_mm": 250,
+      "x": 887.9,
+      "y": 431.1,
+      "nearby": "12 | ИЗОЛЯЦИЯ: HE | ОБОГРЕВ: E5",
+      "local_hint": "dimension_candidate|near_insulation",
+      "flags": [
+        "insulation"
+      ],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        486.72,
+        234.56,
+        496.83,
+        242.97
+      ],
+      "dim_line_id": "L28",
+      "dist_to_line": 6.871,
+      "parallel_score": 1.0,
+      "dim_endpoints": [
+        [
+          437.28,
+          238.77
+        ],
+        [
+          484.8,
+          238.77
+        ]
+      ],
+      "dim_axis": [
+        1.0,
+        0.0
+      ],
+      "dim_offset": 238.766,
+      "parent_id": null,
+      "relation_kind": "",
+      "geometry_confidence": 0.0,
+      "parent_value_mm": null,
+      "parent_dist": 0.0
+    }
+  ],
+  "relations_version": 1
+}

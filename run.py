@@ -51,6 +51,22 @@ def _provider_pause(client: LlmClient, log, why: str, cancel=None) -> bool:
     return False
 
 
+def _cache_matches(cached: dict, cand_dicts: list[dict]) -> bool:
+    """Кэш годится только если те же id и те же мм — иначе после отсечения таблиц D1 это другое число."""
+    items = {it.get("id"): it for it in (cached.get("items") or []) if it.get("id")}
+    wanted = {c["id"] for c in cand_dicts}
+    if wanted - items.keys():
+        return False
+    for c in cand_dicts:
+        it = items[c["id"]]
+        try:
+            if int(it.get("value_mm") or -1) != int(c["value_mm"]):
+                return False
+        except (TypeError, ValueError):
+            return False
+    return True
+
+
 def process_pdf(
     pdf_path: Path,
     out_dir: Path,
@@ -115,10 +131,11 @@ def process_pdf(
                 cached = json.loads(raw_path.read_text(encoding="utf-8"))
                 got = {it.get("id") for it in (cached.get("items") or [])}
                 locked = bool(cached.get("locked"))
-                if locked and wanted <= got:
+                fits = _cache_matches(cached, cand_dicts)
+                if locked and fits:
                     llm = cached
                     log(f"Лист {sheet.sheet_no:02d} закрыт, json не трогаю")
-                elif use_cache and wanted <= got:
+                elif use_cache and fits:
                     llm = cached
                     log(f"Лист {sheet.sheet_no:02d} уже есть, пропускаю")
             except json.JSONDecodeError:
@@ -145,6 +162,18 @@ def process_pdf(
                             "x": c.x,
                             "y": c.y,
                             "flags": sorted(c.flags),
+                            "direction": list(c.direction),
+                            "dim_line_id": getattr(c, "dim_line_id", "") or "",
+                            "dist_to_line": getattr(c, "dist_to_line", 0.0),
+                            "parallel_score": getattr(c, "parallel_score", 0.0),
+                            "dim_endpoints": list(getattr(c, "dim_endpoints", ((0.0, 0.0), (0.0, 0.0)))),
+                            "dim_axis": list(getattr(c, "dim_axis", (1.0, 0.0))),
+                            "dim_offset": getattr(c, "dim_offset", 0.0),
+                            "parent_id": getattr(c, "parent_id", None),
+                            "relation_kind": getattr(c, "relation_kind", "") or "",
+                            "geometry_confidence": getattr(c, "geometry_confidence", 0.0),
+                            "parent_value_mm": getattr(c, "parent_value_mm", None),
+                            "parent_dist": getattr(c, "parent_dist", 0.0),
                         }
                         for c in sheet.candidates
                     ],
@@ -187,8 +216,12 @@ def process_pdf(
             llm, guard_notes = apply_guards(sheet.candidates, llm)
             if guard_notes:
                 log(f"Лист {sheet.sheet_no:02d} авто: " + ", ".join(guard_notes))
-            if generated or from_api or guard_notes:
-                raw_path.write_text(json.dumps(llm, ensure_ascii=False, indent=2), encoding="utf-8")
+            by_tmp = {c.cid: c for c in sheet.candidates}
+            for it in llm.get("items") or []:
+                c = by_tmp.get(it.get("id"))
+                if c is not None:
+                    it["value_mm"] = c.value_mm
+            raw_path.write_text(json.dumps(llm, ensure_ascii=False, indent=2), encoding="utf-8")
 
         by_id = {c.cid: c for c in sheet.candidates}
         decisions: dict[str, str] = {}

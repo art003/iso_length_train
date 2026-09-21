@@ -1,0 +1,261 @@
+{
+  "sheet_no": 3,
+  "line_id": "P15_1037",
+  "width": 2150,
+  "height": 1521,
+  "overlay": "sheet_03_P15_1037_ids.png",
+  "markup": "sheet_03_P15_1037.png",
+  "candidates": [
+    {
+      "id": "D1",
+      "value_mm": 2364,
+      "x": 1320.3,
+      "y": 922.7,
+      "nearby": "<1> | 1",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.0,
+        -1.0
+      ],
+      "bbox": [
+        727.02,
+        504.39,
+        735.49,
+        517.65
+      ]
+    },
+    {
+      "id": "D2",
+      "value_mm": 950,
+      "x": 1140.4,
+      "y": 782.0,
+      "nearby": "<2> | 1",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        0.497854
+      ],
+      "bbox": [
+        625.14,
+        426.98,
+        638.06,
+        439.29
+      ]
+    },
+    {
+      "id": "D3",
+      "value_mm": 500,
+      "x": 1117.1,
+      "y": 622.2,
+      "nearby": "1250",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.0,
+        -1.0
+      ],
+      "bbox": [
+        614.46,
+        339.51,
+        622.93,
+        349.65
+      ]
+    },
+    {
+      "id": "D4",
+      "value_mm": 1250,
+      "x": 1148.3,
+      "y": 529.2,
+      "nearby": "<3> | 1 | 500",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.0,
+        -1.0
+      ],
+      "bbox": [
+        631.74,
+        286.47,
+        640.21,
+        299.73
+      ]
+    },
+    {
+      "id": "D5",
+      "value_mm": 198,
+      "x": 963.6,
+      "y": 407.3,
+      "nearby": "3 | <4> | 1 | DN50X50 | Z+ 14750",
+      "local_hint": "dimension_candidate|near_plant_coord",
+      "flags": [
+        "near_plant_coord"
+      ],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        527.22,
+        219.41,
+        540.14,
+        231.72
+      ]
+    },
+    {
+      "id": "D6",
+      "value_mm": 224,
+      "x": 827.3,
+      "y": 395.1,
+      "nearby": "",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        453.12,
+        214.64,
+        463.23,
+        223.05
+      ]
+    },
+    {
+      "id": "D7",
+      "value_mm": 228,
+      "x": 772.1,
+      "y": 518.2,
+      "nearby": "<5> | 1",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        -0.497854
+      ],
+      "bbox": [
+        421.14,
+        280.85,
+        434.06,
+        293.16
+      ]
+    },
+    {
+      "id": "D8",
+      "value_mm": 200,
+      "x": 675.4,
+      "y": 596.6,
+      "nearby": "2",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        0.497854
+      ],
+      "bbox": [
+        367.62,
+        324.26,
+        380.54,
+        336.57
+      ]
+    },
+    {
+      "id": "D9",
+      "value_mm": 168,
+      "x": 581.9,
+      "y": 677.6,
+      "nearby": "Y  121000 | <6> | 2 | DN50X20",
+      "local_hint": "dimension_candidate|near_plant_coord",
+      "flags": [
+        "near_plant_coord"
+      ],
+      "direction": [
+        0.0,
+        -1.0
+      ],
+      "bbox": [
+        318.06,
+        370.23,
+        326.53,
+        380.37
+      ]
+    },
+    {
+      "id": "D10",
+      "value_mm": 146,
+      "x": 494.0,
+      "y": 810.7,
+      "nearby": "",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        268.56,
+        444.8,
+        278.67,
+        453.21
+      ]
+    },
+    {
+      "id": "D11",
+      "value_mm": 178,
+      "x": 503.4,
+      "y": 498.2,
+      "nearby": "<7> | 1",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.867261,
+        0.497854
+      ],
+      "bbox": [
+        272.34,
+        269.78,
+        285.26,
+        282.09
+      ]
+    },
+    {
+      "id": "D12",
+      "value_mm": 210,
+      "x": 374.9,
+      "y": 405.1,
+      "nearby": "",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "bbox": [
+        202.56,
+        220.16,
+        212.67,
+        228.57
+      ]
+    },
+    {
+      "id": "D13",
+      "value_mm": 264,
+      "x": 1148.3,
+      "y": 307.6,
+      "nearby": "<8> | 1",
+      "local_hint": "dimension_candidate",
+      "flags": [],
+      "direction": [
+        0.0,
+        -1.0
+      ],
+      "bbox": [
+        631.74,
+        165.27,
+        640.21,
+        175.41
+      ]
+    }
+  ]
+}

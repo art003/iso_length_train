@@ -6,20 +6,22 @@ from collections import Counter
 from pathlib import Path
 
 import numpy as np
-from catboost import CatBoostClassifier
+from catboost import CatBoostClassifier, Pool
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score
 from sklearn.model_selection import GroupShuffleSplit
 
 from dataset import export_dataset, iter_examples
 from guards import relabel_outputs_with_guards
-from local_model import FEATURE_NAMES, MODEL_PATH, _flags, vector
+from local_model import FEATURE_NAMES, MODEL_PATH, _flags, row_features, vector
 from project_state import OUT, SOURCE_JOB, load_manifest
+from relations import refresh_output_relations
 from train_local import RESOLVED, audit_labels, group
 from training_report import write_training_report
 
 ROOT = Path(__file__).resolve().parent
 SEED = 42
 GPU_DEVICE = "0"
+ENSEMBLE_SEEDS = (42, 43, 44, 45, 46)
 
 
 def _selected_rows() -> tuple[list[dict], dict]:
@@ -48,7 +50,7 @@ def _sample_weight(row: dict) -> float:
     if "overall_mark" in flags or "overall_pair" in flags:
         weight *= 5.0
     if "nested_offset" in flags:
-        weight *= 4.0
+        weight *= 2.0
     if "handwheel" in flags or "insulation" in flags:
         weight *= 3.5
     if "support_repeat" in flags:
@@ -59,7 +61,7 @@ def _sample_weight(row: dict) -> float:
     if larger and 0.12 <= value / max(larger) <= 0.55:
         weight *= 3.0
     if decision == "exclude_nested":
-        weight *= 2.2
+        weight *= 1.2
     elif decision == "not_length":
         weight *= 1.6
     if value >= 2000:
@@ -77,7 +79,7 @@ def _xy(rows: list[dict]):
     return X, y, groups, w
 
 
-def _model(iterations: int = 1200) -> CatBoostClassifier:
+def _model(iterations: int = 1200, seed: int = SEED) -> CatBoostClassifier:
     return CatBoostClassifier(
         iterations=iterations,
         depth=5,
@@ -87,15 +89,16 @@ def _model(iterations: int = 1200) -> CatBoostClassifier:
         bagging_temperature=0.7,
         min_data_in_leaf=20,
         loss_function="MultiClass",
-        eval_metric="TotalF1:average=Macro",
+        # TotalF1 на GPU часто «лучший» уже на 0-й итерации → модель с 1 деревом.
+        eval_metric="MultiClass",
         class_weights={
-            "include": 1.2,
-            "exclude_nested": 2.2,
-            "not_length": 1.8,
+            "include": 1.0,
+            "exclude_nested": 1.2,
+            "not_length": 1.4,
         },
         task_type="GPU",
         devices=GPU_DEVICE,
-        random_seed=SEED,
+        random_seed=seed,
         verbose=50,
         allow_writing_files=False,
         use_best_model=True,
@@ -132,9 +135,22 @@ def _metrics(rows: list[dict], pred: np.ndarray) -> dict:
     }
 
 
-def predict_with_abstain(model: CatBoostClassifier, X: np.ndarray, threshold: float) -> np.ndarray:
-    probabilities = np.asarray(model.predict_proba(X))
-    classes = np.asarray(model.classes_)
+def _ensemble_probabilities(models: list[CatBoostClassifier], X: np.ndarray) -> np.ndarray:
+    return np.mean([np.asarray(model.predict_proba(X)) for model in models], axis=0)
+
+
+def predict_argmax(models: list[CatBoostClassifier], X: np.ndarray) -> np.ndarray:
+    """Боевой classify: мягкое голосование пяти CatBoost, затем argmax."""
+    probabilities = _ensemble_probabilities(models, X)
+    classes = np.asarray(models[0].classes_)
+    return classes[probabilities.argmax(axis=1)].astype(str)
+
+
+def predict_with_abstain(
+    models: list[CatBoostClassifier], X: np.ndarray, threshold: float
+) -> np.ndarray:
+    probabilities = _ensemble_probabilities(models, X)
+    classes = np.asarray(models[0].classes_)
     indices = probabilities.argmax(axis=1)
     confidence = probabilities[np.arange(len(X)), indices]
     labels = classes[indices].astype(object)
@@ -142,11 +158,13 @@ def predict_with_abstain(model: CatBoostClassifier, X: np.ndarray, threshold: fl
     return labels.astype(str)
 
 
-def _choose_threshold(model: CatBoostClassifier, rows: list[dict]) -> tuple[float, list[dict]]:
+def _choose_threshold(
+    models: list[CatBoostClassifier], rows: list[dict]
+) -> tuple[float, list[dict]]:
     X, y, _, _ = _xy(rows)
     trials = []
     for threshold in (0.50, 0.60, 0.70, 0.80, 0.90):
-        pred = predict_with_abstain(model, X, threshold)
+        pred = predict_with_abstain(models, X, threshold)
         accepted = pred != "ambiguous"
         trials.append(
             {
@@ -163,6 +181,19 @@ def _choose_threshold(model: CatBoostClassifier, rows: list[dict]) -> tuple[floa
     eligible = [t for t in trials if t["accuracy_accepted"] >= 0.90]
     best = max(eligible or trials, key=lambda t: (t["macro_f1_with_abstain"], t["coverage"]))
     return float(best["threshold"]), trials
+
+
+def _feature_leakage_check(rows: list[dict]) -> None:
+    forbidden = {"decision", "role", "reason", "locked", "reviewed_by_human"}
+    overlap = forbidden.intersection(FEATURE_NAMES)
+    if overlap:
+        raise RuntimeError(f"Утечка меток в FEATURE_NAMES: {sorted(overlap)}")
+    if not rows:
+        return
+    feats = row_features(rows[0])
+    leak = forbidden.intersection(feats)
+    if leak:
+        raise RuntimeError(f"Утечка меток в row_features: {sorted(leak)}")
 
 
 def _holdout_check(rows: list[dict], manifest: dict) -> dict:
@@ -182,7 +213,8 @@ def _holdout_check(rows: list[dict], manifest: dict) -> dict:
 
 def train() -> dict:
     audit = audit_labels(OUT)
-    relabeled = relabel_outputs_with_guards(OUT)
+    relabeled = relabel_outputs_with_guards(OUT / SOURCE_JOB, ignore_locked=True)
+    refresh_output_relations(OUT, {SOURCE_JOB})
     rows, manifest = _selected_rows()
     if len(rows) < 100:
         n_raw = len(list((OUT / SOURCE_JOB / "llm_raw").glob("sheet_*.json"))) if (OUT / SOURCE_JOB / "llm_raw").exists() else 0
@@ -196,6 +228,7 @@ def train() -> dict:
             "Дождись окончания prepare, потом снова Обучить."
         )
     holdout = _holdout_check(rows, manifest)
+    _feature_leakage_check(rows)
 
     groups = np.asarray([group(row) for row in rows])
     idx = np.arange(len(rows))
@@ -206,18 +239,29 @@ def train() -> dict:
 
     X_train, y_train, _, w_train = _xy(train_rows)
     X_val, y_val, _, w_val = _xy(val_rows)
-    model = _model()
-    model.fit(
-        X_train,
-        y_train,
-        sample_weight=w_train,
-        eval_set=(X_val, y_val),
-        early_stopping_rounds=100,
-    )
-    best_iter = int(model.get_best_iteration() or model.tree_count_ or 400)
-    threshold, threshold_trials = _choose_threshold(model, val_rows)
-    train_pred = predict_with_abstain(model, X_train, threshold)
-    val_pred = predict_with_abstain(model, X_val, threshold)
+    eval_pool = Pool(X_val, y_val, weight=w_val)
+    models = []
+    best_iterations = []
+    tree_counts = []
+    for member_no, seed in enumerate(ENSEMBLE_SEEDS, start=1):
+        print(f"\nАнсамбль {member_no}/{len(ENSEMBLE_SEEDS)}, seed={seed}")
+        model = _model(seed=seed)
+        model.fit(
+            X_train,
+            y_train,
+            sample_weight=w_train,
+            eval_set=eval_pool,
+            early_stopping_rounds=100,
+        )
+        raw_best = model.get_best_iteration()
+        best_iterations.append(
+            int(raw_best) + 1 if raw_best is not None else int(model.tree_count_ or 0)
+        )
+        tree_counts.append(int(model.tree_count_ or 0))
+        models.append(model)
+    threshold, threshold_trials = _choose_threshold(models, val_rows)
+    train_pred = predict_argmax(models, X_train)
+    val_pred = predict_argmax(models, X_val)
     train_metrics = _metrics(train_rows, train_pred)
     val_metrics = _metrics(val_rows, val_pred)
     overfit_gap = float(train_metrics["macro_f1"] - val_metrics["macro_f1"])
@@ -225,21 +269,33 @@ def train() -> dict:
 
     holdout_pages = manifest.get("holdout_test_pages") or {}
     report = {
-        "model_kind": "catboost_gpu_v1",
+        "model_kind": "catboost_gpu_ensemble_v1",
         "device": "GPU 0 (NVIDIA CUDA)",
         "features": list(FEATURE_NAMES),
         "data_source": SOURCE_JOB,
         "relabeled_sheets": relabeled,
         "excluded_test_pages": holdout_pages,
         "holdout_check": holdout,
-        "best_iteration": best_iter,
+        "best_iteration": best_iterations,
         "hyperparams": {
             "depth": 5,
             "learning_rate": 0.03,
             "l2_leaf_reg": 12.0,
             "min_data_in_leaf": 20,
-            "class_weights": {"include": 1.2, "exclude_nested": 2.2, "not_length": 1.8},
+            "class_weights": {"include": 1.0, "exclude_nested": 1.2, "not_length": 1.4},
             "early_stopping_rounds": 100,
+            "eval_metric": "MultiClass",
+            "ensemble_size": len(models),
+            "seeds": list(ENSEMBLE_SEEDS),
+            "tree_count": tree_counts,
+            "relation_features": [
+                "has_parent",
+                "geo_confidence",
+                "parent_ratio",
+                "parent_dist_norm",
+                "dist_to_line",
+                "parallel_score",
+            ],
         },
         "overfit_gap_macro_f1": overfit_gap,
         "overfit_ok": overfit_gap < 0.05,
@@ -261,12 +317,18 @@ def train() -> dict:
         },
     }
 
+    if min(tree_counts, default=0) < 20:
+        raise RuntimeError(
+            f"Обучение выродилось (деревья={tree_counts}). "
+            f"{MODEL_PATH.name} не перезаписываю."
+        )
+
     MODEL_PATH.parent.mkdir(parents=True, exist_ok=True)
     with MODEL_PATH.open("wb") as f:
         pickle.dump(
             {
-                "kind": "catboost_gpu_v1",
-                "model": model,
+                "kind": "catboost_gpu_ensemble_v1",
+                "models": models,
                 "threshold": threshold,
                 "features": FEATURE_NAMES,
                 "report": report,

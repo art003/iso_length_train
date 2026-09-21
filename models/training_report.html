@@ -13,10 +13,10 @@ code{background:#edf2f6;padding:2px 5px} @media(max-width:800px){.grid{grid-temp
 <h1>Отчёт обучения локальной модели</h1>
 <p class="sub">CatBoost · GPU · train / validation · без API</p>
 <div class="grid">
- <div class="card"><b>227</b><span>листов train</span></div>
- <div class="card"><b>94.4%</b><span>macro-F1 train</span></div>
- <div class="card"><b>91.4%</b><span>macro-F1 validation</span></div>
- <div class="card"><b>0.031</b><span>зазор train−val (переобучение)</span></div>
+ <div class="card"><b>225</b><span>листов train</span></div>
+ <div class="card"><b>96.4%</b><span>macro-F1 train</span></div>
+ <div class="card"><b>96.0%</b><span>macro-F1 validation</span></div>
+ <div class="card"><b>0.004</b><span>зазор train−val (переобучение)</span></div>
 </div>
 <div class="panel"><h2>Holdout</h2>
 <p>Проверка утечки: <b class="ok">ok</b>.
@@ -25,7 +25,7 @@ code{background:#edf2f6;padding:2px 5px} @media(max-width:800px){.grid{grid-temp
 </div>
 <div class="panel"><h2>Матрица ошибок validation</h2>
 <p>Строки — разметка, столбцы — прогноз: include / exclude_nested / not_length.</p>
-<table><tr><td>784</td><td>26</td><td>44</td></tr><tr><td>28</td><td>150</td><td>0</td></tr><tr><td>7</td><td>0</td><td>596</td></tr></table></div>
+<table><tr><td>514</td><td>7</td><td>0</td></tr><tr><td>2</td><td>111</td><td>0</td></tr><tr><td>4</td><td>1</td><td>36</td></tr></table></div>
 <div class="panel"><h2>Что сохранено</h2>
 <p><code>models/iso_clf.pkl</code> — модель, <code>training_report.html</code> — этот отчёт,
 <code>training_report.json</code> — технические данные.</p></div>
