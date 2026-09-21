@@ -13,29 +13,23 @@ __pycache__/
 .cursorignore
 *.code-workspace
 
-# OneDrive / Windows junk
+# OneDrive / Windows
 desktop.ini
 Thumbs.db
 ~$*
 
-# Uploads from the Flask UI
 web/uploads/
 
-# Huge source drawing set (keep locally to retrain)
-data/Изометрии.pdf
+# Big 307-page source; keep 02_, 03_ and data/kontrol tests
+data/*.pdf
+!data/02_*.pdf
+!data/03_*.pdf
+data/*.docx
 
-# PDF copies inside output jobs (sources live in data/)
+# PDF copies inside jobs
 output/**/*.pdf
 
-# Keep marked isometries in git:
-#   output/Изометрии_без_API/     — разметка 1–277
-#   output/тест_1_без_API/ …      — контрольные тесты
-#   output/02_Изометрии_10_листов_без_API/
-#   output/проверка_мастеру/
-#   output/tests_summary.json
-
-# Keep models/iso_clf.pkl in git (≈0.5 MB, LFS not needed).
-# ��������� �������, �� � ����
+# Debug, not for github
 _audit_train.py
 models/iso_clf.pkl.before_*
 models/label_audit.*

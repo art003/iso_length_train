@@ -56,7 +56,7 @@ def _parse_json(text: str) -> dict:
 
 class LlmClient:
     def __init__(self) -> None:
-        self.provider = os.getenv("ISO_LLM_PROVIDER", "gemini").strip().lower()
+        self.provider = os.getenv("ISO_LLM_PROVIDER", "none").strip().lower()
         if self.provider == "openai":
             self.model = os.getenv("ISO_LLM_MODEL", "gpt-4o")
             self.api_key = os.getenv("OPENAI_API_KEY", "")

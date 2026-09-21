@@ -67,11 +67,19 @@ def main() -> None:
         }
         print(f"==> {name}: {metrics.get('total_mm')} mm")
 
+    expected = {
+        "тест_1": 219678,
+        "тест_2": 276583,
+        "тест_3": 307114,
+    }
     summary_path = out / "tests_summary.json"
     summary_path.write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding="utf-8")
     print("\nSUMMARY")
     for k, v in results.items():
-        print(f"  {k}: {v['total_mm']} mm ({v['total_m']} m) ok={v['ok']} review={v['review']}")
+        got = v["total_mm"]
+        want = expected.get(k)
+        mark = "ok" if want is not None and got == want else f"ожидали {want}"
+        print(f"  {k}: {got} mm ({v['total_m']} m) {mark}")
     print(f"wrote {summary_path}")
 
 

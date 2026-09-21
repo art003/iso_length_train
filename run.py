@@ -446,7 +446,7 @@ def main() -> None:
     if args.from_json.strip():
         os.environ["ISO_LLM_PROVIDER"] = "replay"
         os.environ["ISO_REPLAY_DIR"] = str(Path(args.from_json).resolve())
-    elif args.no_api:
+    else:
         os.environ["ISO_LLM_PROVIDER"] = "none"
         os.environ["ISO_LLM_MODEL"] = "local"
     process_pdf(pdf, out, page_filter)

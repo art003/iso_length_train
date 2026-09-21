@@ -1,23 +1,11 @@
-# Что выкинуть перед zip / push
-
-Не класть в архив и не пушить:
+# Что не класть в git / zip
 
 - `.venv/`
 - `.cursor/`
-- `.env` (ключи API, если вдруг остались)
+- `.env` (ключа и так нет, на всякий случай)
 - `web/uploads/`
 - `__pycache__/`
-- `data/Изометрии.pdf` (исходник ~307 листов)
-- `output/Изометрии_без_API/` — только если получателю не нужно переучивать; для запуска Расчёта хватает `models/iso_clf.pkl`
-- `desktop.ini`, `Thumbs.db`
+- `data/Изометрии.pdf`
+- `_audit_train.py`, `models/iso_clf.pkl.before_*`, кропы в `output/_...`
 
-Оставить:
-
-- исходники `.py`, `конвейер_обучения.bat`, `запуск.bat`
-- `requirements.txt`, `README.md`, `РАЗМЕТКА.md`
-- `models/iso_clf.pkl`, `models/training_report.json`, `models/training_report.html`
-- `data/02_Изометрии_10_листов.pdf`
-- `docs/Обучение_локальной_модели.pdf`
-- `output/проверка_мастеру/`
-
-Не пушить на origin.cursor.com. Не делать `git push --force`.
+Оставить: код, `requirements.txt`, README, модель, десятку из задания, три контрольных pdf, размеченный output.
